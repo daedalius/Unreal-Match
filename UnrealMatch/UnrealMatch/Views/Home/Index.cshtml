@@ -1,0 +1,64 @@
+﻿@model UnrealMatch.Models.GamesInfo
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*///////////////////////////////////////////////////////////*@
+@*JOIN FORM*@
+@*///////////////////////////////////////////////////////////*@
+<div class="menu">
+    <span class="hidden" id="back-link">back</span>
+    <h1 id="join-header">Join the game</h1>
+
+    @using (Html.BeginForm("Join", "Home", FormMethod.Post, new { @class = "invisible", id = "join-form" }))
+    {    
+@* Player name *@
+        <div class="row">
+            <div class="parameter-name"><span>Nickname:</span></div><!--
+         --><div class="parameter-value">@Html.TextBoxFor(x => x.Nickname, new { @class = "player-name", placeholder = "Enter your nickname..." })</div><!--
+     --></div><!--
+     -->@Html.DropDownListFor(x => x.AvailableGames, new SelectList(Model.AvailableGames), new { @id = "available-games" })<!--
+     --><input id="join" type="submit" value="Join" />
+    }
+    @*///////////////////////////////////////////////////////////*@
+    @*CREATE FORM*@
+    @*///////////////////////////////////////////////////////////*@
+    <h1 id="create-header">Create a new game</h1>
+    <form class="invisible" id="create-form" action="~/Home/Create" method="post">
+        @* Player name *@
+        <div class="row">
+            <div class="parameter-name"><span>Nickname:</span></div><!--
+         --><div class="parameter-value">@Html.TextBoxFor(x => x.Nickname, new { @class = "player-name", placeholder = "Enter your nickname..." })</div>
+        </div>
+        @* Game name *@
+        <div class="row">
+            <div class="parameter-name"><span>Game name:</span></div><!--
+         --><div class="parameter-value">@Html.TextBoxFor(x => x.GameName, new { @class = "game-name", placeholder = "Enter game name..." })</div>
+        </div>
+        @* Game mode *@
+        <div class="row">
+            <div class="parameter-name"><span>Game mode:</span></div><!--
+         --><div class="parameter-value">@Html.DropDownListFor(x => x.AvailableModes, new SelectList(Model.AvailableModes), new { @id = "game-modes" })</div>
+        </div>
+        @* Game map *@
+        <div class="row">
+            <div class="parameter-name"><span>Game map:</span></div><!--
+         --><div class="parameter-value">@Html.DropDownListFor(x => x.AvailableMaps, new SelectList(Model.AvailableMaps), new { @id = "game-maps" })<!--
+         --></div>
+        </div>
+        @* Players count *@
+        <div class="row">
+            <div class="parameter-name"><span>Players count:</span></div><!--
+         --><div class="parameter-value">@Html.TextBoxFor(x => x.MaxPlayers, new { id = "game-players", type = "range", min = 2, max = Model.MaxPlayers, step = 1 })</div>
+        </div>
+        <input id="create" type="submit" value="Create" />
+    </form>
+</div>
+
+@*Audio*@
+<audio src="~/Resources/Audio/Menu/menu-theme.ogg" controls="controls" style="display: none" loop="loop" autoplay="autoplay" />
+@*Page CSS*@
+<link href="~/Resources/CSS/StartPage.css" rel="stylesheet" />
+<script src="~/Resources/Scripts/Menu/Menu.js"></script>

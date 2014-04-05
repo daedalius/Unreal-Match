@@ -1,0 +1,49 @@
+﻿@model UnrealMatch.Models.GameStartInfo
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+}
+
+<div id="game-instanse-info" style="display: none">
+    <div id="game-info">
+        <div id="game-name">@Model.GameName</div>
+    </div>
+    <div id="player-info">
+        <div id="player-name">@Model.PlayerName</div>
+        <div id="player-number">@Model.PlayerNumber</div>
+    </div>
+    <div id="map-info">
+        <div id="map-name">@Model.MapName</div>
+        <div id="map-quality">@Model.MapQuality.ToString(System.Globalization.CultureInfo.GetCultureInfo("en-US"))</div>
+        <div id="pass-map-width">@Model.MapWidth</div>
+        <div id="pass-map-height">@Model.MapHeight</div>
+        <div id="pass-map-content">
+            <ul>
+                @for (int h = 0; h < Model.MapHeight; h++)
+                {
+                    <li>@for (int w = 0; w < Model.MapWidth; w++){ @(Convert.ToInt32(Model.MapPasses[Model.MapHeight - h - 1, w]))}</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div id="parent">
+    <div id="content">
+        <canvas id="level" width="800" height="600"></canvas>
+        <canvas id="body" width="800" height="600"></canvas>
+        <canvas id="head" width="800" height="600"></canvas>
+        <canvas id="weapon" width="800" height="600"></canvas>
+        <canvas id="test" width="800" height="600"></canvas>
+        <canvas id="levelPass" width="3832" height="1422"></canvas>
+        @Html.Partial("_HUD")
+        @*Source images*@
+        <img id="PlayerOneHeadSpritesheet" class="sourceImage" src="~/Resources/Images/Players/Nova/nova-head-spritesheet.png" />
+        <img id="PlayerOneBodySpritesheet" class="sourceImage" src="~/Resources/Images/Players/Nova/nova-body-spritesheet.png" />
+        <img id="PlayerOneWeaponSpritesheet" class="sourceImage" src="~/Resources/Images/Players/Nova/nova-weapons-spritesheet.png" />
+        <img id="LevelImage" class="sourceImage" src="~/Resources/Images/Levels/Rising-Sun.jpg" />
+        <img id="LevelImagePass" class="sourceImage" src="~/Resources/Images/Levels/Rising-Sun-Passableness-Map.png" />
+    </div>
+</div>
