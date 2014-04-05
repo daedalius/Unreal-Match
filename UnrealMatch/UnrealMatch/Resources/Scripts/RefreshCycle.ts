@@ -23,3 +23,8 @@ function Draw()
 
     requestAnimationFrame(Draw);
 }
+
+function Interval50()
+{
+    CurrentPlayer.NextPosition();
+}

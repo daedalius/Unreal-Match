@@ -14,6 +14,7 @@ window.onload = function(onloadEvent)
 
     // Input handlers
     Loader.PlugInputEvents();
+    Loader.StartUpdateCycles();
 
     // Start drawing
     requestAnimationFrame(Draw);
@@ -25,14 +26,4 @@ window.onload = function(onloadEvent)
 
         })();
     }
-}
-
-function interval_50()
-{
-
-}
-
-function interval_25()
-{
-
 }

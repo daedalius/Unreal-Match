@@ -7,7 +7,7 @@
     public static class MapInfoGetter
     {
         // [TODO] need to use config
-        private static string PathToLevelsPassMaps = @"C:\Projects\UnrealMatch\UnrealMatch\Resources\Images\Levels\";
+        private static string PathToLevelsPassMaps = @"C:\Projects\Unreal-Match\UnrealMatch\UnrealMatch\Resources\Images\Levels\";
 
         static public Dictionary<string, Size> MapSizes = new Dictionary<string, Size>
         {

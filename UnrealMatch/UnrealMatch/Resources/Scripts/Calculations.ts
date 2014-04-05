@@ -2,8 +2,27 @@ module Calculations
 {
     export class Get
     {
+        private static __tempApproachDiff = 0;
+
         public static Cathetus()
         { }
+
+        public static Approach(current: number, goal: number, dt: number)
+        {
+            Get.__tempApproachDiff = goal - current;
+
+            if(Get.__tempApproachDiff > dt)
+            {
+                return current + dt;
+            }
+
+            if(Get.__tempApproachDiff < -dt)
+            {
+                return current - dt;
+            }
+
+            return goal;
+        }
 
         public static Hypotenuse(firstCatetLength: number, secondCatetLength: number): number
         {

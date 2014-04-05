@@ -39,6 +39,9 @@ class Loader
         // Mouse
         Mouse = new Entities.Point(0, 0);
 
+        // Gravity vector
+        Gravitation = new Entities.Vector(0, 40);
+
         // Temp player
         PlayerOne = new Entities.Player("Nova", Game.TeamType.None, new Entities.Point(0, 0), HeadContext, BodyContext, WeaponContext);
         CurrentPlayer = PlayerOne;
@@ -68,5 +71,10 @@ class Loader
     public static PlugResizeEvent()
     {
         window.onresize = Helpers.ResizeContentElement;
+    }
+
+    public static StartUpdateCycles()
+    {
+        Interval50ID = setInterval(Interval50, 50);
     }
 }

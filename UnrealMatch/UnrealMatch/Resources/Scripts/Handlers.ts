@@ -38,8 +38,9 @@ class Handlers
             // right
             case 100:
                 {
-                    CurrentPlayer.Position.X += 50;
-                    CurrentPlayer.UpdateInnerOriginRectangle();
+                    CurrentPlayer.StartStrafeRight()
+                    //CurrentPlayer.Position.X += 50;
+                    //CurrentPlayer.UpdateInnerOriginRectangle();
                     CurrentPlayer.ReactOnPlayerInput();
                     break;
                 }
@@ -47,8 +48,9 @@ class Handlers
             // left
             case 97:
                 {
-                    CurrentPlayer.Position.X -= 50;
-                    CurrentPlayer.UpdateInnerOriginRectangle();
+                    CurrentPlayer.StartStrafeLeft()
+                    //CurrentPlayer.Position.X -= 50;
+                    //CurrentPlayer.UpdateInnerOriginRectangle();
                     CurrentPlayer.ReactOnPlayerInput();
                     break;
                 }
@@ -57,21 +59,21 @@ class Handlers
 
     public static KeyUpHandler(eventArg)
     {
-        //switch (e.keyCode)
-        //{
-        //    // right
-        //    case 68:
-        //    {
-        //        testPlayer.StopStrafeRight();
-        //        break;
-        //    }
+        switch(eventArg.keyCode)
+        {
+            // right
+            case 68:
+            {
+                CurrentPlayer.StopStrafeRight();
+                break;
+            }
 
-        //    // left
-        //    case 65:
-        //    {
-        //        testPlayer.StopStrafeLeft();
-        //        break;
-        //    }
-        //}
+            // left
+            case 65:
+            {
+                CurrentPlayer.StopStrafeLeft();
+                break;
+            }
+        }
     }
 }

@@ -32,6 +32,8 @@ var Mouse: Entities.Point;
 var PlayerOne: Entities.Player;
 var CurrentPlayer: Entities.Player;
 
+var Gravitation: Entities.Vector;
+
 // Pass map
 var LevelPassCanvas: HTMLCanvasElement;
 var LevelPassContext: CanvasRenderingContext2D;
@@ -51,3 +53,6 @@ var LevelMapImageQualityMultiplier: number;
 // Test
 var TestCanvas: HTMLCanvasElement;
 var TestContext: CanvasRenderingContext2D;
+
+// Intervals
+var Interval50ID: number;
