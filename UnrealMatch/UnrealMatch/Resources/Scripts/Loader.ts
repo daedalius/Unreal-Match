@@ -40,10 +40,10 @@ class Loader
         Mouse = new Entities.Point(0, 0);
 
         // Gravity vector
-        Gravitation = new Entities.Vector(0, 40);
+        Gravitation = new Entities.Vector(0, -80);
 
         // Temp player
-        PlayerOne = new Entities.Player("Nova", Game.TeamType.None, new Entities.Point(0, 0), HeadContext, BodyContext, WeaponContext);
+        PlayerOne = new Entities.Player("Nova", Game.TeamType.None, new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
         CurrentPlayer = PlayerOne;
 
         // Test

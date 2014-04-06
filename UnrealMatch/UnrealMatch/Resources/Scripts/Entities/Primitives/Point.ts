@@ -37,5 +37,12 @@ module Entities
         {
             return new Vector(this.X - subtrahend.X, this.Y - subtrahend.Y);
         }
+
+        // Add vector operations
+        public AddVector(vector: Entities.Vector)
+        {
+            this.X += vector.X;
+            this.Y += vector.Y;
+        }
     }
 }

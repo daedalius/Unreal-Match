@@ -39,7 +39,6 @@ class Handlers
             case 100:
                 {
                     CurrentPlayer.StartStrafeRight()
-                    //CurrentPlayer.Position.X += 50;
                     //CurrentPlayer.UpdateInnerOriginRectangle();
                     CurrentPlayer.ReactOnPlayerInput();
                     break;
@@ -49,7 +48,13 @@ class Handlers
             case 97:
                 {
                     CurrentPlayer.StartStrafeLeft()
-                    //CurrentPlayer.Position.X -= 50;
+                    //CurrentPlayer.UpdateInnerOriginRectangle();
+                    CurrentPlayer.ReactOnPlayerInput();
+                    break;
+                }
+            case 32:
+                {
+                    CurrentPlayer.TryJump();
                     //CurrentPlayer.UpdateInnerOriginRectangle();
                     CurrentPlayer.ReactOnPlayerInput();
                     break;
