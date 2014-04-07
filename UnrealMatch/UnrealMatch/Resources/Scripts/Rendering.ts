@@ -18,6 +18,10 @@ module Rendering
                 startBackground.X *= LevelMapImageQualityMultiplier
             }
             // [TODO] for Y
+            if(FrameOffset.Y > 0)
+            {
+                startBackground.Y *= LevelMapImageQualityMultiplier;
+            }
 
             startBackground.Y += Sizes.CanvasDefault.Height * LevelMapImageQualityMultiplier;
             startBackground.ConvertToScreen(LevelImageSize.Height);
