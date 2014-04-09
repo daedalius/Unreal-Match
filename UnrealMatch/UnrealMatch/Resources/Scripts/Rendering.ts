@@ -11,13 +11,14 @@ module Rendering
 
             // Real top point
 
+            // [WTF]
             // Convert origin offset to image offset
-            // for X
+            // For X
             if(FrameOffset.X > 0)
             {
                 startBackground.X *= LevelMapImageQualityMultiplier
             }
-            // [TODO] for Y
+            // For Y
             if(FrameOffset.Y > 0)
             {
                 startBackground.Y *= LevelMapImageQualityMultiplier;
