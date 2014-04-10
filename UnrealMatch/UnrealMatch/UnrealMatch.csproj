@@ -137,7 +137,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Player.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Point.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Vector.ts" />
-    <TypeScriptCompile Include="Resources\Scripts\Entities\Presentation.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\PlayerPresentation.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Rectangle.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Exceptions\InvalidOperationException.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\ScreenRectangle.ts" />
