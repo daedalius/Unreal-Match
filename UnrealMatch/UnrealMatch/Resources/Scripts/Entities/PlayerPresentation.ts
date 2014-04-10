@@ -4,6 +4,7 @@ module Entities
     {
         // Sprites
         public TeamPresentation: Game.Team;
+
         // Draw contexts
         public HeadContext: CanvasRenderingContext2D;
         public BodyContext: CanvasRenderingContext2D;
@@ -29,11 +30,16 @@ module Entities
 
         public NextFrame()
         {
-            if (this.bodySpriteCounter === 5)
+            if (this.bodySpriteCounter === 6)
             {
                 this.bodySpriteCounter = 0;
             }
             this.bodySpriteCounter++;
+        }
+
+        public StopFrame()
+        {
+            this.bodySpriteCounter = 0;
         }
 
         public Draw()

@@ -76,5 +76,6 @@ class Loader
     public static StartUpdateCycles()
     {
         Interval50ID = setInterval(Interval50, 50);
+        Interval100ID = setInterval(Interval100, 100);
     }
 }

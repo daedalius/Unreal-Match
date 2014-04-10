@@ -193,8 +193,6 @@
     <TypeScriptCompile Include="Resources\Scripts\Helpers.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Handlers.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Objects\GameObject.ts" />
-    <TypeScriptCompile Include="Resources\Scripts\Entities\Presentation\PlayerPresentationResource.ts" />
-    <TypeScriptCompile Include="Resources\Scripts\Entities\Presentation\WeaponPresentationResource.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\Team.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\WeaponType.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\TeamType.ts" />

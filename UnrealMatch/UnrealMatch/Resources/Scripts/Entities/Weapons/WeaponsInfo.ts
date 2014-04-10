@@ -4,12 +4,9 @@ module Weapons
     {
         public Weapons: Array<Weapon>;
         public ActiveWeapon: WeaponType;
-        public Spritesheet: HTMLImageElement;
 
-        constructor(teamWeapons: HTMLImageElement)
+        constructor()
         {
-            this.Spritesheet = teamWeapons;
-
             this.Weapons = new Array<Weapon>();
 
             this.Weapons[0] = new Hammer();

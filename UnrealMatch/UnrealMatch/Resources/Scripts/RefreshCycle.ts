@@ -28,3 +28,8 @@ function Interval50()
 {
     CurrentPlayer.NextPosition();
 }
+
+function Interval100()
+{
+    CurrentPlayer.HandleAnimationTick();
+}

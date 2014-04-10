@@ -56,3 +56,4 @@ var TestContext: CanvasRenderingContext2D;
 
 // Intervals
 var Interval50ID: number;
+var Interval100ID: number;
