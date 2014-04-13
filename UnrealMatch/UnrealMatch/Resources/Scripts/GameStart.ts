@@ -9,12 +9,15 @@ window.onload = function(onloadEvent)
 
     // Attention! After first resize need to initialize all variables cause from content size depends sizing
     Loader.InitializeVariables();
-    WHUD.Show();
-    SHUD.Show();
+    //WHUD.Show();
+    //SHUD.Show();
 
     // Input handlers
     Loader.PlugInputEvents();
     Loader.StartUpdateCycles();
+
+    // Plug socket handlers
+    Loader.StartNetworkExchange();
 
     // Start drawing
     requestAnimationFrame(Draw);

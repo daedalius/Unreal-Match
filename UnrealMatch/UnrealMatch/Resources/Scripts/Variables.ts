@@ -1,3 +1,6 @@
+/// <reference path="Entities/Player.ts" />
+
+
 // HTML Elements
 var ContentElement: HTMLElement;
 
@@ -29,10 +32,8 @@ var FrameOffset: Entities.Offset;
 var Mouse: Entities.Point;
 
 // Players
-var PlayerOne: Entities.Player;
 var CurrentPlayer: Entities.Player;
-
-var Gravitation: Entities.Vector;
+var Players: Array<Entities.Player>;
 
 // Pass map
 var LevelPassCanvas: HTMLCanvasElement;
@@ -57,3 +58,9 @@ var TestContext: CanvasRenderingContext2D;
 // Intervals
 var Interval50ID: number;
 var Interval100ID: number;
+
+// Physic
+var Gravitation: Entities.Vector;
+
+// Network
+var Socket: WebSocket;

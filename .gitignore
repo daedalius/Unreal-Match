@@ -73,3 +73,6 @@ obj/
 /UnrealMatch/UnrealMatch/Resources/CSS/StartPage.css
 /UnrealMatch/UnrealMatch/Resources/CSS/StartPage.min.css
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/PlayerPresentation.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Game/GameInfo.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Game/GamePhase.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Network.js

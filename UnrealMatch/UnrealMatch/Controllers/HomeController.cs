@@ -20,8 +20,9 @@
             var model = new GameStartInfo()
             {
                 GameName = game.Name,
-                PlayerName = gameInfoModel.Nickname,
+                PlayerName = gameInfoModel.Nickname,                
                 PlayerNumber = game.Players.Where(x => x.Name == gameInfoModel.Nickname).First().Number,
+                PlayersCount = game.PlayersCount,
                 MapName = game.Map.Title,
                 MapWidth = game.Map.Size.Width,
                 MapHeight = game.Map.Size.Height,

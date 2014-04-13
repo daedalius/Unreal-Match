@@ -6,6 +6,7 @@
     using System.Net;
     using Alchemy;
     using UnrealMatch.Game;
+    using System.Diagnostics;
 
     public class Server
     {
@@ -15,11 +16,18 @@
         public Server()
         {
             this.Games = new List<Game>();
-            this.Socket = new WebSocketServer(52418, IPAddress.Loopback);
+            this.Socket = new WebSocketServer(99, IPAddress.Loopback);
             this.Socket.OnConnected = this.PlayerConnectionHandler;
+            this.Socket.TimeOut = new TimeSpan(1, 0, 0);
             this.Socket.OnReceive = this.RecivePlayersDataHandler;
             this.Socket.OnSend = this.SendingHandler;
             this.Socket.OnDisconnect = this.PlayerDisconnectedHandler;
+
+            // [BlackIndianMagic]
+            // On exception try execute in console this:
+            // net stop was /y
+
+            this.Socket.Start();
         }
 
         public void AddGame(string gameName, string mapName, int maxPlayers)
@@ -51,9 +59,9 @@
         private void RecivePlayersDataHandler(Alchemy.Classes.UserContext context)
         {
             var requestPathInfo = new RequestPathInfo(context.RequestPath);
-
+            Debug.WriteLine(context.DataFrame);
             // UserContext already in game. Need to just inform about new state.
-            GetGame(requestPathInfo.GameName).SaveRecivedStateByPlayer(requestPathInfo.PlayerIndexNumber);
+            //GetGame(requestPathInfo.GameName).SaveRecivedStateByPlayer(requestPathInfo.PlayerIndexNumber);
         }
 
         private void PlayerConnectionHandler(Alchemy.Classes.UserContext context)
@@ -62,6 +70,7 @@
 
             // Save client context at first time
             GetGame(requestPathInfo.GameName).SaveContextJoinedPlayer(context, requestPathInfo.PlayerIndexNumber);
+            Debug.WriteLine(String.Format("someone with ID={0} has been connected",requestPathInfo.PlayerIndexNumber));
         }
     }
 }

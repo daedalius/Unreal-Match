@@ -79,7 +79,9 @@
 
         internal void SaveContextJoinedPlayer(Alchemy.Classes.UserContext context, int playerNumber)
         {
-            //throw new NotImplementedException();
+            // Saving
+
+            // Send other players data about new player
         }
     }
 }

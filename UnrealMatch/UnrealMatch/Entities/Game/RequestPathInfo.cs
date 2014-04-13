@@ -8,7 +8,7 @@
         /// <summary>
         /// Return parsed game name and player index number from recived RequestPath
         /// </summary>
-        /// <param name="requestPathString">RequestPath format: /{gamename}-{playerШndexТumber}</param>
+        /// <param name="requestPathString">RequestPath format: /{gamename}-{playerIndexNumber}</param>
         public RequestPathInfo(string requestPathString)
         {
             this.GameName = requestPathString.Substring(1, requestPathString.LastIndexOf('-') - requestPathString.LastIndexOf('/') - 1);

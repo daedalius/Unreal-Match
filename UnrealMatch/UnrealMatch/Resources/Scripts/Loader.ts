@@ -1,3 +1,6 @@
+/// <reference path="Network.ts" />
+
+
 class Loader
 {
     public static InitializeVariables()
@@ -42,22 +45,31 @@ class Loader
         // Gravity vector
         Gravitation = new Entities.Vector(0, -80);
 
-        // Temp player
-        PlayerOne = new Entities.Player("Nova", Game.TeamType.None, new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
-        CurrentPlayer = PlayerOne;
+        // Game main information
+        Game.GameInfo.Host = $('#server-url').text();
+        Game.GameInfo.Socket = Game.GameInfo.Host.replace('http', 'ws');
+        Game.GameInfo.Name = $('#game-name').text();
+        Game.GameInfo.MaxPlayers = parseInt($('#players-count').text());
+        Game.GameInfo.Phase = Game.GamePhase.PlayersWaiting;
+
+        // Players and current player
+        Players = new Array<Entities.Player>(Game.GameInfo.MaxPlayers);
+        CurrentPlayer = new Entities.Player("Nova", parseInt($('#player-number').text()), Game.TeamType.None, new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
+        Players[CurrentPlayer.ID] = CurrentPlayer;
+
+        // RequestPath format: /{gamename}-{playerIndexNumber}
+        Game.GameInfo.Socket += '/' + Game.GameInfo.Name +'-' + CurrentPlayer.ID;
 
         // Test
         TestCanvas = <HTMLCanvasElement>document.getElementById('test');
         TestContext = TestCanvas.getContext('2d');
 
-        //var trilogies: string[][] = [["An Unexpected Journey", "The Desolation of Smaug", "There and Back Again"], ["The Fellowship Of the Ring", "The Two Towers", "The Return Of The King"]];
         Level = new Game.Map($('#map-name').text(), new Entities.Size(parseInt($('#pass-map-width').text()), parseInt($('#pass-map-height').text())), '#pass-map-content');
         LevelImage.src = "/Resources/Images/Levels/" + Level.Title + ".jpg";
-
-        //LevelImageSize = new Entities.Size(5748, 2134);
         LevelImageSize = new Entities.Size(LevelImage.naturalWidth, LevelImage.naturalHeight);
-
         LevelMapImageQualityMultiplier = parseFloat($('#map-quality').text());
+
+        Socket = new WebSocket(Game.GameInfo.Socket);
     }
 
     public static PlugInputEvents()
@@ -77,5 +89,13 @@ class Loader
     {
         Interval50ID = setInterval(Interval50, 50);
         Interval100ID = setInterval(Interval100, 100);
+    }
+
+    public static StartNetworkExchange()
+    {
+        Socket.onmessage = Network.NetworkHandlers.Receive;
+        Socket.onclose = function() {
+            console.log('socket has been closed');
+        }
     }
 }
