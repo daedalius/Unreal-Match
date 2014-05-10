@@ -172,7 +172,6 @@
     </Content>
     <Content Include="Resources\Images\Levels\Rising-Sun-Passableness-Map.png" />
     <Content Include="Resources\Images\Levels\Rising-Sun.jpg" />
-    <Content Include="Resources\Images\PlayerRed.png" />
     <Content Include="Resources\Images\Players\Nova\nova-body-spritesheet.png" />
     <Content Include="Resources\Images\Players\Nova\nova-head-spritesheet.png" />
     <Content Include="Resources\Images\Players\Nova\nova-weapons-spritesheet.png" />
