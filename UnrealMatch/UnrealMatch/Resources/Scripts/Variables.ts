@@ -21,6 +21,7 @@ var _BodyNova: HTMLImageElement;
 // HUD
 var SHUD: Entities.StatusHUD;
 var WHUD: Entities.WeaponHUD;
+var GsHUD: Entities.GameStatsHUD;
 
 // Sizes
 var Sizes: Entities.SizesSet;
@@ -54,6 +55,8 @@ var LevelMapImageQualityMultiplier: number;
 // Test
 var TestCanvas: HTMLCanvasElement;
 var TestContext: CanvasRenderingContext2D;
+var TestPlayers: Array<Entities.TestPlayer>;
+var TestCurrentPlayer: Entities.TestPlayer;
 
 // Intervals
 var Interval50ID: number;

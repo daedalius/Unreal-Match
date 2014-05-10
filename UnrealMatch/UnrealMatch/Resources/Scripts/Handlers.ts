@@ -59,6 +59,13 @@ class Handlers
                     CurrentPlayer.ReactOnPlayerInput();
                     break;
                 }
+            case 113:
+                {
+                    if(GsHUD)
+                    {
+                        GsHUD.Show();
+                    }
+                }
         }
     }
 
@@ -68,17 +75,25 @@ class Handlers
         {
             // right
             case 68:
-            {
-                CurrentPlayer.StopStrafeRight();
-                break;
-            }
+                {
+                    CurrentPlayer.StopStrafeRight();
+                    break;
+                }
 
             // left
             case 65:
-            {
-                CurrentPlayer.StopStrafeLeft();
-                break;
-            }
+                {
+                    CurrentPlayer.StopStrafeLeft();
+                    break;
+                }
+
+            case 81:
+                {
+                    if(GsHUD)
+                    {
+                        GsHUD.Hide();
+                    }
+                }
         }
     }
 }
