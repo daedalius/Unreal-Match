@@ -26,7 +26,17 @@ window.onload = function(onloadEvent)
     {
         (function()
         {
-
+            var tempArray = TestPlayers.sort(function(a, b)
+            {
+                if(a && b)
+                {
+                    return a.Score - b.Score
+                }
+                else
+                {
+                    return -1;
+                }
+            }).reverse();
         })();
     }
 }

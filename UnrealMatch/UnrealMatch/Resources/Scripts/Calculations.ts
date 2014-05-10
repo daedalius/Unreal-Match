@@ -134,5 +134,61 @@ module Calculations
                 }
             }
         }
+        public static CleanedArray(arrayToClean: any[]): any[]
+        {
+            var result: any[] = new Array();
+
+            for(var i = 0; i < arrayToClean.length; i++)
+            {
+                if(arrayToClean[i])
+                {
+                    result.push(arrayToClean[i])
+                }
+            }
+
+            return result;
+        }
+
+        public static ClonedArray(arrayToClone: any[]): any[]
+        {
+            return arrayToClone.slice(0);
+        }
+
+        public static SortedArray(arrayToSort: any[], field : string) : any[]
+        {
+            var tempArray = Calculations.Get.ClonedArray(arrayToSort);
+
+            // Buble sort
+            var temp;
+            var n = tempArray.length;
+            for(var j = 0; j < n - 1; j++)
+            {
+                var f = 0;
+                var min = j;
+
+                for(var i = j; i < (n - j - 1); i++)
+                {
+                    if(tempArray[i][field] > tempArray[i + 1][field])
+                    {
+                        temp = tempArray[i];
+                        tempArray[i] = tempArray[i + 1];
+                        tempArray[i + 1] = temp;
+                        f = 1;
+                    }
+                    if(tempArray[i][field] < tempArray[min][field])
+                        min = i;
+                }
+                if(f == 0)
+                    break;
+                if(min != j)
+                {
+                    temp = tempArray[j];
+                    tempArray[j] = tempArray[min];
+                    tempArray[min] = temp;
+                }
+            }
+
+            return tempArray;
+        }
     }
 }

@@ -42,7 +42,12 @@ module Entities
             // clean up old data
             bodyNode.children().remove();
 
-            var tempArray = TestPlayers.sort(function(a, b) {return a.Score - b.Score }).reverse();
+            var tempArray: Array<TestPlayer> = new Array<TestPlayer>(TestPlayers.length);
+            // Clean up empty elements
+            tempArray = Calculations.Get.CleanedArray(TestPlayers);
+            // Sort array by Score field
+            tempArray = Calculations.Get.SortedArray(tempArray, 'Score').reverse();
+
             for(var i = 0; i < tempArray.length; i++)
             {
                 var playerNameNode: JQuery = $(document.createElement('div'));
