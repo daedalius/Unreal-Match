@@ -204,6 +204,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\GameInfo.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\GamePhase.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\HUD\GameStatsHUD.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\HUD\BasicHUD.ts" />
     <Content Include="Resources\Scripts\Network.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />
     <Content Include="Resources\Scripts\Libraries\jquery.d.ts" />

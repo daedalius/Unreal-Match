@@ -1,44 +1,16 @@
 module Entities
 {
-    export class GameStatsHUD
+    export class GameStatsHUD extends AbstractHUD
     {
-        private rootElement: HTMLElement;
-        private visible: boolean;
-
         constructor(rootElement: HTMLElement)
         {
-            this.rootElement = rootElement;
-            this.visible = false;
+            super(rootElement);
             this.Refresh();
         }
-
-        public Hide()
-        {
-            if(this.visible)
-            {
-                if($(this.rootElement).hasClass('visible'))
-                {
-                    $(this.rootElement).removeClass('visible');
-                }
-            }
-            this.visible = false;
-        }
-
-        public Show()
-        {
-            if(!this.visible)
-            {
-                if(!$(this.rootElement).hasClass('visible'))
-                {
-                    $(this.rootElement).addClass('visible');
-                }
-            }
-            this.visible = true;
-        }
-
+        
         public Refresh()
         {
-            var bodyNode: JQuery = $(this.rootElement).find('.game-stats-body');
+            var bodyNode: JQuery = $(this.RootElement).find('.game-stats-body');
             // clean up old data
             bodyNode.children().remove();
 

@@ -1,9 +1,7 @@
 module Entities
 {
-    export class WeaponHUD
+    export class WeaponHUD extends AbstractHUD
     {
-        // Root element (#weapon-cells-wrapper)
-        private rootElement: HTMLElement;
         // Index of active weapon (in players hand)
         private selectedIndex: number;
         // All weapons cells wraps
@@ -11,7 +9,8 @@ module Entities
 
         constructor(rootElement: HTMLElement, startSelectedIndex: number)
         {
-            this.rootElement = rootElement;
+            super(rootElement);
+
             this.selectedIndex = startSelectedIndex;
 
             this.InnerWeaponCells = new Array(9);
@@ -19,22 +18,6 @@ module Entities
             for(var i = 0; i < 9; i++)
             {
                 this.InnerWeaponCells[i] = new WeaponHUDCell(<HTMLElement>tempNodes[i]);
-            }
-        }
-
-        public Hide()
-        {
-            if($(this.rootElement).hasClass('visible'))
-            {
-                $(this.rootElement).removeClass('visible');
-            }
-        }
-
-        public Show()
-        {
-            if(!$(this.rootElement).hasClass('visible'))
-            {
-                $(this.rootElement).addClass('visible');
             }
         }
 
@@ -54,7 +37,7 @@ module Entities
             for(var newIndex = this.selectedIndex + 1; newIndex < 9; newIndex++)
             {
                 // if a player has a weapon in cell by new index 
-                if($(this.InnerWeaponCells[newIndex].Cell).hasClass('visible'))
+                if($(this.InnerWeaponCells[newIndex].RootElement).hasClass('visible'))
                 {
                     // step 1: fade current animation
                     (function(selectedIndex: number)
@@ -93,7 +76,7 @@ module Entities
             for(var newIndex = this.selectedIndex - 1; newIndex >= 0; newIndex--)
             {
                 // if a player has a weapon in cell by new index 
-                if($(this.InnerWeaponCells[newIndex].Cell).hasClass('visible'))
+                if($(this.InnerWeaponCells[newIndex].RootElement).hasClass('visible'))
                 {
                     // step 1: fade current animation
                     (function(selectedIndex: number)
@@ -131,7 +114,7 @@ module Entities
         public SelectWeaponByIndex(newSelectedIndex: number)
         {
             // if a player has a weapon in cell by new index 
-            if($(this.InnerWeaponCells[newSelectedIndex].Cell).hasClass('visible'))
+            if($(this.InnerWeaponCells[newSelectedIndex].RootElement).hasClass('visible'))
             {
                 this.InnerWeaponCells[this.selectedIndex].Deselect();
                 this.InnerWeaponCells[newSelectedIndex].Select();
@@ -143,6 +126,5 @@ module Entities
         {
             this.InnerWeaponCells[index].SetAmmo(quantity);
         }
-
     }
 }

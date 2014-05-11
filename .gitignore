@@ -78,3 +78,4 @@ obj/
 /UnrealMatch/UnrealMatch/Resources/Scripts/Network.js
 /UnrealMatch/UnrealMatch/node_modules
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/HUD/GameStatsHUD.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Entities/HUD/BasicHUD.js

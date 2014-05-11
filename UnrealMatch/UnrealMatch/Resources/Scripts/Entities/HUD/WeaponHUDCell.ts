@@ -2,16 +2,15 @@
 
 module Entities
 {
-    export class WeaponHUDCell
+    export class WeaponHUDCell extends AbstractHUD
     {
-        public Cell: HTMLElement;
         public InnerElement: HTMLElement;
         public AmmoElement: HTMLElement;
 
         constructor(cell: HTMLElement)
         {
-            this.Cell = cell;
-            this.InnerElement = <HTMLElement>$(this.Cell).children()[0];
+            super(cell);
+            this.InnerElement = <HTMLElement>$(this.RootElement).children()[0];
             this.AmmoElement = <HTMLElement>this.InnerElement.querySelector('p');
         }
 
@@ -27,28 +26,16 @@ module Entities
             $(this.InnerElement).addClass('deactivated');
         }
 
-        public Show()
-        {
-            // Show weapon on HUD (weapon has been found)
-            $(this.Cell).addClass('visible');
-        }
-
-        public Hide()
-        {
-            // Hide weapon on HUD (player has been slain)
-            $(this.Cell).removeClass('visible');
-        }
-
         public Select()
         {
             // Select as active (take up arms)
-            $(this.Cell).addClass('active-cell');
+            $(this.RootElement).addClass('active-cell');
         }
 
         public Deselect()
         {
             // Deselect (put weapon to select another)
-            $(this.Cell).removeClass('active-cell');
+            $(this.RootElement).removeClass('active-cell');
         }
 
         public SetAmmo(quantity: number)
