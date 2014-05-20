@@ -103,8 +103,7 @@ class Loader
     public static StartNetworkExchange()
     {
         Socket.onmessage = Network.NetworkHandlers.Receive;
-        Socket.onclose = function() {
-            console.log('socket has been closed');
-        }
+        Socket.onclose = Network.NetworkHandlers.Close;
+        Socket.onopen = Network.NetworkHandlers.Open;
     }
 }

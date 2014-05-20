@@ -13,8 +13,9 @@
         [HttpPost]
         public ActionResult Join(GamesInfo gameInfoModel)
         {
-            Instances.GameServer.JoinPlayer(gameInfoModel.Nickname, gameInfoModel.GameName);
-            var game = Instances.GameServer.GetGame(gameInfoModel.GameName);
+            //Instances.GameServer.JoinPlayer(gameInfoModel.Nickname, gameInfoModel.GameName);
+            var game = Instances.GameServer.GetGame(gameInfoModel.GameName ?? gameInfoModel.AvailableGames[0]);            
+            game.JoinPlayer(gameInfoModel.Nickname);
 
             // Model forming
             var model = new GameStartInfo()
@@ -45,7 +46,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var availableGames = new string[] { "game1", "yobaGame", "noobs" };
+            var availableGames = Instances.GameServer.Games.Select(x => x.Name).ToArray();
             var availableModes = new string[] { "Deathmatch" };
             var availableMaps = new string[] { "Rising-Sun" };
 
