@@ -60,9 +60,9 @@ module Entities
             // Getting info about current sprite position
             var bodySpriteStartPoint: Point = (this.presentationObject.LookDirectionIsForward) ? new Point(this.bodySpriteCounter * Sizes.PlayerBodyDefault.Width, 0) : new Point(this.bodySpriteCounter * Sizes.PlayerBodyDefault.Width, Sizes.PlayerBodyDefault.Height);
             // Cleaning body canvas
-            BodyContext.clearRect(bodyScreenRectangle.Start.X - 200, bodyScreenRectangle.Start.Y - 200, bodyScreenRectangle.Width + 400, bodyScreenRectangle.Height + 400);
+            this.BodyContext.clearRect(bodyScreenRectangle.Start.X - 200, bodyScreenRectangle.Start.Y - 200, bodyScreenRectangle.Width + 400, bodyScreenRectangle.Height + 400);
             // Drawing body
-            BodyContext.drawImage(this.TeamPresentation.GetTeamBodyPresentation(), bodySpriteStartPoint.X, bodySpriteStartPoint.Y, Sizes.PlayerBodyDefault.Width, Sizes.PlayerBodyDefault.Height, bodyScreenRectangle.Start.X, bodyScreenRectangle.Start.Y, bodyScreenRectangle.Width, bodyScreenRectangle.Height);
+            this.BodyContext.drawImage(this.TeamPresentation.GetTeamBodyPresentation(), bodySpriteStartPoint.X, bodySpriteStartPoint.Y, Sizes.PlayerBodyDefault.Width, Sizes.PlayerBodyDefault.Height, bodyScreenRectangle.Start.X, bodyScreenRectangle.Start.Y, bodyScreenRectangle.Width, bodyScreenRectangle.Height);
         }
 
         private DrawHead()
@@ -87,14 +87,14 @@ module Entities
             headCenterOffset.X = headCenterOffset.X + headScreenRectangle.Start.X;
             headCenterOffset.Y = headCenterOffset.Y + headScreenRectangle.Start.Y;
 
-            HeadContext.translate(headCenterOffset.X, headCenterOffset.Y);
-            HeadContext.rotate(-this.presentationObject.OldAngleOfView);
-            HeadContext.clearRect(-200, -200, 400, 400);
-            HeadContext.translate(-headCenterOffset.X, -headCenterOffset.Y);
-            HeadContext.drawImage(this.TeamPresentation.GetTeamHeadPresentation(), headSpriteStartPoint.X, headSpriteStartPoint.Y, Sizes.PlayerHeadDefault.Width, Sizes.PlayerHeadDefault.Height, headScreenRectangle.Start.X, headScreenRectangle.Start.Y, headScreenRectangle.Width, headScreenRectangle.Height);
-            HeadContext.translate(headCenterOffset.X, headCenterOffset.Y);
-            HeadContext.rotate(this.presentationObject.OldAngleOfView);
-            HeadContext.translate(-headCenterOffset.X, -headCenterOffset.Y);
+            this.HeadContext.translate(headCenterOffset.X, headCenterOffset.Y);
+            this.HeadContext.rotate(-this.presentationObject.OldAngleOfView);
+            this.HeadContext.clearRect(-200, -200, 400, 400);
+            this.HeadContext.translate(-headCenterOffset.X, -headCenterOffset.Y);
+            this.HeadContext.drawImage(this.TeamPresentation.GetTeamHeadPresentation(), headSpriteStartPoint.X, headSpriteStartPoint.Y, Sizes.PlayerHeadDefault.Width, Sizes.PlayerHeadDefault.Height, headScreenRectangle.Start.X, headScreenRectangle.Start.Y, headScreenRectangle.Width, headScreenRectangle.Height);
+            this.HeadContext.translate(headCenterOffset.X, headCenterOffset.Y);
+            this.HeadContext.rotate(this.presentationObject.OldAngleOfView);
+            this.HeadContext.translate(-headCenterOffset.X, -headCenterOffset.Y);
 
         }
 
@@ -129,16 +129,16 @@ module Entities
             }
 
             // Clearing previous state
-            WeaponContext.translate(weaponCenter.X, weaponCenter.Y);
-            WeaponContext.rotate(-this.presentationObject.OldAngleOfView);
-            WeaponContext.clearRect(-400, -400, 1000, 1000);
-            WeaponContext.translate(-weaponCenter.X, -weaponCenter.Y);
+            this.WeaponContext.translate(weaponCenter.X, weaponCenter.Y);
+            this.WeaponContext.rotate(-this.presentationObject.OldAngleOfView);
+            this.WeaponContext.clearRect(-400, -400, 1000, 1000);
+            this.WeaponContext.translate(-weaponCenter.X, -weaponCenter.Y);
             // Drawing
-            WeaponContext.drawImage(_WeaponNova, weaponSpriteStartPoint.X, weaponSpriteStartPoint.Y, Sizes.WeaponDefault.Width, Sizes.WeaponDefault.Height, weaponScreenRectangle.Start.X, weaponScreenRectangle.Start.Y, weaponScreenRectangle.Width, weaponScreenRectangle.Height);
+            this.WeaponContext.drawImage(_WeaponNova, weaponSpriteStartPoint.X, weaponSpriteStartPoint.Y, Sizes.WeaponDefault.Width, Sizes.WeaponDefault.Height, weaponScreenRectangle.Start.X, weaponScreenRectangle.Start.Y, weaponScreenRectangle.Width, weaponScreenRectangle.Height);
             // Rotating on actual angle
-            WeaponContext.translate(weaponCenter.X, weaponCenter.Y);
-            WeaponContext.rotate(this.presentationObject.OldAngleOfView);
-            WeaponContext.translate(-weaponCenter.X, -weaponCenter.Y);
+            this.WeaponContext.translate(weaponCenter.X, weaponCenter.Y);
+            this.WeaponContext.rotate(this.presentationObject.OldAngleOfView);
+            this.WeaponContext.translate(-weaponCenter.X, -weaponCenter.Y);
         }
 
         //private _DrawVisibleArea()

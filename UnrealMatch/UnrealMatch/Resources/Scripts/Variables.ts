@@ -55,8 +55,6 @@ var LevelMapImageQualityMultiplier: number;
 // Test
 var TestCanvas: HTMLCanvasElement;
 var TestContext: CanvasRenderingContext2D;
-var TestPlayers: Array<Entities.TestPlayer>;
-var TestCurrentPlayer: Entities.TestPlayer;
 
 // Intervals
 var Interval50ID: number;

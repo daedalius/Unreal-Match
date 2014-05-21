@@ -208,6 +208,8 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\GamePhase.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\HUD\GameStatsHUD.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\HUD\BasicHUD.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Game\WaitingGamePhaseHandler.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Game\GamePhaseHandler.ts" />
     <Content Include="Resources\Scripts\Network.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />
     <Content Include="Resources\Scripts\Libraries\jquery.d.ts" />

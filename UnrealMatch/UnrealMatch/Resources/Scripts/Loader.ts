@@ -8,13 +8,13 @@ class Loader
         // Initializing HTMLElements
         ContentElement = <HTMLElement>document.getElementById('content');
 
-        HeadCanvas = <HTMLCanvasElement>document.getElementById('head');
+        HeadCanvas = <HTMLCanvasElement>document.getElementById('head0');
         HeadContext = HeadCanvas.getContext('2d');
 
-        BodyCanvas = <HTMLCanvasElement>document.getElementById('body');
+        BodyCanvas = <HTMLCanvasElement>document.getElementById('body0');
         BodyContext = BodyCanvas.getContext('2d');
 
-        WeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon');
+        WeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon0');
         WeaponContext = WeaponCanvas.getContext('2d');
 
         LevelCanvas = <HTMLCanvasElement>document.getElementById('level');
@@ -50,15 +50,52 @@ class Loader
         Game.GameInfo.Socket = Game.GameInfo.Host.replace('http', 'ws');
         Game.GameInfo.Name = $('#game-name').text();
         Game.GameInfo.MaxPlayers = parseInt($('#players-count').text());
-        Game.GameInfo.Phase = Game.GamePhase.PlayersWaiting;
+        Game.GameInfo.Phase = Game.GamePhase.Waiting;
+        Game.GameInfo.PhaseHandler = new Game.WaitingGamePhaseHandler();
 
         // Players and current player
         Players = new Array<Entities.Player>(Game.GameInfo.MaxPlayers);
-        CurrentPlayer = new Entities.Player("Nova", parseInt($('#player-number').text()), Game.TeamType.None, new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
+
+        // Prepare resources for current player
+        CurrentPlayer = new Entities.Player("", parseInt($('#player-number').text()), Game.TeamType.None, new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
         Players[CurrentPlayer.ID] = CurrentPlayer;
 
+        // prepare canvaces for other players
+        // [TODO] - refact this shit
+        for(var i = 0; i < Game.GameInfo.MaxPlayers; i++)
+        {
+            if(i < CurrentPlayer.ID)
+            {
+                var tempHeadCanvas = <HTMLCanvasElement>document.getElementById('head' + (i + 1).toString());
+                var tempHeadContext = tempHeadCanvas.getContext('2d');
+
+                var tempBodyCanvas = <HTMLCanvasElement>document.getElementById('body' + (i + 1).toString());
+                var tempBodyContext = tempBodyCanvas.getContext('2d');
+
+                var tempWeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon' + (i + 1).toString());
+                var tempWeaponContext = tempWeaponCanvas.getContext('2d');
+
+                Players[i] = new Entities.Player("", i, Game.TeamType.None, new Entities.Point(600, 24), tempHeadContext, tempBodyContext, tempWeaponContext);
+            }
+
+            if(i > CurrentPlayer.ID)
+            {
+                var tempHeadCanvas = <HTMLCanvasElement>document.getElementById('head' + i.toString());
+                var tempHeadContext = tempHeadCanvas.getContext('2d');
+
+                var tempBodyCanvas = <HTMLCanvasElement>document.getElementById('body' + i.toString());
+                var tempBodyContext = tempBodyCanvas.getContext('2d');
+
+                var tempWeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon' + i.toString());
+                var tempWeaponContext = tempWeaponCanvas.getContext('2d');
+
+                Players[i] = new Entities.Player("", i, Game.TeamType.None, new Entities.Point(600, 24), tempHeadContext, tempBodyContext, tempWeaponContext);
+            }
+        }
+
+
         // RequestPath format: /{gamename}-{playerIndexNumber}
-        Game.GameInfo.Socket += '/' + Game.GameInfo.Name +'-' + CurrentPlayer.ID;
+        Game.GameInfo.Socket += '/' + Game.GameInfo.Name + '-' + CurrentPlayer.ID;
 
         // Test
         TestCanvas = <HTMLCanvasElement>document.getElementById('test');
@@ -71,12 +108,12 @@ class Loader
 
         Socket = new WebSocket(Game.GameInfo.Socket);
 
-        TestPlayers = new Array<Entities.TestPlayer>(3);
-        TestPlayers[0] = new Entities.TestPlayer('player1', 1, 1);
-        TestPlayers[1] = new Entities.TestPlayer('player2', 2, 10);
-        TestPlayers[2] = new Entities.TestPlayer('player3', 3, 5);
-        TestPlayers[3] = new Entities.TestPlayer('player4', 4, 6);
-        TestCurrentPlayer = TestPlayers[0];
+        //TestPlayers = new Array<Entities.TestPlayer>(3);
+        //TestPlayers[0] = new Entities.TestPlayer('player1', 1, 1);
+        //TestPlayers[1] = new Entities.TestPlayer('player2', 2, 10);
+        //TestPlayers[2] = new Entities.TestPlayer('player3', 3, 5);
+        //TestPlayers[3] = new Entities.TestPlayer('player4', 4, 6);
+        //TestCurrentPlayer = TestPlayers[0];
         GsHUD = new Entities.GameStatsHUD(document.getElementById('game-stats'));
         GsHUD.Show();
     }

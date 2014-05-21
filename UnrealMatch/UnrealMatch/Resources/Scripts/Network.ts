@@ -12,7 +12,7 @@ module Network
 
         public static Receive(event : any)
         {
-            Game.GameInfo.HandleRecivedData(event.data);
+            Game.GameInfo.PhaseHandler.Handle(JSON.parse(event.data));
             console.log('Socket receive data: ' + event.data);
         }
 

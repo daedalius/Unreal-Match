@@ -24,7 +24,8 @@
             <ul>
                 @for (int h = 0; h < Model.MapHeight; h++)
                 {
-                    <li>@for (int w = 0; w < Model.MapWidth; w++){ @(Convert.ToInt32(Model.MapPasses[Model.MapHeight - h - 1, w]))}</li>
+                    <li>@for (int w = 0; w < Model.MapWidth; w++)
+                        { @(Convert.ToInt32(Model.MapPasses[Model.MapHeight - h - 1, w]))}</li>
                 }
             </ul>
         </div>
@@ -35,9 +36,16 @@
 <div id="parent">
     <div id="content">
         <canvas id="level" width="800" height="600"></canvas>
-        <canvas id="body" width="800" height="600"></canvas>
-        <canvas id="head" width="800" height="600"></canvas>
-        <canvas id="weapon" width="800" height="600"></canvas>
+        
+        @for (int i = Model.PlayersCount - 1; i >= 0; i--)
+        {<!--
+            --><canvas id="body@(i)" width="800" height="600"></canvas><!--
+            --><canvas id="head@(i)" width="800" height="600"></canvas><!--
+            --><canvas id="weapon@(i)" width="800" height="600"></canvas><!--
+      -->}
+
+        
+
         <canvas id="test" width="800" height="600"></canvas>
         <canvas id="levelPass" width="3832" height="1422"></canvas>
         @Html.Partial("_HUD")

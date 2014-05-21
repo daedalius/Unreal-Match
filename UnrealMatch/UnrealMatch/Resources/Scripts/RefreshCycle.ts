@@ -8,7 +8,7 @@ function Draw()
 
     // first, second
     FrameOffset.X = (CurrentPlayer.Position.X < 400) ? 0 : CurrentPlayer.Position.X - 400;
-    // [TODO] test Y - BUG for players hands
+    // [TODO] test Y - BUG with epileptic players hands in jump
     FrameOffset.Y = (CurrentPlayer.Position.Y < 200) ? 0 : CurrentPlayer.Position.Y - 200;
 
     // third: stop camera in the end of level    
@@ -16,6 +16,15 @@ function Draw()
     if(CurrentPlayer.Position.Y > Level.OutherSize.Height - 400) FrameOffset.Y = Level.OutherSize.Height - 600;
 
     // Test player drawing
+
+    for(var i = 0; i < Game.GameInfo.MaxPlayers; i++)
+    {
+        if(i != CurrentPlayer.ID)
+        {
+            Players[i].Draw();
+        }
+    }
+
     CurrentPlayer.Draw();
 
     // Background drawing

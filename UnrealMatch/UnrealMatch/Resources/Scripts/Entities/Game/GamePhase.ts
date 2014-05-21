@@ -2,9 +2,9 @@ module Game
 {
     export enum GamePhase
     {
-        PlayersWaiting,
+        Waiting,
         Countdown,
-        Game,
-        End
+        Play,
+        Stop
     }
 }
