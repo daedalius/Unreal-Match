@@ -1,3 +1,5 @@
+/// <reference path="../Helpers.ts" />
+
 class MenuHandling
 {
     public static Init()
@@ -6,6 +8,18 @@ class MenuHandling
         $('#create-header').on('click', MenuHandling.ShowCreateMenu);
         $('#back-link').on('click', MenuHandling.Back);
 
+        var menuThemePlayer: HTMLAudioElement = <HTMLAudioElement>document.getElementById('menu-theme');
+
+        if(Helpers.IsIE())
+        {
+            menuThemePlayer.src = "/Resources/Audio/Menu/menu-theme.mp3";
+            menuThemePlayer.load();
+        }
+        else
+        {
+            menuThemePlayer.src = "/Resources/Audio/Menu/menu-theme.ogg";
+            menuThemePlayer.load();
+        }
     }
 
     private static Back()

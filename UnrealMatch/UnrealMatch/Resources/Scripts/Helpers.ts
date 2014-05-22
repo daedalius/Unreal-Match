@@ -2,6 +2,11 @@
 
 class Helpers
 {
+    public static IsIE() : boolean
+    {
+        return navigator.userAgent.toLowerCase().indexOf('msie') != -1
+    }
+
     // Resize parent div for scale game on full browser window size
     public static ResizeContentElement()
     {
