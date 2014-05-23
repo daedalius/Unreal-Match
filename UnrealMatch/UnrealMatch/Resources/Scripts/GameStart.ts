@@ -9,6 +9,7 @@ window.onload = function(onloadEvent)
 
     // Attention! After first resize need to initialize all variables cause from content size depends sizing
     Loader.InitializeVariables();
+    Loader.PlayLevelTheme();
     WHUD.Show();
     SHUD.Show();
 

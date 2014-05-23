@@ -148,6 +148,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Size.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Sizes.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Miltiplier.ts" />
+    <Content Include="Resources\Audio\Levels\Rising-Sun.mp3" />
     <Content Include="Resources\Audio\Menu\menu-theme.mp3" />
     <Content Include="Resources\CSS\Fonts.css" />
     <Content Include="Resources\CSS\GameLayout.css">

@@ -143,4 +143,20 @@ class Loader
         Socket.onclose = Network.NetworkHandlers.Close;
         Socket.onopen = Network.NetworkHandlers.Open;
     }
+
+    public static PlayLevelTheme()
+    {
+        var levelAudio = <HTMLAudioElement>document.getElementById('level-theme');
+
+        if(Helpers.IsIE())
+        {
+            levelAudio.src = "/Resources/Audio/Levels/" + Level.Title + ".mp3";
+            levelAudio.load();
+        }
+        else
+        {
+            levelAudio.src = "/Resources/Audio/Levels/" + Level.Title + ".ogg";
+            levelAudio.load();
+        }
+    }
 }
