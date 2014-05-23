@@ -9,8 +9,8 @@
 @*JOIN FORM*@
 @*///////////////////////////////////////////////////////////*@
 <div class="menu">
-    <span class="hidden" id="back-link">back</span>
-    <h1 id="join-header">Join the game</h1>
+    <span class="hidden howl-back" id="back-link">back</span>
+    <h1 class="howl-next" id="join-header">Join the game</h1>
 
     @using (Html.BeginForm("Join", "Home", FormMethod.Post, new { @class = "invisible", id = "join-form" }))
     {    
@@ -20,12 +20,12 @@
          --><div class="parameter-value">@Html.TextBoxFor(x => x.Nickname, new { @class = "player-name", placeholder = "Enter your nickname..." })</div><!--
      --></div><!--
      -->@Html.DropDownListFor(x => x.AvailableGames, new SelectList(Model.AvailableGames), new { @id = "available-games" })<!--
-     --><input id="join" type="submit" value="Join" />
+     --><input class="howl-next" id="join" type="submit" value="Join" />
     }
     @*///////////////////////////////////////////////////////////*@
     @*CREATE FORM*@
     @*///////////////////////////////////////////////////////////*@
-    <h1 id="create-header">Create a new game</h1>
+    <h1 class="howl-next" id="create-header">Create a new game</h1>
     <form class="invisible" id="create-form" action="~/Home/Create" method="post">
         @* Player name *@
         <div class="row">
@@ -53,14 +53,15 @@
             <div class="parameter-name"><span>Players count:</span></div><!--
          --><div class="parameter-value">@Html.TextBoxFor(x => x.MaxPlayers, new { id = "game-players", type = "range", min = 2, max = Model.MaxPlayers, step = 1 })</div>
         </div>
-        <input id="create" type="submit" value="Create" />
+        <input class="howl-next" id="create" type="submit" value="Create" />
     </form>
 </div>
 
 @*Audio*@
-<audio id="menu-theme" controls="controls" style="display: none" loop="loop" autoplay="autoplay" />
+@*<audio id="menu-theme" controls="controls" style="display: none" loop="loop" autoplay="autoplay" />*@
 
 @*Page CSS*@
 <link href="~/Resources/CSS/StartPage.css" rel="stylesheet" />
 <script src="~/Resources/Scripts/Helpers.js"></script>
 <script src="~/Resources/Scripts/Menu/Menu.js"></script>
+<script src="~/Resources/Scripts/Libraries/howler.js"></script>

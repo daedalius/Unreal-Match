@@ -149,6 +149,9 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Sizes.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Miltiplier.ts" />
     <Content Include="Resources\Audio\Levels\Rising-Sun.mp3" />
+    <Content Include="Resources\Audio\Menu\menu-hover.mp3" />
+    <Content Include="Resources\Audio\Menu\menu-next.mp3" />
+    <Content Include="Resources\Audio\Menu\menu-back.mp3" />
     <Content Include="Resources\Audio\Menu\menu-theme.mp3" />
     <Content Include="Resources\CSS\Fonts.css" />
     <Content Include="Resources\CSS\GameLayout.css">
@@ -212,6 +215,8 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\HUD\BasicHUD.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\WaitingGamePhaseHandler.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\GamePhaseHandler.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Libraries\howler.d.ts" />
+    <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\Network.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />
     <Content Include="Resources\Scripts\Libraries\jquery.d.ts" />
@@ -273,6 +278,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Audio\Levels\Rising-Sun.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Menu\menu-hover.ogg" />
+    <Content Include="Resources\Audio\Menu\menu-next.ogg" />
+    <Content Include="Resources\Audio\Menu\menu-back.ogg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
