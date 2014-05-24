@@ -149,6 +149,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Sizes.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Miltiplier.ts" />
     <Content Include="Resources\Audio\Levels\Rising-Sun.mp3" />
+    <Content Include="Resources\Audio\Menu\menu-hover-light.mp3" />
     <Content Include="Resources\Audio\Menu\menu-hover.mp3" />
     <Content Include="Resources\Audio\Menu\menu-next.mp3" />
     <Content Include="Resources\Audio\Menu\menu-back.mp3" />
@@ -184,7 +185,7 @@
     <Content Include="Resources\Images\Players\Nova\nova-head-spritesheet.png" />
     <Content Include="Resources\Images\Players\Nova\nova-weapons-spritesheet.png" />
     <Content Include="Resources\Images\UI\Elements\buttons-background.png" />
-    <Content Include="Resources\Images\UI\Elements\menu-background.jpg" />
+    <Content Include="Resources\Images\UI\Elements\menu-background.png" />
     <Content Include="Resources\Images\UI\Guns\bio-rifle.png" />
     <Content Include="Resources\Images\UI\Guns\enforcer.png" />
     <Content Include="Resources\Images\UI\Guns\flak-cannon.png" />
@@ -283,6 +284,9 @@
     <Content Include="Resources\Audio\Menu\menu-hover.ogg" />
     <Content Include="Resources\Audio\Menu\menu-next.ogg" />
     <Content Include="Resources\Audio\Menu\menu-back.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Menu\menu-hover-light.ogg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
