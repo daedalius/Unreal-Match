@@ -49,7 +49,7 @@ class MenuHandling
         $('.howl-back').on('mouseover', function() { MenuHandling.HoverButtonHowl.play() });
         $('.howl-next').on('mouseover', function() { MenuHandling.HoverButtonHowl.play() });
         $('select').on('mouseover', function() { MenuHandling.LightHoverButtonHowl.play() });
-        $('input').on('mouseover', function() { MenuHandling.LightHoverButtonHowl.play() });
+        $('input[type!="submit"]').on('mouseover', function() { MenuHandling.LightHoverButtonHowl.play() });
     }
 
     private static Back()
@@ -117,7 +117,7 @@ class MenuHandling
 
     private static ShowCreateMenu()
     {
-        MenuHandling.ToLeft($('#create-header'), function()
+        MenuHandling.ToLeft($('#join-header'), function()
         {
             // Remove background on hover headers
             $('#create-header').addClass('disabled-background');
