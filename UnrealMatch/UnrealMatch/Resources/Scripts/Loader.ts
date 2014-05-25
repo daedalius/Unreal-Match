@@ -5,6 +5,9 @@ class Loader
 {
     public static InitializeVariables()
     {
+        // Sounds
+        SoundManager.Announcer.Init();
+
         // Initializing HTMLElements
         ContentElement = <HTMLElement>document.getElementById('content');
 

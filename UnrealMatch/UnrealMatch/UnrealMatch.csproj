@@ -148,6 +148,35 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Size.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Sizes.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Primitives\Miltiplier.ts" />
+    <Content Include="Resources\Audio\Announcer\Game\lostmatch.mp3" />
+    <Content Include="Resources\Audio\Announcer\Game\prepare.mp3" />
+    <Content Include="Resources\Audio\Announcer\Game\winner.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\dominating.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\doublekill.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\firstblood.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\godlike.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\headshot.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\killingspree.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\megakill.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\monsterkill.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\multikill.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\rampage.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\ultrakill.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\unstoppable.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\minute-1.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\minute-3.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\minute-5.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-1.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-10.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-2.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-3.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-30.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-4.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-5.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-6.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-7.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-8.mp3" />
+    <Content Include="Resources\Audio\Announcer\Time\second-9.mp3" />
     <Content Include="Resources\Audio\Levels\Rising-Sun.mp3" />
     <Content Include="Resources\Audio\Menu\menu-hover-light.mp3" />
     <Content Include="Resources\Audio\Menu\menu-hover.mp3" />
@@ -217,6 +246,8 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\WaitingGamePhaseHandler.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\GamePhaseHandler.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Libraries\howler.d.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\PlayerAnnouncerStates.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\Announcer.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\Network.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />
@@ -287,6 +318,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Audio\Menu\menu-hover-light.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Announcer\Game\lostmatch.ogg" />
+    <Content Include="Resources\Audio\Announcer\Game\prepare.ogg" />
+    <Content Include="Resources\Audio\Announcer\Game\winner.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\dominating.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\doublekill.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\firstblood.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\godlike.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\headshot.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\killingspree.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\megakill.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\monsterkill.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\multikill.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\rampage.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\ultrakill.ogg" />
+    <Content Include="Resources\Audio\Announcer\Kills\unstoppable.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\minute-1.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\minute-3.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\minute-5.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-1.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-10.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-2.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-3.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-30.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-4.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-5.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-6.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-7.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-8.ogg" />
+    <Content Include="Resources\Audio\Announcer\Time\second-9.ogg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
