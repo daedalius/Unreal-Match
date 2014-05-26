@@ -2,21 +2,64 @@ module SoundManager
 {
     export class PlayerAnnouncerStartState
     {
-        public AnnounceState()
+        public FragsStretch: number;
+
+        constructor(fragStretch: number)
         {
+            this.FragsStretch = fragStretch;
         }
 
-        public TryChangeState(frags: number, announcerDelay : number): PlayerAnnouncerStartState
+        public AnnounceState()
+        { }
+
+        public ReactOnFragStretch(deltaFrags: number, lastFragTime: Date)
+        {
+            this.FragsStretch = this.FragsStretch + deltaFrags;
+
+            var nowDate: Date = new Date();
+            var deltaMilliseconds = nowDate.valueOf() - lastFragTime.valueOf();
+
+            console.log(deltaMilliseconds);
+            console.log(this.FragsStretch);
+            // Only when Last kill was less than 5 seconds
+            if(deltaMilliseconds <= 5000)
+            {
+                switch(this.FragsStretch)
+                {
+                    case 2: { Announcer.Doublekill.play(); break; }
+                    case 3: { Announcer.Multikill.play(); break; }
+                    case 4: { Announcer.Megakill.play(); break; }
+                    case 5: { Announcer.Ultrakill.play(); break; }
+                    case 6: { Announcer.Monsterkill.play(); break; }
+                }
+            }
+            else
+            {
+                this.FragsStretch = deltaFrags;
+            }
+        }
+
+        public TryChangeState(frags: number, announcerDelay: number): PlayerAnnouncerStartState
         {
             if(frags >= 5)
             {
-                var newState = new KillingspreeState();
+                var newState = new KillingspreeState(this.FragsStretch);
                 setTimeout(newState.AnnounceState, announcerDelay);
                 return newState;
             }
             else
             {
                 return this;
+            }
+        }
+
+        public React(frags, deltaFrags, lastFragTime: Date)
+        {
+            if(deltaFrags > 0)
+            {
+                var delay: number = (deltaFrags > 1) ? 1500 : 0;
+                this.ReactOnFragStretch(deltaFrags, lastFragTime);
+                return this.TryChangeState(frags, delay);
             }
         }
     }
@@ -32,7 +75,7 @@ module SoundManager
         {
             if(frags >= 10)
             {
-                var newState = new RampageState();
+                var newState = new RampageState(this.FragsStretch);
                 setTimeout(newState.AnnounceState, announcerDelay);
                 return newState;
             }
@@ -54,7 +97,7 @@ module SoundManager
         {
             if(frags >= 15)
             {
-                var newState = new DominatingState();
+                var newState = new DominatingState(this.FragsStretch);
                 setTimeout(newState.AnnounceState, announcerDelay);
                 return newState;
             }
@@ -76,7 +119,7 @@ module SoundManager
         {
             if(frags >= 20)
             {
-                var newState = new UnstoppableState();
+                var newState = new UnstoppableState(this.FragsStretch);
                 setTimeout(newState.AnnounceState, announcerDelay);
                 return newState;
             }
@@ -98,7 +141,7 @@ module SoundManager
         {
             if(frags >= 25)
             {
-                var newState = new GodlikeState();
+                var newState = new GodlikeState(this.FragsStretch);
                 setTimeout(newState.AnnounceState, announcerDelay);
                 return newState;
             }
@@ -120,7 +163,7 @@ module SoundManager
         {
             if(frags >= 30)
             {
-                return new EmptyState();
+                return new EmptyState(this.FragsStretch);
             }
             else
             {
