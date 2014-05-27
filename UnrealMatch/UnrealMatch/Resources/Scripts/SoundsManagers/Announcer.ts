@@ -23,6 +23,18 @@ module SoundManager
         public static Winner: Howl;
         public static Lostmatch: Howl;
 
+        // Time replics
+        public static Second1: Howl;
+        public static Second2: Howl;
+        public static Second3: Howl;
+        //public static Second4: Howl;
+        //public static Second5: Howl;
+        //public static Second6: Howl;
+        //public static Second7: Howl;
+        //public static Second8: Howl;
+        //public static Second9: Howl;
+        //public static Second10: Howl;
+
         public static Init()
         {
             // Spries replics initialize
@@ -97,6 +109,21 @@ module SoundManager
                 {
                     urls: ['/Resources/Audio/Announcer/Game/lostmatch.mp3', '/Resources/Audio/Announcer/Game/lostmatch.ogg']
                 });
+
+            // Time replics initialize
+            Announcer.Second1 = new Howl(
+                {
+                    urls: ['/Resources/Audio/Announcer/Time/second-1.mp3', '/Resources/Audio/Announcer/Time/second-1.ogg']
+                });
+            Announcer.Second2 = new Howl(
+                {
+                    urls: ['/Resources/Audio/Announcer/Time/second-2.mp3', '/Resources/Audio/Announcer/Time/second-2.ogg']
+                });
+            Announcer.Second3 = new Howl(
+                {
+                    urls: ['/Resources/Audio/Announcer/Time/second-3.mp3', '/Resources/Audio/Announcer/Time/second-3.ogg']
+                });
+
         }
     }
 }
