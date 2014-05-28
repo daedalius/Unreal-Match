@@ -16,9 +16,21 @@ module Game
                     Players[id].Name = playersStats[i].Name;
                     Players[id].Score = playersStats[i].Score;
                 }
-            }
 
-            GsHUD.Refresh();
+                // After first recived data send "ready" signal
+                Socket.send(JSON.stringify({ PlayerId: CurrentPlayer.ID, PlayerState: "Ready" }));
+
+                GsHUD.Refresh();
+            }
+            else
+            {
+                if(gameStateObject.Stage == "Countdown")
+                {
+                    Game.GameInfo.Phase = GamePhase.Countdown;
+                    Game.GameInfo.PhaseHandler = new Game.CountdownGamePhaseHandler();
+                    Game.GameInfo.PhaseHandler.Handle(gameStateObject);
+                }
+            }
         }
     }
 }

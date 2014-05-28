@@ -23,7 +23,7 @@
                 GameName = game.Name,
                 PlayerName = gameInfoModel.Nickname,                
                 PlayerNumber = game.Players.Where(x => x.Name == gameInfoModel.Nickname).First().Number,
-                PlayersCount = game.PlayersCount,
+                PlayersCount = game.MaxPlayers,
                 MapName = game.Map.Title,
                 MapWidth = game.Map.Size.Width,
                 MapHeight = game.Map.Size.Height,

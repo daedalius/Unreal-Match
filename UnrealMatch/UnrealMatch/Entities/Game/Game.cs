@@ -8,6 +8,7 @@
     using Newtonsoft.Json.Serialization;
     using Newtonsoft.Json;
     using UnrealMatch.Entities;
+    using System.Diagnostics;
 
     public class Game
     {
@@ -16,10 +17,8 @@
         public GameState State { get; set; }
         public List<Player> Players { get; set; }
         public Map Map { get; set; }
-        public int PlayersCount { get; set; }
+        public int MaxPlayers { get; set; }
         public int Countdown { get; set; }
-
-        //public List<UnhandledPlayerData> UnhandledData;
 
         /// <summary>
         /// Instate new game and run their game cycle
@@ -31,21 +30,11 @@
         {
             this.Name = gameName;
             this.State = GameState.Waiting;
-            this.Players = new List<Player>(this.PlayersCount);
-            this.PlayersCount = players;
-            //this.UnhandledData = new List<UnhandledPlayerData>(this.PlayersCount);
+            this.Players = new List<Player>(this.MaxPlayers);
+            this.MaxPlayers = players;
             this.Map = MapInfoGetter.GetMap(mapTitle);
-            this.Countdown = 3;
+            this.Countdown = 5;
             this.StartGameCycle();
-        }
-
-        internal void JoinPlayer(string playerName)
-        {
-            Player newPlayer = new Player(playerName);
-            newPlayer.Status = ClientStatus.Connected;
-            Players.Add(newPlayer);
-            // [TODO] - incorrect code
-            newPlayer.Number = Players.Count - 1;
         }
 
         private void StartGameCycle()
@@ -65,6 +54,21 @@
             }
         }
 
+        internal void JoinPlayer(string playerName)
+        {
+            Player newPlayer = new Player(playerName);
+            newPlayer.Status = ClientStatus.Connecting;
+            Players.Add(newPlayer);
+            // [TODO] - incorrect code
+            newPlayer.Number = Players.Count - 1;
+        }
+
+        internal void SaveContextJoinedPlayer(Alchemy.Classes.UserContext context, int playerNumber)
+        {
+            this.Players[playerNumber].Context = context;
+            this.Players[playerNumber].Status = ClientStatus.Connected;
+        }
+
         private object CollectPlayersStats()
         {
             var playersStatistic = new List<PlayerStatistic>();
@@ -77,34 +81,30 @@
             return playersStatistic;
         }
 
-
         /// <summary>
         /// Handler for Waiting game state
         /// </summary>
         private void WaitingStageHandler()
         {
-            if (this.Players != null)
+            if (this.State == GameState.Waiting)
             {
-                if (this.State == GameState.Waiting)
+                // Handle new countdows state 
+                if (this.Players.Count == this.MaxPlayers && this.Players.All(x => x.Status == ClientStatus.Ready))
                 {
-                    // Handle new countdows state 
-                    if (this.Players.Count == this.PlayersCount && this.Players.All(x => x.Status == ClientStatus.Ready))
+                    this.State = GameState.Countdown;
+                    return;
+                }
+                // Broadcasting for all ready players
+                else
+                {
+                    if (this.Players.Count != 0)
                     {
-                        this.State = GameState.Countdown;
-                        return;
-                    }
-                    // Broadcasting for all ready players
-                    else
-                    {
-                        if (this.Players.Count != 0)
-                        {
-                            // One time in second send all data about connected players
+                        // One time in second send all data about connected players
 
-                            var obj = new { Stage = this.State.ToString(), PlayerStatistic = CollectPlayersStats() };
+                        var obj = new { Stage = this.State.ToString(), PlayerStatistic = CollectPlayersStats() };
 
-                            this.SendBroadcastMessage(obj);
-                            Thread.Sleep(1000);
-                        }
+                        this.SendBroadcastMessage(obj);
+                        Thread.Sleep(1000);
                     }
                 }
             }
@@ -138,31 +138,35 @@
         {
             if (this.State == GameState.Play)
             {
+                var obj = new { Stage = this.State.ToString(), PlayerStatistic = CollectPlayersStats() };
+                this.SendBroadcastMessage(obj);
                 Thread.Sleep(50);
             }
         }
 
-        private void HandleData(UnhandledPlayerData unhandledData)
+        internal void HandleClientMessage(Alchemy.Handlers.WebSocket.DataFrame dataFrame)
         {
-            // Handling
-            // ...
-        }
+            var json = dataFrame.ToString();
+            Debug.WriteLine(dataFrame.ToString());
+            dynamic data = JsonConvert.DeserializeObject(dataFrame.ToString());
 
-        internal void SaveRecivedStateByPlayer(int playerNumber)
-        {
-        }
+            int id = data.PlayerId;
+            string state = data.PlayerState;
 
-        internal void SaveContextJoinedPlayer(Alchemy.Classes.UserContext context, int playerNumber)
-        {
-            this.Players[playerNumber].Context = context;
-            this.Players[playerNumber].Status = ClientStatus.Ready;
+            this.Players[id].Status = ClientStatus.Ready;
+            //Debug.WriteLine("Player {0} is ready", id);
+
+
+            // [TODO] Handle players messages
+
+
         }
 
         private void SendBroadcastMessage(string jsonString)
         {
             foreach (var player in this.Players)
             {
-                if (player != null && player.Status == ClientStatus.Ready)
+                if (player != null && (player.Status == ClientStatus.Connected || player.Status == ClientStatus.Ready))
                 {
                     player.Context.Send(jsonString);
                 }
@@ -174,5 +178,6 @@
             var tempJson = JsonConvert.SerializeObject(toJson);
             SendBroadcastMessage(tempJson);
         }
+
     }
 }

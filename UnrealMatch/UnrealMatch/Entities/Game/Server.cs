@@ -52,7 +52,7 @@
 
             // Save client context at first time
             GetGame(requestPathInfo.GameName).SaveContextJoinedPlayer(context, requestPathInfo.PlayerIndexNumber);
-            Debug.WriteLine(String.Format("someone with ID={0} has been connected", requestPathInfo.PlayerIndexNumber));
+            //Debug.WriteLine(String.Format("someone with ID={0} has been connected", requestPathInfo.PlayerIndexNumber));
         }
 
         private void ReciveDataHandler(Alchemy.Classes.UserContext context)
@@ -60,6 +60,7 @@
             Debug.WriteLine(context.RequestPath + " Recive: " + DateTime.Now);
 
             var requestPathInfo = new RequestPathInfo(context.RequestPath);
+            GetGame(requestPathInfo.GameName).HandleClientMessage(context.DataFrame);
             Debug.WriteLine(context.DataFrame);
             // UserContext already in game. Need to just inform about new state.
             //GetGame(requestPathInfo.GameName).SaveRecivedStateByPlayer(requestPathInfo.PlayerIndexNumber);

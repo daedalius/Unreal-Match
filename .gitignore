@@ -84,3 +84,4 @@ obj/
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Game/WaitingGamePhaseHandler.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/SoundsManagers/Announcer.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/SoundsManagers/PlayerAnnouncerStates.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Game/CountdownGamePhaseHandler.js

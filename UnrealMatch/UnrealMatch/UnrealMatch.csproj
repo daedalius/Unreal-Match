@@ -248,6 +248,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Libraries\howler.d.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\PlayerAnnouncerStates.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\Announcer.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Game\CountdownGamePhaseHandler.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\Network.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />

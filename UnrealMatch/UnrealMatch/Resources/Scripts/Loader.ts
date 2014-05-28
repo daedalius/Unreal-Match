@@ -111,12 +111,6 @@ class Loader
 
         Socket = new WebSocket(Game.GameInfo.Socket);
 
-        //TestPlayers = new Array<Entities.TestPlayer>(3);
-        //TestPlayers[0] = new Entities.TestPlayer('player1', 1, 1);
-        //TestPlayers[1] = new Entities.TestPlayer('player2', 2, 10);
-        //TestPlayers[2] = new Entities.TestPlayer('player3', 3, 5);
-        //TestPlayers[3] = new Entities.TestPlayer('player4', 4, 6);
-        //TestCurrentPlayer = TestPlayers[0];
         GsHUD = new Entities.GameStatsHUD(document.getElementById('game-stats'));
         GsHUD.Show();
     }
