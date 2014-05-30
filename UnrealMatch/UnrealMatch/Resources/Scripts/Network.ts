@@ -24,7 +24,13 @@ module Network
 
         public static Close(event: any)
         {
-            //console.log('Socket has been closed ' + new Date(Date.now()).toLocaleString());
+            console.log('Socket has been closed ' + new Date(Date.now()).toLocaleString());
+        }
+
+        public static Error(event: any)
+        {
+            console.log('Error on socket ' + new Date(Date.now()).toLocaleString());
+            
         }
     }
 }

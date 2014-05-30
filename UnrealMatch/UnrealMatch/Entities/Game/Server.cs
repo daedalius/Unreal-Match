@@ -4,29 +4,45 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using Alchemy;
     using UnrealMatch.Game;
     using System.Diagnostics;
+    using Fleck;
 
     public class Server
     {
-        public WebSocketServer Socket;
+        public List<IWebSocketConnection> ClientConnections;
+        public WebSocketServer WebSocketServer;
         public List<Game> Games { get; private set; }
 
         public Server()
         {
             this.Games = new List<Game>();
-            this.Socket = new WebSocketServer(4510, IPAddress.Loopback);
-            this.Socket.TimeOut = new TimeSpan(1, 0, 0);
-            this.Socket.OnConnect = this.ConnectingHandler;
-            this.Socket.OnConnected = this.ConnectedHandler;
-            this.Socket.OnSend = this.SendingHandler;
-            this.Socket.OnReceive = this.ReciveDataHandler;
-            this.Socket.OnDisconnect = this.DisconnectedHandler;
+            this.ClientConnections = new List<IWebSocketConnection>();
+            this.WebSocketServer = new WebSocketServer("ws://127.0.0.1:4510");
 
-            this.Socket.Start();
+            this.WebSocketServer.Start(client =>
+                {
+                    client.OnOpen = () =>
+                        {
+                            this.ConnectedHandler(client);
+                        };
+                    client.OnMessage = (message) =>
+                        {
+                            this.ReciveMessageHandler(client, message);
+                        };
+                    client.OnClose = () =>
+                        {
+                            // [TODO] - Correct client removing
+                            Debug.WriteLine("Client " + client.ConnectionInfo.Path + " disconnected");
+                        };
+                    client.OnError = (exception) =>
+                        {
+                            // [TODO] - Error handling
+                            Debug.WriteLine("Client " + client.ConnectionInfo.Path + " has some problems");
+                            Debug.WriteLine("Exception meassage: " + exception.Message);
+                        };
+                });
         }
-
 
         public void AddGame(string gameName, string mapName, int maxPlayers)
         {
@@ -39,41 +55,25 @@
             return this.Games.Where(x => x.Name == gameName).First();
         }
 
-        private void ConnectingHandler(Alchemy.Classes.UserContext context)
+        private void ConnectedHandler(IWebSocketConnection client)
         {
-            Debug.WriteLine("Connecting: " + DateTime.Now);
+            Debug.WriteLine("Client " + client.ConnectionInfo.Path + " connected " + DateTime.Now);
+            this.ClientConnections.Add(client);
+            // Add refs in game instance
+            var requestPathInfo = new RequestPathInfo(client.ConnectionInfo.Path);
+            var game = this.GetGame(requestPathInfo.GameName);
+
+            game.Players[requestPathInfo.PlayerIndexNumber].ClientContext = this.ClientConnections.Last();
+            game.Players[requestPathInfo.PlayerIndexNumber].Status = ClientStatus.Connected;
         }
 
-        private void ConnectedHandler(Alchemy.Classes.UserContext context)
+        private void ReciveMessageHandler(IWebSocketConnection clientContext, string message)
         {
-            Debug.WriteLine("Connected: " + DateTime.Now);
+            Debug.WriteLine(clientContext.ConnectionInfo.Path + " Recive: " + DateTime.Now);
+            Debug.WriteLine(message);
 
-            var requestPathInfo = new RequestPathInfo(context.RequestPath);
-
-            // Save client context at first time
-            GetGame(requestPathInfo.GameName).SaveContextJoinedPlayer(context, requestPathInfo.PlayerIndexNumber);
-            //Debug.WriteLine(String.Format("someone with ID={0} has been connected", requestPathInfo.PlayerIndexNumber));
-        }
-
-        private void ReciveDataHandler(Alchemy.Classes.UserContext context)
-        {
-            Debug.WriteLine(context.RequestPath + " Recive: " + DateTime.Now);
-
-            var requestPathInfo = new RequestPathInfo(context.RequestPath);
-            GetGame(requestPathInfo.GameName).HandleClientMessage(context.DataFrame);
-            Debug.WriteLine(context.DataFrame);
-            // UserContext already in game. Need to just inform about new state.
-            //GetGame(requestPathInfo.GameName).SaveRecivedStateByPlayer(requestPathInfo.PlayerIndexNumber);
-        }
-
-        private void SendingHandler(Alchemy.Classes.UserContext context)
-        {
-            Debug.WriteLine("Sending: " + DateTime.Now);
-        }
-
-        private void DisconnectedHandler(Alchemy.Classes.UserContext context)
-        {
-            Debug.WriteLine(context.RequestPath + " Disconnected: " + DateTime.Now);
+            var requestPathInfo = new RequestPathInfo(clientContext.ConnectionInfo.Path);
+            this.GetGame(requestPathInfo.GameName).HandleClientMessage(clientContext, message);
         }
     }
 }

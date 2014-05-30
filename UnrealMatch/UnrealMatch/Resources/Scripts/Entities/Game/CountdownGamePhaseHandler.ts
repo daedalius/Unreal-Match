@@ -21,6 +21,7 @@ module Game
                 if(gameStateObject.Stage == "Play")
                 {
                     console.log('play phase started');
+                    Game.GameInfo.PhaseHandler = new PlayGamePhaseHandler();
                 }
             }
         }

@@ -139,6 +139,7 @@ class Loader
         Socket.onmessage = Network.NetworkHandlers.Receive;
         Socket.onclose = Network.NetworkHandlers.Close;
         Socket.onopen = Network.NetworkHandlers.Open;
+        Socket.onerror = Network.NetworkHandlers.Error;
     }
 
     public static PlayLevelTheme()

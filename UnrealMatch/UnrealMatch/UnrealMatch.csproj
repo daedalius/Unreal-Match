@@ -39,8 +39,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alchemy">
-      <HintPath>..\packages\Alchemy.2.2.1\lib\net40\Alchemy.dll</HintPath>
+    <Reference Include="Fleck">
+      <HintPath>..\packages\Fleck.0.10.0.27\lib\net40\Fleck.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -119,6 +119,7 @@
     <Compile Include="Entities\Game\Player.cs" />
     <Compile Include="Entities\Game\PlayerStatistic.cs" />
     <Compile Include="Entities\Game\ClientStatus.cs" />
+    <Compile Include="Entities\Game\Point.cs" />
     <Compile Include="Entities\Game\RequestPathInfo.cs" />
     <Compile Include="Entities\Game\Server.cs" />
     <Compile Include="Entities\Game\UnhandledPlayerData.cs" />
@@ -249,6 +250,7 @@
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\PlayerAnnouncerStates.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\Announcer.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\CountdownGamePhaseHandler.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Game\PlayGamePhaseHandler.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\Network.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />

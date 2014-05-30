@@ -63,12 +63,6 @@
             newPlayer.Number = Players.Count - 1;
         }
 
-        internal void SaveContextJoinedPlayer(Alchemy.Classes.UserContext context, int playerNumber)
-        {
-            this.Players[playerNumber].Context = context;
-            this.Players[playerNumber].Status = ClientStatus.Connected;
-        }
-
         private object CollectPlayersStats()
         {
             var playersStatistic = new List<PlayerStatistic>();
@@ -138,38 +132,32 @@
         {
             if (this.State == GameState.Play)
             {
-                var obj = new { Stage = this.State.ToString(), PlayerStatistic = CollectPlayersStats() };
+                var obj = new
+                {
+                    Stage = this.State.ToString(),
+                    Players = this.Players.ToArray()
+                };
                 this.SendBroadcastMessage(obj);
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
-        }
-
-        internal void HandleClientMessage(Alchemy.Handlers.WebSocket.DataFrame dataFrame)
-        {
-            var json = dataFrame.ToString();
-            Debug.WriteLine(dataFrame.ToString());
-            dynamic data = JsonConvert.DeserializeObject(dataFrame.ToString());
-
-            int id = data.PlayerId;
-            string state = data.PlayerState;
-
-            this.Players[id].Status = ClientStatus.Ready;
-            //Debug.WriteLine("Player {0} is ready", id);
-
-
-            // [TODO] Handle players messages
-
-
         }
 
         private void SendBroadcastMessage(string jsonString)
         {
             foreach (var player in this.Players)
             {
-                if (player != null && (player.Status == ClientStatus.Connected || player.Status == ClientStatus.Ready))
+                if (this.State == GameState.Play)
                 {
-                    player.Context.Send(jsonString);
+                    player.ClientContext.Send(jsonString);
                 }
+                else
+                {
+                    if (player != null && (player.Status == ClientStatus.Connected || player.Status == ClientStatus.Ready))
+                    {
+                        player.ClientContext.Send(jsonString);
+                    }
+                }
+                Thread.Sleep(1);
             }
         }
 
@@ -179,5 +167,40 @@
             SendBroadcastMessage(tempJson);
         }
 
+
+        internal void HandleClientMessage(Fleck.IWebSocketConnection clientContext, string message)
+        {
+            Debug.WriteLine("___Сервер принял____: " + message);
+
+            dynamic data = JsonConvert.DeserializeObject(message);
+
+            int id = data.PlayerId;
+
+            if (this.State == GameState.Waiting)
+            {
+                string state = data.PlayerState;
+
+                this.Players[id].Status = ClientStatus.Ready;
+            }
+
+
+            if (this.State == GameState.Countdown)
+            {
+
+            }
+
+            if (this.State == GameState.Play && data.PlayerState == "Play")
+            {
+                var x = data.X;
+                var y = data.Y;
+                double angle = data.Angle;
+                string direction = data.Direction;
+
+                this.Players[id].Position.X = x;
+                this.Players[id].Position.Y = y;
+                this.Players[id].AngleOfView = angle;
+                this.Players[id].IsForwardView = (direction == "Right") ? true : false;
+            }
+        }
     }
 }
