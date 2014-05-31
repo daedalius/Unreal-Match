@@ -18,7 +18,7 @@ module Game
                 }
 
                 // After first recived data send "ready" signal
-                Socket.send(JSON.stringify({ Id: CurrentPlayer.ID, State: "Ready" }));
+                Network.NetworkProcesses.Send(this.FormPlayerState());
 
                 GsHUD.Refresh();
             }
@@ -31,6 +31,11 @@ module Game
                     Game.GameInfo.PhaseHandler.Handle(gameStateObject);
                 }
             }
+        }
+
+        public FormPlayerState(): MessageTypes.StateToSend
+        {
+            return new MessageTypes.StateToSend(CurrentPlayer.ID, "Ready");
         }
     }
 }

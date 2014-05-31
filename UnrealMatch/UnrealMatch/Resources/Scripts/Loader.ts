@@ -1,4 +1,4 @@
-/// <reference path="Network.ts" />
+/// <reference path="NetworkProcesses.ts" />
 
 
 class Loader
@@ -136,10 +136,10 @@ class Loader
 
     public static StartNetworkExchange()
     {
-        Socket.onmessage = Network.NetworkHandlers.Receive;
-        Socket.onclose = Network.NetworkHandlers.Close;
-        Socket.onopen = Network.NetworkHandlers.Open;
-        Socket.onerror = Network.NetworkHandlers.Error;
+        Socket.onmessage = Network.NetworkProcesses.Receive;
+        Socket.onclose = Network.NetworkProcesses.Close;
+        Socket.onopen = Network.NetworkProcesses.Open;
+        Socket.onerror = Network.NetworkProcesses.Error;
     }
 
     public static PlayLevelTheme()

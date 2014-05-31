@@ -251,8 +251,11 @@
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\Announcer.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\CountdownGamePhaseHandler.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\PlayGamePhaseHandler.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\MessageTypes\PlayStateToSend.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\MessageTypes\StateToSend.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\MessageTypes\WaitingStateToSend.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
-    <Content Include="Resources\Scripts\Network.ts" />
+    <Content Include="Resources\Scripts\NetworkProcesses.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />
     <Content Include="Resources\Scripts\Libraries\jquery.d.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Variables.ts" />

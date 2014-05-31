@@ -1,3 +1,5 @@
+/// <reference path="../MessageTypes/StateToSend.ts" />
+/// <reference path="../MessageTypes/PlayStateToSend.ts" />
 module Game
 {
     export class PlayGamePhaseHandler extends GamePhaseHandler
@@ -19,7 +21,7 @@ module Game
                     }
                 }
 
-                this.SendCurrentPlayerState();
+                this.FormPlayerState();
             }
             else
             {
@@ -30,18 +32,9 @@ module Game
             }
         }
 
-        public SendCurrentPlayerState()
+        public FormPlayerState(): MessageTypes.StateToSend
         {
-            Socket.send(JSON.stringify( {
-                Id: CurrentPlayer.ID,
-                State: 'Play',
-                Position: {
-                    X: CurrentPlayer.Position.X,
-                    Y: CurrentPlayer.Position.Y
-                },
-                Angle: CurrentPlayer.AngleOfView,
-                Direction: (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left"
-            }));
+            return new MessageTypes.PlayStateToSend(CurrentPlayer.ID, CurrentPlayer.Position, CurrentPlayer.LookDirectionIsForward, CurrentPlayer.AngleOfView);
         }
     }
 }

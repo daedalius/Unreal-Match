@@ -21,9 +21,17 @@ module Game
                 if(gameStateObject.Stage == "Play")
                 {
                     console.log('Play phase started');
+                    Game.GameInfo.Phase = Game.GamePhase.Play;
                     Game.GameInfo.PhaseHandler = new PlayGamePhaseHandler();
+                    // Start game cycle
+                    Game.GameInfo.GameCycle();
                 }
             }
+        }
+
+        public FormPlayerState(): MessageTypes.StateToSend
+        {
+            return null;
         }
     }
 }

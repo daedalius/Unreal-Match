@@ -8,5 +8,16 @@ module Game
         public static MaxPlayers: number;
         public static Phase: Game.GamePhase;
         public static PhaseHandler: GamePhaseHandler;
+
+        public static GameCycle(): void
+        {
+            if(GameInfo.Phase === Game.GamePhase.Play)
+            {
+                Network.NetworkProcesses.Send(GameInfo.PhaseHandler.FormPlayerState());
+
+
+                setTimeout(GameInfo.GameCycle, 100);
+            }
+        }
     }
 }

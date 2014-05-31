@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @*Network*@
-    <script src="~/Resources/Scripts/Network.js"></script>
+    <script src="~/Resources/Scripts/NetworkProcesses.js"></script>
 
     @*===============================================*@
     @*======================CSS======================*@
@@ -47,9 +47,16 @@
     <script src="~/Resources/Scripts/Entities/PlayerPresentation.js"></script>    
     <script src="~/Resources/Scripts/Entities/Player.js"></script>
 
-    @*<script src=""></script>*@
 
+    
+    <script src="~/Resources/Scripts/Entities/MessageTypes/StateToSend.js"></script>
+    <script src="~/Resources/Scripts/Entities/MessageTypes/WaitingStateToSend.js"></script>
+    <script src="~/Resources/Scripts/Entities/MessageTypes/PlayStateToSend.js"></script>
     @*Game entities*@
+    <script src="~/Resources/Scripts/Entities/Game/MessageTypes/WaitingGamePhaseHandler.js"></script>
+    <script src="~/Resources/Scripts/Entities/Game/MessageTypes/CountdownGamePhaseHandler.js"></script>
+    <script src="~/Resources/Scripts/Entities/Game/MessageTypes/PlayGamePhaseHandler.js"></script>
+
     <script src="~/Resources/Scripts/Entities/Game/Team.js"></script>
     <script src="~/Resources/Scripts/Entities/Game/TeamType.js"></script>
     <script src="~/Resources/Scripts/Entities/Game/Map.js"></script>
@@ -58,6 +65,7 @@
     <script src="~/Resources/Scripts/Entities/Game/WaitingGamePhaseHandler.js"></script>
     <script src="~/Resources/Scripts/Entities/Game/CountdownGamePhaseHandler.js"></script>
     <script src="~/Resources/Scripts/Entities/Game/PlayGamePhaseHandler.js"></script>
+
     <script src="~/Resources/Scripts/Entities/Game/GameInfo.js"></script>
 
     @*Weapons*@
