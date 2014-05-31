@@ -9,6 +9,7 @@
     using Newtonsoft.Json;
     using UnrealMatch.Entities;
     using System.Diagnostics;
+    using Fleck;
 
     public class Game
     {
@@ -157,7 +158,6 @@
                         player.ClientContext.Send(jsonString);
                     }
                 }
-                Thread.Sleep(1);
             }
         }
 
@@ -168,18 +168,15 @@
         }
 
 
-        internal void HandleClientMessage(Fleck.IWebSocketConnection clientContext, string message)
+        internal void HandleClientMessage(IWebSocketConnection clientContext, string message)
         {
-            Debug.WriteLine("___Сервер принял____: " + message);
-
             dynamic data = JsonConvert.DeserializeObject(message);
 
-            int id = data.PlayerId;
+            int id = data.Id;
+            string state = data.State;
 
             if (this.State == GameState.Waiting)
             {
-                string state = data.PlayerState;
-
                 this.Players[id].Status = ClientStatus.Ready;
             }
 
@@ -189,17 +186,12 @@
 
             }
 
-            if (this.State == GameState.Play && data.PlayerState == "Play")
+            if (this.State == GameState.Play && state == "Play")
             {
-                var x = data.X;
-                var y = data.Y;
-                double angle = data.Angle;
-                string direction = data.Direction;
-
-                this.Players[id].Position.X = x;
-                this.Players[id].Position.Y = y;
-                this.Players[id].AngleOfView = angle;
-                this.Players[id].IsForwardView = (direction == "Right") ? true : false;
+                this.Players[id].Position.X = data.Position.X;
+                this.Players[id].Position.Y = data.Position.Y;
+                this.Players[id].AngleOfView = data.Angle;
+                this.Players[id].IsForwardView = (data.Direction == "Right") ? true : false;
             }
         }
     }

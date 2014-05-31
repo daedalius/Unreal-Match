@@ -1,5 +1,3 @@
-var yoba: any;
-
 module Game
 {
     export class PlayGamePhaseHandler extends GamePhaseHandler
@@ -8,9 +6,6 @@ module Game
         {
             if(gameStateObject.Stage == "Play")
             {
-                yoba = gameStateObject;
-                //console.log("___Received from server:____" + yoba);
-
                 var players = gameStateObject.Players;
 
                 for(var i = 0; i < players.length; i++)
@@ -30,19 +25,20 @@ module Game
             {
                 if(gameStateObject.Stage == "Stop")
                 {
-                    console.log('currrent game is over');
+                    console.log('Currrent game is over');
                 }
             }
         }
 
         public SendCurrentPlayerState()
         {
-            // [TODO] - do it better
             Socket.send(JSON.stringify( {
-                PlayerId: CurrentPlayer.ID,
-                PlayerState: 'Play',
-                X: CurrentPlayer.Position.X,
-                Y: CurrentPlayer.Position.Y,
+                Id: CurrentPlayer.ID,
+                State: 'Play',
+                Position: {
+                    X: CurrentPlayer.Position.X,
+                    Y: CurrentPlayer.Position.Y
+                },
                 Angle: CurrentPlayer.AngleOfView,
                 Direction: (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left"
             }));

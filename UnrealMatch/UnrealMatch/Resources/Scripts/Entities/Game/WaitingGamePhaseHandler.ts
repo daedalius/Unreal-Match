@@ -18,7 +18,7 @@ module Game
                 }
 
                 // After first recived data send "ready" signal
-                Socket.send(JSON.stringify({ PlayerId: CurrentPlayer.ID, PlayerState: "Ready" }));
+                Socket.send(JSON.stringify({ Id: CurrentPlayer.ID, State: "Ready" }));
 
                 GsHUD.Refresh();
             }
