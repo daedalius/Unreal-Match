@@ -2,32 +2,38 @@ class Handlers
 {
     public static MouseWheelHandler(event: MouseWheelEvent)
     {
-        // +: up
-        // -: down
-        var delta: number = event.wheelDelta / 120;
-        if(delta > 0)
+        if(IsMouseInputEnable)
         {
-            for(var i = 0; i < delta; i++)
+            // +: up
+            // -: down
+            var delta: number = event.wheelDelta / 120;
+            if(delta > 0)
             {
-                WHUD.SelectNextWeapon();
+                for(var i = 0; i < delta; i++)
+                {
+                    WHUD.SelectNextWeapon();
+                }
             }
-        }
-        else
-        {
-            for(var i = 0; i > delta; i--)
+            else
             {
-                WHUD.SelectPreviousWeapon();
+                for(var i = 0; i > delta; i--)
+                {
+                    WHUD.SelectPreviousWeapon();
+                }
             }
         }
     }
 
     public static MouseMoveHandler(event: MouseEvent)
     {
-        // The simplest way set the values to prevent the occurrence unnecessary garbage (premature optimization, yes)
-        Mouse.X = event.pageX - ContentElement.offsetLeft;
-        Mouse.Y = event.pageY - ContentElement.offsetTop;
+        if(IsMouseInputEnable)
+        {
+            // The simplest way set the values to prevent the occurrence unnecessary garbage (premature optimization, yes)
+            Mouse.X = event.pageX - ContentElement.offsetLeft;
+            Mouse.Y = event.pageY - ContentElement.offsetTop;
 
-        CurrentPlayer.ReactOnPlayerInput();
+            CurrentPlayer.ReactOnPlayerInput();
+        }
     }
 
     public static KeyPressHandler(eventArg)
@@ -38,25 +44,35 @@ class Handlers
             // right
             case 100:
                 {
-                    CurrentPlayer.StartStrafeRight()
-                    //CurrentPlayer.UpdateInnerOriginRectangle();
-                    CurrentPlayer.ReactOnPlayerInput();
+                    if(IsKeyboardInputEnable)
+                    {
+                        CurrentPlayer.StartStrafeRight()
+                        //CurrentPlayer.UpdateInnerOriginRectangle();
+                        CurrentPlayer.ReactOnPlayerInput();
+                    }
                     break;
                 }
 
             // left
             case 97:
                 {
-                    CurrentPlayer.StartStrafeLeft()
-                    //CurrentPlayer.UpdateInnerOriginRectangle();
-                    CurrentPlayer.ReactOnPlayerInput();
+                    if(IsKeyboardInputEnable)
+                    {
+                        CurrentPlayer.StartStrafeLeft()
+                        //CurrentPlayer.UpdateInnerOriginRectangle();
+                        CurrentPlayer.ReactOnPlayerInput();
+                    }
                     break;
                 }
             case 32:
                 {
-                    CurrentPlayer.TryJump();
-                    //CurrentPlayer.UpdateInnerOriginRectangle();
-                    CurrentPlayer.ReactOnPlayerInput();
+
+                    if(IsKeyboardInputEnable)
+                    {
+                        CurrentPlayer.TryJump();
+                        //CurrentPlayer.UpdateInnerOriginRectangle();
+                        CurrentPlayer.ReactOnPlayerInput();
+                    }
                     break;
                 }
             case 113:
@@ -76,14 +92,20 @@ class Handlers
             // right
             case 68:
                 {
-                    CurrentPlayer.StopStrafeRight();
+                    if(IsKeyboardInputEnable)
+                    {
+                        CurrentPlayer.StopStrafeRight();
+                    }
                     break;
                 }
 
             // left
             case 65:
                 {
-                    CurrentPlayer.StopStrafeLeft();
+                    if(IsKeyboardInputEnable)
+                    {
+                        CurrentPlayer.StopStrafeLeft();
+                    }
                     break;
                 }
 

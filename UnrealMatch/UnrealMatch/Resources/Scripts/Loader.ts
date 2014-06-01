@@ -5,6 +5,10 @@ class Loader
 {
     public static InitializeVariables()
     {
+        IsMouseInputEnable = false;
+        IsKeyboardInputEnable = false;
+        IsPlayerDrawEnable = false;
+        
         // Sounds
         SoundManager.Announcer.Init();
 

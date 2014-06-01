@@ -44,10 +44,13 @@ module Entities
 
         public Draw()
         {
-            // Draw player parts
-            this.DrawBody();
-            this.DrawHead();
-            this.DrawWeapon();
+            if(IsPlayerDrawEnable)
+            {
+                // Draw player parts
+                this.DrawBody();
+                this.DrawHead();
+                this.DrawWeapon();
+            }
         }
 
         private DrawBody()

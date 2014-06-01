@@ -23,6 +23,9 @@ module Game
                     console.log('Play phase started');
                     Game.GameInfo.Phase = Game.GamePhase.Play;
                     Game.GameInfo.PhaseHandler = new PlayGamePhaseHandler();
+                    IsKeyboardInputEnable = true;
+                    IsMouseInputEnable = true;
+                    IsPlayerDrawEnable = true;
                     // Start game cycle
                     Game.GameInfo.GameCycle();
                 }

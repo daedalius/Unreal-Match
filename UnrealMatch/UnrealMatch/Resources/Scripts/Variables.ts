@@ -1,5 +1,10 @@
 /// <reference path="Entities/Player.ts" />
 
+// Input enable
+var IsMouseInputEnable;
+var IsKeyboardInputEnable;
+// Draw enable
+var IsPlayerDrawEnable;
 
 // HTML Elements
 var ContentElement: HTMLElement;
