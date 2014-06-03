@@ -36,15 +36,14 @@
 <div id="parent">
     <div id="content">
         <canvas id="level" width="800" height="600"></canvas>
-        
+        <canvas id="animation-canvas" width="800" height="600"></canvas>
+
         @for (int i = Model.PlayersCount - 1; i >= 0; i--)
         {<!--
             --><canvas id="body@(i)" width="800" height="600"></canvas><!--
             --><canvas id="head@(i)" width="800" height="600"></canvas><!--
             --><canvas id="weapon@(i)" width="800" height="600"></canvas><!--
       -->}
-
-        
 
         <canvas id="test" width="800" height="600"></canvas>
         <canvas id="levelPass" width="3832" height="1422"></canvas>
@@ -55,5 +54,8 @@
         <img id="PlayerOneWeaponSpritesheet" class="sourceImage" src="~/Resources/Images/Players/Nova/nova-weapons-spritesheet.png" />
         <img id="LevelImage" class="sourceImage" src="~/Resources/Images/Levels/Rising-Sun.jpg" />
         <img id="LevelImagePass" class="sourceImage" src="~/Resources/Images/Levels/Rising-Sun-Passableness-Map.png" />
+
+        @*Animations*@
+        <img id="asmd-bigblast-animation" class="sourceImage" src="../../Resources/Images/Animations/asmd-bigblast-spritesheet.png" alt="" />
     </div>
 </div>

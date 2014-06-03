@@ -19,6 +19,12 @@ module Weapons
         {
             throw new Exceptions.InvalidOperationException("Called method in abstact class.");
         }
+
+        // Construct shot from weapon
+        public MakeShot(mode: WeaponMode): any
+        {
+            throw new Exceptions.InvalidOperationException("Called method in abstact class.");
+        }
     }
 
     export class Hammer extends Weapon
@@ -95,7 +101,7 @@ module Weapons
         // Delay in seconds
         public GetDelay(mode: WeaponMode): number
         {
-            return (mode == WeaponMode.Standart) ? 0.7 : 0.5;
+            return (mode == WeaponMode.Standart) ? 1 : 0.7;
         }
 
         // Return max angle of bullet/shell spread

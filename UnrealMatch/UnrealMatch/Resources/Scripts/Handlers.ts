@@ -1,5 +1,23 @@
 class Handlers
 {
+    public static MouseUpHandler(event: MouseEvent)
+    {
+        if(IsMouseInputEnable)
+        {
+            // [TODO]
+            // ...
+        }
+    }
+
+    public static MouseDownHandler(event: MouseEvent)
+    {
+        if(IsMouseInputEnable)
+        {
+            // [TODO]
+            // ...
+        }
+    }
+
     public static MouseWheelHandler(event: MouseWheelEvent)
     {
         if(IsMouseInputEnable)

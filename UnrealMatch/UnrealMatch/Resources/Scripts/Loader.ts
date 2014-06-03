@@ -8,6 +8,7 @@ class Loader
         IsMouseInputEnable = false;
         IsKeyboardInputEnable = false;
         IsPlayerDrawEnable = false;
+        //IsPlayerDrawEnable = true;
         
         // Sounds
         SoundManager.Announcer.Init();
@@ -112,6 +113,9 @@ class Loader
         LevelImage.src = "/Resources/Images/Levels/" + Level.Title + ".jpg";
         LevelImageSize = new Entities.Size(LevelImage.naturalWidth, LevelImage.naturalHeight);
         LevelMapImageQualityMultiplier = parseFloat($('#map-quality').text());
+
+        // Animations
+        Animation.AnimationManager.CanvasContext = (<HTMLCanvasElement>document.getElementById('animation-canvas')).getContext('2d');
 
         Socket = new WebSocket(Game.GameInfo.Socket);
 

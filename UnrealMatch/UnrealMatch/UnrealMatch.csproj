@@ -209,6 +209,7 @@
     <Content Include="Resources\CSS\StartPage.min.css">
       <DependentUpon>StartPage.less</DependentUpon>
     </Content>
+    <Content Include="Resources\Images\Animations\asmd-bigblast-spritesheet.png" />
     <Content Include="Resources\Images\Levels\Rising-Sun-Passableness-Map.png" />
     <Content Include="Resources\Images\Levels\Rising-Sun.jpg" />
     <Content Include="Resources\Images\Players\Nova\nova-body-spritesheet.png" />
@@ -254,6 +255,10 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\MessageTypes\PlayStateToSend.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\MessageTypes\StateToSend.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\MessageTypes\WaitingStateToSend.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\Shot.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Animation\Animation.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Animation\AnimationManager.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Animation\Animations\AsmdBlastAnimation.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\NetworkProcesses.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />

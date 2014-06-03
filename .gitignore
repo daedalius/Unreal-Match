@@ -90,3 +90,8 @@ obj/
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/MessageTypes/StateToSend.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/MessageTypes/WaitingStateToSend.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/NetworkProcesses.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Animation/Animation.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Animation/AnimationManager.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Animation/Animations/ASMDBlast.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Animation/Animations/AsmdBlastAnimation.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Weapons/Shot.js

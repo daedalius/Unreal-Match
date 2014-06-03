@@ -36,6 +36,7 @@ function Draw()
 function Interval50()
 {
     CurrentPlayer.NextPosition();
+    Animation.AnimationManager.DoNextStep();
 }
 
 function Interval100()
