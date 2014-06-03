@@ -37,6 +37,9 @@ function Interval50()
 {
     CurrentPlayer.NextPosition();
     Animation.AnimationManager.DoNextStep();
+
+    // Decrease shot delay
+    ShotDelay = (ShotDelay <= 50) ? 0 : ShotDelay - 50;
 }
 
 function Interval100()

@@ -215,6 +215,7 @@
     <Content Include="Resources\Images\Players\Nova\nova-body-spritesheet.png" />
     <Content Include="Resources\Images\Players\Nova\nova-head-spritesheet.png" />
     <Content Include="Resources\Images\Players\Nova\nova-weapons-spritesheet.png" />
+    <Content Include="Resources\Images\Shots\Shells\asmd-sphere.png" />
     <Content Include="Resources\Images\UI\Elements\buttons-background.png" />
     <Content Include="Resources\Images\UI\Elements\menu-background.png" />
     <Content Include="Resources\Images\UI\Guns\bio-rifle.png" />

@@ -6,10 +6,14 @@ class Loader
     public static InitializeVariables()
     {
         IsMouseInputEnable = false;
+        //IsMouseInputEnable = true;
         IsKeyboardInputEnable = false;
+        //IsKeyboardInputEnable = true;
         IsPlayerDrawEnable = false;
         //IsPlayerDrawEnable = true;
-        
+
+        ShotDelay = 0;
+
         // Sounds
         SoundManager.Announcer.Init();
 
@@ -127,6 +131,8 @@ class Loader
     {
         document.onmousemove = Handlers.MouseMoveHandler;
         document.onmousewheel = Handlers.MouseWheelHandler;
+        document.onmousedown = Handlers.MouseDownHandler;
+        document.onmouseup = Handlers.MouseUpHandler;
         document.onkeypress = Handlers.KeyPressHandler;
         document.onkeyup = Handlers.KeyUpHandler;
     }

@@ -1,20 +1,52 @@
 class Handlers
 {
-    public static MouseUpHandler(event: MouseEvent)
-    {
-        if(IsMouseInputEnable)
-        {
-            // [TODO]
-            // ...
-        }
-    }
+    public static MouseInterval: number;
 
     public static MouseDownHandler(event: MouseEvent)
     {
         if(IsMouseInputEnable)
         {
-            // [TODO]
-            // ...
+            Handlers.MouseInterval = setInterval(function()
+            {
+                var numb = event.button;
+
+                switch(numb)
+                {
+                    case 0:
+                        {
+                            // Left button - main firemode
+                            var weaponDelay = CurrentPlayer.Weapon.GetDelay(Weapons.WeaponMode.Standart) * 1000;
+                            if(ShotDelay == 0)
+                            {
+                                CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
+                                ShotDelay = weaponDelay;
+                                console.log('shoot from ' + CurrentPlayer.WeaponInfo.ActiveWeapon.toString());
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            // Right button - alt firemode
+                            var weaponDelay = CurrentPlayer.Weapon.GetDelay(Weapons.WeaponMode.Alternate) * 1000;
+                            if(ShotDelay == 0)
+                            {
+                                CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
+                                ShotDelay = weaponDelay;
+                                console.log('shoot from ' + CurrentPlayer.WeaponInfo.ActiveWeapon.toString());
+                            }
+                            break;
+                        }
+                }
+
+            }, 50);
+        }
+    }
+
+    public static MouseUpHandler(event: MouseEvent)
+    {
+        if(IsMouseInputEnable)
+        {
+            clearInterval(Handlers.MouseInterval);
         }
     }
 

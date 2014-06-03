@@ -23,7 +23,8 @@ module Weapons
         // Construct shot from weapon
         public MakeShot(mode: WeaponMode): any
         {
-            throw new Exceptions.InvalidOperationException("Called method in abstact class.");
+            console.log('boom!');
+            //throw new Exceptions.InvalidOperationException("Called method in abstact class.");
         }
     }
 
