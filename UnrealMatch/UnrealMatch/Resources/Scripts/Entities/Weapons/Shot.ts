@@ -15,7 +15,7 @@ module Weapons
         // Shot direction: "Right" or "Left"
         public Direction: string;
         // Play when shot is made
-        public StartSound: Howl;
+        public ShotSound: Howl;
     }
 
     export class MomentShot extends Shot
@@ -23,23 +23,21 @@ module Weapons
         
     }
 
+    export class EnforcerShot extends MomentShot
+    {
+        
+    }
+
     export class Shell extends Shot
     {
         public CurrentPosition: Point;
-        //public Radius: number;
-        //public BlowRadius: number;
         public FlySound: Howl;
         public BlowSound: Howl;
-        //// Damage on hit
-        //public Damage: number;
-
-        // Animation field
         public Blast: Blast;
 
         public Blow() : void
         {
             Animation.AnimationManager.Add(this.Blast.Animation);
-
             // [TODO] - Play blast sound relatively current player position
             // ...
         }
@@ -60,10 +58,6 @@ module Weapons
         public Shooter: Entities.Player;
         // Where
         public Position: Point;
-        //// Full Radius
-        //public Radius: number;
-        //// Full damage radius
-        //public CriticalRadius: number;
         // Animation feild
         public Animation: Animation.Animation;
 
@@ -81,7 +75,7 @@ module Weapons
     //{
     //    constructor(shooter: Entities.Player, position: Point)
     //    {
-    //        super(shooter, position, 12, 12);
+    //        super(shooter, position, new Animation.AsmdBlastAnimation(position));
     //    }
     //}
 
@@ -89,7 +83,7 @@ module Weapons
     {
         constructor(shooter: Entities.Player, position: Point)
         {
-            super(shooter, position, new Animation.AsmdBlastAnimation(position));
+            super(shooter, position, new Animation.AsmdBigBlastAnimation(position));
         }
     }
 } 

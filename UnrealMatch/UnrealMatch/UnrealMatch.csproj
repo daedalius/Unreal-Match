@@ -162,6 +162,7 @@
     <Content Include="Resources\Audio\Announcer\Kills\monsterkill.mp3" />
     <Content Include="Resources\Audio\Announcer\Kills\multikill.mp3" />
     <Content Include="Resources\Audio\Announcer\Kills\rampage.mp3" />
+    <Content Include="Resources\Audio\Announcer\Kills\spree.mp3" />
     <Content Include="Resources\Audio\Announcer\Kills\ultrakill.mp3" />
     <Content Include="Resources\Audio\Announcer\Kills\unstoppable.mp3" />
     <Content Include="Resources\Audio\Announcer\Time\minute-1.mp3" />
@@ -178,12 +179,26 @@
     <Content Include="Resources\Audio\Announcer\Time\second-7.mp3" />
     <Content Include="Resources\Audio\Announcer\Time\second-8.mp3" />
     <Content Include="Resources\Audio\Announcer\Time\second-9.mp3" />
+    <Content Include="Resources\Audio\Items\armour-pickup.mp3" />
+    <Content Include="Resources\Audio\Items\health-pickup.mp3" />
+    <Content Include="Resources\Audio\Items\medkit-pickup.mp3" />
     <Content Include="Resources\Audio\Levels\Rising-Sun.mp3" />
     <Content Include="Resources\Audio\Menu\menu-hover-light.mp3" />
     <Content Include="Resources\Audio\Menu\menu-hover.mp3" />
     <Content Include="Resources\Audio\Menu\menu-next.mp3" />
     <Content Include="Resources\Audio\Menu\menu-back.mp3" />
     <Content Include="Resources\Audio\Menu\menu-theme.mp3" />
+    <Content Include="Resources\Audio\Player\landing.mp3" />
+    <Content Include="Resources\Audio\Player\nova-death.mp3" />
+    <Content Include="Resources\Audio\Player\respawn.mp3" />
+    <Content Include="Resources\Audio\Weapons\ammo-pick.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-alt-fire.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-big-balst.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-main-fire.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-pickup.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-select.mp3" />
+    <Content Include="Resources\Audio\Weapons\Enforcer\enforcer-fire.mp3" />
+    <Content Include="Resources\Audio\Weapons\Enforcer\enforcer-select.mp3" />
     <Content Include="Resources\CSS\Fonts.css" />
     <Content Include="Resources\CSS\GameLayout.css">
       <DependentUpon>GameLayout.less</DependentUpon>
@@ -236,7 +251,6 @@
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\Team.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\WeaponType.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Game\TeamType.ts" />
-    <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\WeaponsInfo.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\WeaponMode.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\Weapon.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Exceptions\NotImplementedException.ts" />
@@ -269,6 +283,8 @@
     <TypeScriptCompile Include="Resources\Scripts\RefreshCycle.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Rendering.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Menu\Menu.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\PlayerSounds.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\WeaponsSoundBundle.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -361,6 +377,33 @@
     <Content Include="Resources\Audio\Announcer\Time\second-7.ogg" />
     <Content Include="Resources\Audio\Announcer\Time\second-8.ogg" />
     <Content Include="Resources\Audio\Announcer\Time\second-9.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-alt-fire.ogg" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-big-balst.ogg" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-main-fire.ogg" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-pickup.ogg" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-select.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Weapons\ammo-pick.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Weapons\Enforcer\enforcer-fire.ogg" />
+    <Content Include="Resources\Audio\Weapons\Enforcer\enforcer-select.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Items\armour-pickup.ogg" />
+    <Content Include="Resources\Audio\Items\health-pickup.ogg" />
+    <Content Include="Resources\Audio\Items\medkit-pickup.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Player\landing.ogg" />
+    <Content Include="Resources\Audio\Player\nova-death.ogg" />
+    <Content Include="Resources\Audio\Player\respawn.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Announcer\Kills\spree.ogg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

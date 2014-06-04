@@ -1,6 +1,6 @@
 module Animation
 {
-    export class AsmdBlastAnimation extends Animation
+    export class AsmdBigBlastAnimation extends Animation
     {
         constructor(centerPoint: Point)
         {

@@ -3,6 +3,7 @@ module SoundManager
     export class Announcer
     {
         // Spries replics
+        public static StartSpree: Howl;
         public static Killingspree: Howl;
         public static Rampage: Howl;
         public static Dominating: Howl;
@@ -38,6 +39,10 @@ module SoundManager
         public static Init()
         {
             // Spries replics initialize
+            Announcer.StartSpree = new Howl(
+                {
+                    urls: ['/Resources/Audio/Announcer/Kills/spree.mp3', '/Resources/Audio/Announcer/Kills/spree.ogg']
+                });
             Announcer.Killingspree = new Howl(
                 {
                     urls: ['/Resources/Audio/Announcer/Kills/killingspree.mp3', '/Resources/Audio/Announcer/Kills/killingspree.ogg']

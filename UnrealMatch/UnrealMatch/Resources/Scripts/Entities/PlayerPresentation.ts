@@ -104,7 +104,7 @@ module Entities
         private DrawWeapon()
         {
             // Part of weapon sprite
-            var weaponSpriteStartPoint: Point = (this.presentationObject.LookDirectionIsForward) ? new Point(this.presentationObject.WeaponInfo.ActiveWeapon * Sizes.WeaponDefault.Width, 0) : new Point(this.presentationObject.WeaponInfo.ActiveWeapon * Sizes.WeaponDefault.Width, Sizes.WeaponDefault.Height);
+            var weaponSpriteStartPoint: Point = (this.presentationObject.LookDirectionIsForward) ? new Point(this.presentationObject.Weapon.ToEnum() * Sizes.WeaponDefault.Width, 0) : new Point(this.presentationObject.Weapon.ToEnum() * Sizes.WeaponDefault.Width, Sizes.WeaponDefault.Height);
             // Get weapon rectangle
             var bodyFirstPointY = this.presentationObject.Position.Y + Sizes.PlayerBodyDefaultMultiplied.Height;
             var positionOfWeaponCenterOrigin = new Point(this.presentationObject.Position.X, bodyFirstPointY - Sizes.PlayerBodyDefaultMultiplied.Height * Sizes.PlayerBodyWithWeaponConnection.onHeight);

@@ -20,7 +20,7 @@ class Handlers
                             {
                                 CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
                                 ShotDelay = weaponDelay;
-                                console.log('shoot from ' + CurrentPlayer.WeaponInfo.ActiveWeapon.toString());
+                                console.log('shoot from ' + CurrentPlayer.Weapon.ToEnum().toString());
                             }
                             break;
                         }
@@ -32,7 +32,7 @@ class Handlers
                             {
                                 CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
                                 ShotDelay = weaponDelay;
-                                console.log('shoot from ' + CurrentPlayer.WeaponInfo.ActiveWeapon.toString());
+                                console.log('shoot from ' + CurrentPlayer.Weapon.ToEnum().toString());
                             }
                             break;
                         }

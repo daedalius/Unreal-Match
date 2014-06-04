@@ -26,6 +26,12 @@ module Weapons
             console.log('boom!');
             //throw new Exceptions.InvalidOperationException("Called method in abstact class.");
         }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            throw new Exceptions.InvalidOperationException("Called method in abstact class.");
+        }
     }
 
     export class Hammer extends Weapon
@@ -46,6 +52,12 @@ module Weapons
         public GetSpreadAngle(mode: WeaponMode)
         {
             return (mode == WeaponMode.Standart) ? 0 : 0;
+        }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Hammer;
         }
     }
 
@@ -68,6 +80,12 @@ module Weapons
         {
             return (mode == WeaponMode.Standart) ? 2 : 8;
         }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Enforcer;
+        }
     }
 
     export class Biogun extends Weapon
@@ -88,6 +106,12 @@ module Weapons
         public GetSpreadAngle(mode: WeaponMode)
         {
             return (mode == WeaponMode.Standart) ? 0 : 0;
+        }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Biogun;
         }
     }
 
@@ -110,6 +134,12 @@ module Weapons
         {
             return (mode == WeaponMode.Standart) ? 0 : 0;
         }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Shockrifle;
+        }
     }
 
     export class Linkgun extends Weapon
@@ -130,6 +160,12 @@ module Weapons
         public GetSpreadAngle(mode: WeaponMode)
         {
             return (mode == WeaponMode.Standart) ? 0 : 0;
+        }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Linkgun;
         }
     }
 
@@ -152,6 +188,12 @@ module Weapons
         {
             return (mode == WeaponMode.Standart) ? 5 : 15;
         }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Minigun;
+        }
     }
 
     export class FlackCannon extends Weapon
@@ -173,6 +215,12 @@ module Weapons
         {
             return (mode == WeaponMode.Standart) ? 20 : 0;
         }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Flackcannon;
+        }
     }
     export class RocketLauncher extends Weapon
     {
@@ -192,6 +240,12 @@ module Weapons
         public GetSpreadAngle(mode: WeaponMode)
         {
             return (mode == WeaponMode.Standart) ? 0 : 10;
+        }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Rocketlauncher;
         }
     }
 
@@ -213,6 +267,12 @@ module Weapons
         public GetSpreadAngle(mode: WeaponMode)
         {
             return (mode == WeaponMode.Standart) ? 0 : 0;
+        }
+
+        // Return weapon according WeaponType enum
+        public ToEnum(): WeaponType
+        {
+            return WeaponType.Sniperrifle;
         }
     }
 } 

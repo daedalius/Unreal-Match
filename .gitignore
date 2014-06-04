@@ -95,3 +95,5 @@ obj/
 /UnrealMatch/UnrealMatch/Resources/Scripts/Animation/Animations/ASMDBlast.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/Animation/Animations/AsmdBlastAnimation.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Weapons/Shot.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/SoundsManagers/PlayerSounds.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/SoundsManagers/WeaponsSoundBundle.js

@@ -44,6 +44,7 @@ module SoundManager
             if(frags >= 5)
             {
                 var newState = new KillingspreeState(this.FragsStretch);
+                SoundManager.Announcer.StartSpree.play();
                 setTimeout(newState.AnnounceState, announcerDelay);
                 return newState;
             }
