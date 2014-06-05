@@ -52,6 +52,8 @@ module Entities
         // Animations spritesheets
         public AsmdBigBlastSprite: Size; // To draw
         public AsmdBigBlastSpriteInSpritesheet: Size; // In sprite 596x596
+        public AsmdBlastSprite: Size; // To draw
+        public AsmdBlastSpriteInSpritesheet: Size; // In sprite 440x440
 
         constructor(startWidth?: number)
         {
@@ -96,6 +98,8 @@ module Entities
                 // Animations
                 this.AsmdBigBlastSpriteInSpritesheet = new Size(596, 596);
                 this._originSizes.AsmdBigBlastSprite = new Size(256, 256);
+                this.AsmdBlastSpriteInSpritesheet = new Size(440, 440);
+                this._originSizes.AsmdBlastSprite = new Size(192, 192);
 
                 this.ComputeActualSizes(startWidth);
             }
@@ -117,6 +121,7 @@ module Entities
             this.PlayerHeadDefaultMultiplied = this.PlayerHeadDefault.ReturnMultiplied(0.25);
 
             this.AsmdBigBlastSprite = this._originSizes.AsmdBigBlastSprite.ReturnMultiplied(this.k);
+            this.AsmdBlastSprite = this._originSizes.AsmdBlastSprite.ReturnMultiplied(this.k);
         }
     }
 }

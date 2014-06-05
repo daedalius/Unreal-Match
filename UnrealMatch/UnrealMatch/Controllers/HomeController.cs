@@ -46,7 +46,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var availableGames = Instances.GameServer.Games.Select(x => x.Name).ToArray();
+            var availableGames = Instances.GameServer.Games.Where(x => x.State == Entities.GameState.Waiting).Select(x => x.Name).ToArray();
             var availableModes = new string[] { "Deathmatch" };
             var availableMaps = new string[] { "Rising-Sun" };
 
