@@ -193,9 +193,9 @@
     <Content Include="Resources\Audio\Player\respawn.mp3" />
     <Content Include="Resources\Audio\Weapons\ammo-pick.mp3" />
     <Content Include="Resources\Audio\Weapons\ASMD\asmd-alt-fire.mp3" />
-    <Content Include="Resources\Audio\Weapons\ASMD\asmd-big-balst.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-big-blast.mp3" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-blast.mp3" />
     <Content Include="Resources\Audio\Weapons\ASMD\asmd-main-fire.mp3" />
-    <Content Include="Resources\Audio\Weapons\ASMD\asmd-pickup.mp3" />
     <Content Include="Resources\Audio\Weapons\ASMD\asmd-select.mp3" />
     <Content Include="Resources\Audio\Weapons\Enforcer\enforcer-fire.mp3" />
     <Content Include="Resources\Audio\Weapons\Enforcer\enforcer-select.mp3" />
@@ -380,9 +380,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Audio\Weapons\ASMD\asmd-alt-fire.ogg" />
-    <Content Include="Resources\Audio\Weapons\ASMD\asmd-big-balst.ogg" />
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-big-blast.ogg" />
     <Content Include="Resources\Audio\Weapons\ASMD\asmd-main-fire.ogg" />
-    <Content Include="Resources\Audio\Weapons\ASMD\asmd-pickup.ogg" />
     <Content Include="Resources\Audio\Weapons\ASMD\asmd-select.ogg" />
   </ItemGroup>
   <ItemGroup>
@@ -404,6 +403,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Audio\Announcer\Kills\spree.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Audio\Weapons\ASMD\asmd-blast.ogg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

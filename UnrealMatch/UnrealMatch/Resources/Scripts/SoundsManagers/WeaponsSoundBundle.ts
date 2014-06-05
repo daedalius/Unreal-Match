@@ -8,7 +8,6 @@ module SoundManager
         public EnforcerSelect: Howl;
         public EnforcerFire: Howl;
         // ASMD
-        public AsmdPickup: Howl;
         public AsmdSelect: Howl;
         public AsmdFire: Howl;
         public AsmdAltFire: Howl;
@@ -29,10 +28,6 @@ module SoundManager
                 {
                     urls: ['/Resources/Audio/Weapons/Enforcer/enforcer-fire.mp3', '/Resources/Audio/Weapons/Enforcer/enforcer-fire.ogg']
                 });
-            this.AsmdPickup = new Howl(
-                {
-                    urls: ['/Resources/Audio/Weapons/ASMD/asmd-pickup.mp3', '/Resources/Audio/Weapons/ASMD/asmd-pickup.ogg']
-                });
             this.AsmdFire = new Howl(
                 {
                     urls: ['/Resources/Audio/Weapons/ASMD/asmd-main-fire.mp3', '/Resources/Audio/Weapons/ASMD/asmd-main-fire.ogg']
@@ -47,11 +42,11 @@ module SoundManager
                 });
             this.AsmdBlast = new Howl(
                 {
-                    urls: ['/Resources/Audio/Weapons/ASMD/asmd-balst.mp3', '/Resources/Audio/Weapons/ASMD/asmd-balst.ogg']
+                    urls: ['/Resources/Audio/Weapons/ASMD/asmd-blast.mp3', '/Resources/Audio/Weapons/ASMD/asmd-blast.ogg']
                 });
             this.AsmdBigBlast = new Howl(
                 {
-                    urls: ['/Resources/Audio/Weapons/ASMD/asmd-big-balst.mp3', '/Resources/Audio/Weapons/ASMD/asmd-big-balst.ogg']
+                    urls: ['/Resources/Audio/Weapons/ASMD/asmd-big-blast.mp3', '/Resources/Audio/Weapons/ASMD/asmd-big-blast.ogg']
                 });
         }
     }

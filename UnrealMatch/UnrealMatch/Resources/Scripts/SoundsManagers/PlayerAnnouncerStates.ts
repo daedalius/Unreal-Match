@@ -19,8 +19,6 @@ module SoundManager
             var nowDate: Date = new Date();
             var deltaMilliseconds = nowDate.valueOf() - lastFragTime.valueOf();
 
-            console.log(deltaMilliseconds);
-            console.log(this.FragsStretch);
             // Only when Last kill was less than 5 seconds
             if(deltaMilliseconds <= 5000)
             {
