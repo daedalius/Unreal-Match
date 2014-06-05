@@ -1,12 +1,15 @@
 class Handlers
 {
-    public static MouseInterval: number;
+    public static ContextMenuHandler()
+    {
+        return false;
+    }
 
     public static MouseDownHandler(event: MouseEvent)
     {
         if(IsMouseInputEnable)
         {
-            Handlers.MouseInterval = setInterval(function()
+            MouseDelayInterval = setInterval(function()
             {
                 var numb = event.button;
 
@@ -20,7 +23,6 @@ class Handlers
                             {
                                 CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
                                 ShotDelay = weaponDelay;
-                                console.log('shoot from ' + CurrentPlayer.Weapon.ToEnum().toString());
                             }
                             break;
                         }
@@ -32,7 +34,6 @@ class Handlers
                             {
                                 CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
                                 ShotDelay = weaponDelay;
-                                console.log('shoot from ' + CurrentPlayer.Weapon.ToEnum().toString());
                             }
                             break;
                         }
@@ -46,7 +47,7 @@ class Handlers
     {
         if(IsMouseInputEnable)
         {
-            clearInterval(Handlers.MouseInterval);
+            clearInterval(MouseDelayInterval);
         }
     }
 

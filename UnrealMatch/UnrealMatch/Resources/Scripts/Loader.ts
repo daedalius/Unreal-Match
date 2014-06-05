@@ -5,12 +5,12 @@ class Loader
 {
     public static InitializeVariables()
     {
-        IsMouseInputEnable = false;
-        //IsMouseInputEnable = true;
-        IsKeyboardInputEnable = false;
-        //IsKeyboardInputEnable = true;
-        IsPlayerDrawEnable = false;
-        //IsPlayerDrawEnable = true;
+        //IsMouseInputEnable = false;
+        IsMouseInputEnable = true;
+        //IsKeyboardInputEnable = false;
+        IsKeyboardInputEnable = true;
+        //IsPlayerDrawEnable = false;
+        IsPlayerDrawEnable = true;
 
         ShotDelay = 0;
 
@@ -135,6 +135,7 @@ class Loader
         document.onmouseup = Handlers.MouseUpHandler;
         document.onkeypress = Handlers.KeyPressHandler;
         document.onkeyup = Handlers.KeyUpHandler;
+        document.oncontextmenu = Handlers.ContextMenuHandler;
     }
 
     public static PlugResizeEvent()

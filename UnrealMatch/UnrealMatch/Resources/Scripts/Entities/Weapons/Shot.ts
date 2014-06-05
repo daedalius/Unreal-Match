@@ -1,3 +1,4 @@
+/// <reference path="../../Animation/Animations/AsmdBigBlastAnimation.ts" />
 module Weapons
 {
     export class Shot
@@ -16,16 +17,32 @@ module Weapons
         public Direction: string;
         // Play when shot is made
         public ShotSound: Howl;
+
+        constructor(provider: Entities.Player, weapon: WeaponType, mode: WeaponMode, position: Point, angle: number, direction: string, sound: Howl)
+        {
+            this.Player = provider;
+            this.Weapon = weapon;
+            this.Mode = mode;
+            this.StartPosition = position;
+            this.Angle = angle;
+            this.Direction = direction;
+            this.ShotSound = sound;
+        }
     }
 
     export class MomentShot extends Shot
     {
-        
+
     }
 
     export class EnforcerShot extends MomentShot
     {
-        
+
+    }
+
+    export class AsmdShot extends MomentShot
+    {
+
     }
 
     export class Shell extends Shot
@@ -35,7 +52,7 @@ module Weapons
         public BlowSound: Howl;
         public Blast: Blast;
 
-        public Blow() : void
+        public Blow(): void
         {
             Animation.AnimationManager.Add(this.Blast.Animation);
             // [TODO] - Play blast sound relatively current player position
@@ -49,7 +66,7 @@ module Weapons
 
     export class ASMDShell extends LinearShell
     {
-        
+
     }
 
     export class Blast
