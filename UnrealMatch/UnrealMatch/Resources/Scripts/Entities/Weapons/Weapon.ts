@@ -69,32 +69,32 @@ module Weapons
         }
     }
 
-    export class Hammer extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponHammerEnd;
-        }
+    //export class Hammer extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponHammerEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 0.5 : 1;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0.5 : 1;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 0 : 0;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0 : 0;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Hammer;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Hammer;
+    //    }
+    //}
 
     export class Enforcer extends Weapon
     {
@@ -131,36 +131,36 @@ module Weapons
 
             // Play sound and return computed shot
             CurrentPlayer.Sounds.WeaponBundle.EnforcerFire.play();
-            return new EnforcerShot(CurrentPlayer, WeaponType.Enforcer, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
+            return new EnforcerShot(CurrentPlayer.ID, WeaponType.Enforcer, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
         }
     }
 
-    export class Biogun extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponBiogunEnd;
-        }
+    //export class Biogun extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponBiogunEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 0.5 : 1;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0.5 : 1;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 0 : 0;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0 : 0;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Biogun;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Biogun;
+    //    }
+    //}
 
     export class ShockRifle extends Weapon
     {
@@ -199,148 +199,148 @@ module Weapons
             if(mode == WeaponMode.Standart)
             {
                 CurrentPlayer.Sounds.WeaponBundle.AsmdFire.play();
-                return new AsmdShot(CurrentPlayer, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
+                return new AsmdShot(CurrentPlayer.ID, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
             }
             else
             {
                 CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire.play();
-                return new ASMDShell(CurrentPlayer, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire);
+                return new ASMDShell(CurrentPlayer.ID, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire);
             }
         }
     }
 
-    export class Linkgun extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponLinkgunEnd;
-        }
+    //export class Linkgun extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponLinkgunEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 0.3 : 0.2;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0.3 : 0.2;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 0 : 0;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0 : 0;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Linkgun;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Linkgun;
+    //    }
+    //}
 
-    export class Minigun extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponMinigunEnd;
-        }
+    //export class Minigun extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponMinigunEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 0.2 : 0.7;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0.2 : 0.7;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 5 : 15;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 5 : 15;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Minigun;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Minigun;
+    //    }
+    //}
 
-    export class FlackCannon extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponFlackCannonEnd;
-        }
+    //export class FlackCannon extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponFlackCannonEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 1 : 1;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 1 : 1;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 20 : 0;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 20 : 0;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Flackcannon;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Flackcannon;
+    //    }
+    //}
 
-    export class RocketLauncher extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponRocketLauncherEnd;
-        }
+    //export class RocketLauncher extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponRocketLauncherEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 0.9 : 0.9;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0.9 : 0.9;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 0 : 10;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0 : 10;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Rocketlauncher;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Rocketlauncher;
+    //    }
+    //}
 
-    export class SniperRifle extends Weapon
-    {
-        // Return multiplier for computing offset of shot vector
-        public GetShotOffsetMultiplier(): Entities.Multiplier
-        {
-            return Sizes.WeaponSniperRifleEnd;
-        }
+    //export class SniperRifle extends Weapon
+    //{
+    //    // Return multiplier for computing offset of shot vector
+    //    public GetShotOffsetMultiplier(): Entities.Multiplier
+    //    {
+    //        return Sizes.WeaponSniperRifleEnd;
+    //    }
 
-        // Delay in seconds
-        public GetDelay(mode: WeaponMode): number
-        {
-            return (mode == WeaponMode.Standart) ? 0.6 : 0.6;
-        }
+    //    // Delay in seconds
+    //    public GetDelay(mode: WeaponMode): number
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0.6 : 0.6;
+    //    }
 
-        // Return max angle of bullet/shell spread
-        public GetSpreadAngle(mode: WeaponMode)
-        {
-            return (mode == WeaponMode.Standart) ? 0 : 0;
-        }
+    //    // Return max angle of bullet/shell spread
+    //    public GetSpreadAngle(mode: WeaponMode)
+    //    {
+    //        return (mode == WeaponMode.Standart) ? 0 : 0;
+    //    }
 
-        // Return weapon according WeaponType enum
-        public ToEnum(): WeaponType
-        {
-            return WeaponType.Sniperrifle;
-        }
-    }
+    //    // Return weapon according WeaponType enum
+    //    public ToEnum(): WeaponType
+    //    {
+    //        return WeaponType.Sniperrifle;
+    //    }
+    //}
 } 

@@ -116,6 +116,8 @@
     <Compile Include="Entities\GameState.cs" />
     <Compile Include="Entities\Game\Game.cs" />
     <Compile Include="Entities\Game\Map.cs" />
+    <Compile Include="Entities\MessageTypes\PlayerPlayState.cs" />
+    <Compile Include="Entities\MessageTypes\PlayerState.cs" />
     <Compile Include="Entities\Game\Player.cs" />
     <Compile Include="Entities\Game\PlayerStatistic.cs" />
     <Compile Include="Entities\Game\ClientStatus.cs" />
@@ -125,6 +127,9 @@
     <Compile Include="Entities\Game\UnhandledPlayerData.cs" />
     <Compile Include="Entities\MapInfoGetter.cs" />
     <Compile Include="Entities\Primitives\Size.cs" />
+    <Compile Include="Entities\Weapons\Shot.cs" />
+    <Compile Include="Entities\Weapons\WeaponType.cs" />
+    <Compile Include="Entities\Weapons\WeaponMode.cs" />
     <Compile Include="Instances.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

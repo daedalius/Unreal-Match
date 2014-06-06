@@ -4,7 +4,7 @@ module Weapons
     export class Shot
     {
         // Who made this shot
-        public Player: Entities.Player;
+        public PlayerId: number;
         // Weapon
         public Weapon: WeaponType;
         // Mode
@@ -18,9 +18,9 @@ module Weapons
         // Play when shot is made
         public ShotSound: Howl;
 
-        constructor(provider: Entities.Player, weapon: WeaponType, mode: WeaponMode, position: Point, angle: number, direction: string, sound: Howl)
+        constructor(provider: number, weapon: WeaponType, mode: WeaponMode, position: Point, angle: number, direction: string, sound: Howl)
         {
-            this.Player = provider;
+            this.PlayerId = provider;
             this.Weapon = weapon;
             this.Mode = mode;
             this.StartPosition = position;

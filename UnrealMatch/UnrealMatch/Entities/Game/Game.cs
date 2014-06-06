@@ -10,6 +10,7 @@
     using UnrealMatch.Entities;
     using System.Diagnostics;
     using Fleck;
+    using UnrealMatch.Entities.MessageTypes;
 
     public class Game
     {
@@ -192,6 +193,9 @@
                 this.Players[id].Position.Y = data.Position.Y;
                 this.Players[id].AngleOfView = data.Angle;
                 this.Players[id].IsForwardView = (data.Direction == "Right") ? true : false;
+
+
+                PlayerPlayState receivedState = JsonConvert.DeserializeObject<PlayerPlayState>(message);
             }
         }
     }

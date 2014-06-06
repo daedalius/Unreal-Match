@@ -21,7 +21,8 @@ class Handlers
                             var weaponDelay = CurrentPlayer.Weapon.GetDelay(Weapons.WeaponMode.Standart) * 1000;
                             if(ShotDelay == 0)
                             {
-                                CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
+                                var shot = CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
+                                Game.GameInfo.AddShotInSendQueue(shot);
                                 ShotDelay = weaponDelay;
                             }
                             break;
@@ -32,7 +33,8 @@ class Handlers
                             var weaponDelay = CurrentPlayer.Weapon.GetDelay(Weapons.WeaponMode.Alternate) * 1000;
                             if(ShotDelay == 0)
                             {
-                                CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
+                                var shot = CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
+                                Game.GameInfo.AddShotInSendQueue(shot);
                                 ShotDelay = weaponDelay;
                             }
                             break;

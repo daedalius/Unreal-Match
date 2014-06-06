@@ -34,7 +34,7 @@ module Game
 
         public FormPlayerState(): MessageTypes.StateToSend
         {
-            return new MessageTypes.PlayStateToSend(CurrentPlayer.ID, CurrentPlayer.Position, CurrentPlayer.LookDirectionIsForward, CurrentPlayer.AngleOfView);
+            return new MessageTypes.PlayStateToSend(CurrentPlayer.ID, CurrentPlayer.Position, CurrentPlayer.LookDirectionIsForward, CurrentPlayer.AngleOfView, GameInfo.CloneShots());
         }
     }
 }
