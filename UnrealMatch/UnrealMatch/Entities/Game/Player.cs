@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using UnrealMatch.Entities.Weapons;
 
     public class Player
     {
@@ -14,6 +15,7 @@
         public Point Position { get; set; }
         public bool IsForwardView { get; set; }
         public double AngleOfView { get; set; }
+        public PlayerAmmo Ammo { get; set; }
 
         // Network
         [Newtonsoft.Json.JsonIgnore]
@@ -29,6 +31,7 @@
             this.Position = new Point(600, 24);
             this.IsForwardView = true;
             this.AngleOfView = 0;
+            this.Ammo = new PlayerAmmo();
         }
     }
 }

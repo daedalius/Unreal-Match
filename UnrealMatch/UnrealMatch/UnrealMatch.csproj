@@ -127,6 +127,7 @@
     <Compile Include="Entities\Game\UnhandledPlayerData.cs" />
     <Compile Include="Entities\MapInfoGetter.cs" />
     <Compile Include="Entities\Primitives\Size.cs" />
+    <Compile Include="Entities\Weapons\PlayerAmmo.cs" />
     <Compile Include="Entities\Weapons\Shot.cs" />
     <Compile Include="Entities\Weapons\WeaponType.cs" />
     <Compile Include="Entities\Weapons\WeaponMode.cs" />
@@ -280,6 +281,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Animation\AnimationManager.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Animation\Animations\AsmdBlastAnimation.ts" />
     <Content Include="Resources\Scripts\Animation\Animations\AsmdBigBlastAnimation.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\PlayerAmmo.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\NetworkProcesses.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />

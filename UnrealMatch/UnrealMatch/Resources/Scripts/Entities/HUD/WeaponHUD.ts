@@ -21,6 +21,11 @@ module Entities
             }
         }
 
+        public Refresh()
+        {
+            
+        }
+
         // Change size of cell buå not save (this approach requires the addition of the required class )
         public AnimateCell(index: number, toWidth: string, toHeight: string, animationDuration: number)
         {

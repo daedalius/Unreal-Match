@@ -19,6 +19,11 @@ module Game
                         Players[i].AngleOfView = players[i].AngleOfView;
                         Players[i].LookDirectionIsForward = players[i].IsForwardView;
                     }
+                    else
+                    {
+                        CurrentPlayer.Ammo.Ammo[Weapons.WeaponType.Enforcer] = players[i].Ammo.Ammo[Weapons.WeaponType.Enforcer];
+                        CurrentPlayer.Ammo.Ammo[Weapons.WeaponType.Shockrifle] = players[i].Ammo.Ammo[Weapons.WeaponType.Shockrifle];
+                    }
                 }
 
                 this.FormPlayerState();
