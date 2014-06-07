@@ -149,6 +149,14 @@ module Calculations
             return result;
         }
 
+        public static FilledArray(arrayToFill: any[], filler: any)
+        {
+            for(var i = 0; i < arrayToFill.length; i++)
+            {
+                arrayToFill[i] = filler;
+            }
+        }
+
         public static ClonedArray(arrayToClone: any[]): any[]
         {
             return arrayToClone.slice(0);

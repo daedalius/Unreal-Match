@@ -15,7 +15,7 @@
         public Point Position { get; set; }
         public bool IsForwardView { get; set; }
         public double AngleOfView { get; set; }
-        public PlayerAmmo Ammo { get; set; }
+        public PlayerMunitions Munitions { get; set; }
         public WeaponType Weapon { get; set; }
 
         // Network
@@ -33,7 +33,7 @@
             this.Position = new Point(600, 24);
             this.IsForwardView = true;
             this.AngleOfView = 0;
-            this.Ammo = new PlayerAmmo();
+            this.Munitions = new PlayerMunitions();
         }
     }
 }

@@ -200,7 +200,7 @@
                 // Decrease ammo for each shot
                 foreach (var shot in receivedState.Shots)
                 {
-                    this.Players[id].Ammo.Decrease(shot);
+                    this.Players[id].Munitions.Decrease(shot);
                 }
             }
         }

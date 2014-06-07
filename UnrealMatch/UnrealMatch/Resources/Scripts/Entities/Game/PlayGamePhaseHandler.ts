@@ -19,15 +19,20 @@ module Game
                         Players[i].AngleOfView = players[i].AngleOfView;
                         Players[i].LookDirectionIsForward = players[i].IsForwardView;
 
-                        // [TODO]
+                        // [TODO] - Hardcode for 2 available weapons
                         Players[i].Weapon = (players[i].Weapon == Weapons.WeaponType.Enforcer) ? new Weapons.Enforcer() : new Weapons.ShockRifle();
                     }
                     else
                     {
-                        WHUD.Refresh();
+                        // Info about awailable weapons
+                        CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Enforcer] = players[i].Munitions.Weapons[Weapons.WeaponType.Enforcer];
+                        CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Shockrifle] = players[i].Munitions.Weapons[Weapons.WeaponType.Shockrifle];
 
-                        CurrentPlayer.Ammo.Ammo[Weapons.WeaponType.Enforcer] = players[i].Ammo.Ammo[Weapons.WeaponType.Enforcer];
-                        CurrentPlayer.Ammo.Ammo[Weapons.WeaponType.Shockrifle] = players[i].Ammo.Ammo[Weapons.WeaponType.Shockrifle];
+                        // Info about awailable ammo
+                        CurrentPlayer.Munitions.Ammo[Weapons.WeaponType.Enforcer] = players[i].Munitions.Ammo[Weapons.WeaponType.Enforcer];
+                        CurrentPlayer.Munitions.Ammo[Weapons.WeaponType.Shockrifle] = players[i].Munitions.Ammo[Weapons.WeaponType.Shockrifle];
+
+                        WHUD.Refresh();
                     }
                 }
 

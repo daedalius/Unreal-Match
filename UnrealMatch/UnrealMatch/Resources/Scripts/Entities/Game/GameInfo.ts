@@ -36,7 +36,14 @@ module Game
 
         public static CloneShots() : Array<any>
         {
-            return Calculations.Get.ClonedArray(this.ShotsToSend);
+            var temp = Calculations.Get.ClonedArray(this.ShotsToSend);
+
+            for(var i = 0; i < temp.length; i++)
+            {
+                temp[i].ShotSound = null;
+            }
+
+            return temp;
         }
 
         public static ClearPlayerShots()

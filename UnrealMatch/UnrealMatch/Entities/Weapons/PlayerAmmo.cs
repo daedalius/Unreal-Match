@@ -5,12 +5,16 @@ using System.Web;
 
 namespace UnrealMatch.Entities.Weapons
 {
-    public class PlayerAmmo
+    public class PlayerMunitions
     {
         public int[] Ammo;
+        public bool[] Weapons;
 
-        public PlayerAmmo()
+        public PlayerMunitions()
         {
+            this.Weapons = new bool[9];
+            this.Weapons[(int)WeaponType.Enforcer] = true;
+
             this.Ammo = new int[9];
             this[WeaponType.Enforcer] = 25;
             this[WeaponType.Shockrifle] = 5;

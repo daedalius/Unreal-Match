@@ -15,7 +15,6 @@ module MessageTypes
             this.Direction = (isPlayerLookingForward) ? "Right" : "Left"
             this.Shots = shots;
             this.Weapon = weapon;
-
             super(playerId, "Play");
         }
     }

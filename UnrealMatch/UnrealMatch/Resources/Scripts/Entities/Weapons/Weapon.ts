@@ -125,7 +125,7 @@ module Weapons
         // Construct shot from weapon
         public MakeShot(mode: WeaponMode): Shot
         {
-            if(CurrentPlayer.Ammo.Ammo[WeaponType.Enforcer] != 0)
+            if(CurrentPlayer.Munitions.Ammo[WeaponType.Enforcer] != 0)
             {
                 var angle: number = (CurrentPlayer.LookDirectionIsForward) ? CurrentPlayer.AngleOfView : -CurrentPlayer.AngleOfView;
                 var direction = (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left";
@@ -198,7 +198,7 @@ module Weapons
         // Construct shot from weapon
         public MakeShot(mode: WeaponMode): Shot
         {
-            if(CurrentPlayer.Ammo.Ammo[WeaponType.Shockrifle] != 0)
+            if(CurrentPlayer.Munitions.Ammo[WeaponType.Shockrifle] != 0)
             {
                 var angle: number = (CurrentPlayer.LookDirectionIsForward) ? CurrentPlayer.AngleOfView : -CurrentPlayer.AngleOfView;
                 var direction = (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left";

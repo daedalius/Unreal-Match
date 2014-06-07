@@ -123,16 +123,24 @@ class Handlers
             // Enforcer selected
             case 50:
                 {
-                    CurrentPlayer.Weapon = new Weapons.Enforcer();
-                    WHUD.Refresh();
+                    // [TODO] - Move logic in some weapon manager
+                    if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Enforcer])
+                    {
+                        CurrentPlayer.Weapon = new Weapons.Enforcer();
+                        WHUD.Refresh();
+                    }
                     break;
                 }
 
             // ASMD selected
             case 52:
                 {
-                    CurrentPlayer.Weapon = new Weapons.ShockRifle();
-                    WHUD.Refresh();
+                    // [TODO] - Move logic in some weapon manager
+                    if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Shockrifle])
+                    {
+                        CurrentPlayer.Weapon = new Weapons.ShockRifle();
+                        WHUD.Refresh();
+                    }
                     break;
                 }
 
