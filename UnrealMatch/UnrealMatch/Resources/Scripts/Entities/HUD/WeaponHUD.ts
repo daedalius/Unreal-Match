@@ -23,7 +23,21 @@ module Entities
 
         public Refresh()
         {
-            
+            for(var i = 0; i < 9; i++)
+            {
+                this.SelectWeaponByIndex(CurrentPlayer.Weapon.ToEnum());
+
+                if(!CurrentPlayer.Ammo.Ammo[i])
+                {
+                    this.InnerWeaponCells[i].Deactivate();
+                    //this.InnerWeaponCells[i].AmmoElement.textContent = '';
+                }
+                else
+                {
+                    this.InnerWeaponCells[i].Activate();
+                    this.InnerWeaponCells[i].AmmoElement.textContent = CurrentPlayer.Ammo.Ammo[i].toString();
+                }
+            }
         }
 
         // Change size of cell buå not save (this approach requires the addition of the required class )
@@ -34,7 +48,7 @@ module Entities
                 $(context.InnerWeaponCells[index].Cell).animate({ width: toWidth, height: toHeight }, animationDuration, function() { context.InnerWeaponCells[index].Cell.removeAttribute('style') });
                 $(context.InnerWeaponCells[index].InnerElement).animate({ width: toWidth, height: toHeight }, animationDuration, function() { context.InnerWeaponCells[index].InnerElement.removeAttribute('style') });
             })(this)
-    }
+        }
 
         // [TODO] - move it on main logic (when she is appear :D)
         public SelectNextWeapon()

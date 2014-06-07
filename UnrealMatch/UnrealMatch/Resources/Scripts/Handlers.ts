@@ -22,8 +22,11 @@ class Handlers
                             if(ShotDelay == 0)
                             {
                                 var shot = CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
-                                Game.GameInfo.AddShotInSendQueue(shot);
-                                ShotDelay = weaponDelay;
+                                if(shot != null)
+                                {
+                                    Game.GameInfo.AddShotInSendQueue(shot);
+                                    ShotDelay = weaponDelay;
+                                }
                             }
                             break;
                         }
@@ -34,8 +37,12 @@ class Handlers
                             if(ShotDelay == 0)
                             {
                                 var shot = CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
-                                Game.GameInfo.AddShotInSendQueue(shot);
-                                ShotDelay = weaponDelay;
+
+                                if(shot != null)
+                                {
+                                    Game.GameInfo.AddShotInSendQueue(shot);
+                                    ShotDelay = weaponDelay;
+                                }
                             }
                             break;
                         }
@@ -62,8 +69,27 @@ class Handlers
             var delta: number = event.wheelDelta / 120;
             if(delta > 0)
             {
+
+
                 for(var i = 0; i < delta; i++)
                 {
+                    //if(CurrentPlayer.Weapon.ToEnum() != 8)
+                    //{
+                    //    switch (CurrentPlayer.Weapon.ToEnum())
+                    //    {
+                    //        case (Weapons.WeaponType.Hammer):
+                    //            {
+                    //                CurrentPlayer.Weapon = new Weapons.Enforcer();
+                    //                break;
+                    //            }
+                    //        case (Weapons.WeaponType.Enforcer):
+                    //            {
+                    //                CurrentPlayer.Weapon = new Weapons.Bio();
+                    //                break;
+                    //            }
+
+                    //    }
+                    //}
                     WHUD.SelectNextWeapon();
                 }
             }
@@ -94,6 +120,22 @@ class Handlers
 
         switch(eventArg.charCode)
         {
+            // Enforcer selected
+            case 50:
+                {
+                    CurrentPlayer.Weapon = new Weapons.Enforcer();
+                    WHUD.Refresh();
+                    break;
+                }
+
+            // ASMD selected
+            case 52:
+                {
+                    CurrentPlayer.Weapon = new Weapons.ShockRifle();
+                    WHUD.Refresh();
+                    break;
+                }
+
             // right
             case 100:
                 {

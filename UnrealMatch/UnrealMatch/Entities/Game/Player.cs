@@ -16,6 +16,7 @@
         public bool IsForwardView { get; set; }
         public double AngleOfView { get; set; }
         public PlayerAmmo Ammo { get; set; }
+        public WeaponType Weapon { get; set; }
 
         // Network
         [Newtonsoft.Json.JsonIgnore]
@@ -25,6 +26,7 @@
 
         public Player(string playerName)
         {
+            this.Weapon = WeaponType.Enforcer;
             this.Name = playerName;
             this.Status = ClientStatus.Disconnected;
             this.Score = 0;

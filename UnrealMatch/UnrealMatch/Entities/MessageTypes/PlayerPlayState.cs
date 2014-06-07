@@ -5,5 +5,6 @@ namespace UnrealMatch.Entities.MessageTypes
     public class PlayerPlayState : PlayerState
     {
         public Shot[] Shots { get; set; }
+        public WeaponType Weapon { get; set; }
     }
 }

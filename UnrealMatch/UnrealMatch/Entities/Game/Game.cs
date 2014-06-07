@@ -196,6 +196,7 @@
 
 
                 PlayerPlayState receivedState = JsonConvert.DeserializeObject<PlayerPlayState>(message);
+                this.Players[id].Weapon =  receivedState.Weapon;
                 // Decrease ammo for each shot
                 foreach (var shot in receivedState.Shots)
                 {

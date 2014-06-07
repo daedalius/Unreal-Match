@@ -125,13 +125,20 @@ module Weapons
         // Construct shot from weapon
         public MakeShot(mode: WeaponMode): Shot
         {
-            var angle: number = (CurrentPlayer.LookDirectionIsForward) ? CurrentPlayer.AngleOfView : -CurrentPlayer.AngleOfView;
-            var direction = (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left";
-            var position: Point = this.ComputeShotPosition(angle, Sizes.WeaponEnforcerEnd);
+            if(CurrentPlayer.Ammo.Ammo[WeaponType.Enforcer] != 0)
+            {
+                var angle: number = (CurrentPlayer.LookDirectionIsForward) ? CurrentPlayer.AngleOfView : -CurrentPlayer.AngleOfView;
+                var direction = (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left";
+                var position: Point = this.ComputeShotPosition(angle, Sizes.WeaponEnforcerEnd);
 
-            // Play sound and return computed shot
-            CurrentPlayer.Sounds.WeaponBundle.EnforcerFire.play();
-            return new EnforcerShot(CurrentPlayer.ID, WeaponType.Enforcer, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
+                // Play sound and return computed shot
+                CurrentPlayer.Sounds.WeaponBundle.EnforcerFire.play();
+                return new EnforcerShot(CurrentPlayer.ID, WeaponType.Enforcer, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -191,20 +198,27 @@ module Weapons
         // Construct shot from weapon
         public MakeShot(mode: WeaponMode): Shot
         {
-            var angle: number = (CurrentPlayer.LookDirectionIsForward) ? CurrentPlayer.AngleOfView : -CurrentPlayer.AngleOfView;
-            var direction = (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left";
-            var position: Point = this.ComputeShotPosition(angle, Sizes.WeaponShockRifleEnd);
-
-            // Play sound and return computed shot
-            if(mode == WeaponMode.Standart)
+            if(CurrentPlayer.Ammo.Ammo[WeaponType.Shockrifle] != 0)
             {
-                CurrentPlayer.Sounds.WeaponBundle.AsmdFire.play();
-                return new AsmdShot(CurrentPlayer.ID, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
+                var angle: number = (CurrentPlayer.LookDirectionIsForward) ? CurrentPlayer.AngleOfView : -CurrentPlayer.AngleOfView;
+                var direction = (CurrentPlayer.LookDirectionIsForward) ? "Right" : "Left";
+                var position: Point = this.ComputeShotPosition(angle, Sizes.WeaponShockRifleEnd);
+
+                // Play sound and return computed shot
+                if(mode == WeaponMode.Standart)
+                {
+                    CurrentPlayer.Sounds.WeaponBundle.AsmdFire.play();
+                    return new AsmdShot(CurrentPlayer.ID, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.EnforcerFire);
+                }
+                else
+                {
+                    CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire.play();
+                    return new ASMDShell(CurrentPlayer.ID, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire);
+                }
             }
             else
             {
-                CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire.play();
-                return new ASMDShell(CurrentPlayer.ID, WeaponType.Shockrifle, mode, position, angle, direction, CurrentPlayer.Sounds.WeaponBundle.AsmdAltFire);
+                return null;
             }
         }
     }

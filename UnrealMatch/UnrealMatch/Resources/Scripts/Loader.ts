@@ -123,6 +123,7 @@ class Loader
 
         Socket = new WebSocket(Game.GameInfo.Socket);
 
+        WHUD.Refresh();
         GsHUD = new Entities.GameStatsHUD(document.getElementById('game-stats'));
         GsHUD.Show();
     }
@@ -130,7 +131,7 @@ class Loader
     public static PlugInputEvents()
     {
         document.onmousemove = Handlers.MouseMoveHandler;
-        document.onmousewheel = Handlers.MouseWheelHandler;
+        //document.onmousewheel = Handlers.MouseWheelHandler;
         document.onmousedown = Handlers.MouseDownHandler;
         document.onmouseup = Handlers.MouseUpHandler;
         document.onkeypress = Handlers.KeyPressHandler;

@@ -21,6 +21,8 @@ module Game
                 if(gameStateObject.Stage == "Play")
                 {
                     console.log('Play phase started');
+                    WHUD.Show();
+                    SHUD.Show();
                     Game.GameInfo.Phase = Game.GamePhase.Play;
                     Game.GameInfo.PhaseHandler = new PlayGamePhaseHandler();
                     IsKeyboardInputEnable = true;
