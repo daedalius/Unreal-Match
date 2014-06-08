@@ -27,14 +27,14 @@ module Entities
             {
                 this.SelectWeaponByIndex(CurrentPlayer.Weapon.ToEnum());
 
-                if(!CurrentPlayer.Munitions.Weapons[i])
-                {
-                    this.InnerWeaponCells[i].Deactivate();
-                }
-                else
+                if(CurrentPlayer.Munitions.Weapons[i] === true)
                 {
                     this.InnerWeaponCells[i].Activate();
                     this.InnerWeaponCells[i].AmmoElement.textContent = CurrentPlayer.Munitions.Ammo[i].toString();
+                }
+                else
+                {
+                    this.InnerWeaponCells[i].Deactivate();
                 }
             }
         }

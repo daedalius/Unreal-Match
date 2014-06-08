@@ -6,10 +6,6 @@ var IsKeyboardInputEnable;
 // Draw enable
 var IsPlayerDrawEnable;
 
-// Shot delay
-var ShotDelay;
-var MouseDelayInterval: number;
-
 // HTML Elements
 var ContentElement: HTMLElement;
 

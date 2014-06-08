@@ -282,6 +282,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Animation\Animations\AsmdBlastAnimation.ts" />
     <Content Include="Resources\Scripts\Animation\Animations\AsmdBigBlastAnimation.ts" />
     <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\PlayerMunitions.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Entities\Weapons\ClientWeaponManager.ts" />
     <Content Include="Resources\Scripts\Libraries\howler.js" />
     <Content Include="Resources\Scripts\NetworkProcesses.ts" />
     <Content Include="Resources\Scripts\Libraries\jquery-2.1.0.js" />

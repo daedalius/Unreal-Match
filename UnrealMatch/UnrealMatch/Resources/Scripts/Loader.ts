@@ -12,7 +12,7 @@ class Loader
         //IsPlayerDrawEnable = false;
         IsPlayerDrawEnable = true;
 
-        ShotDelay = 0;
+        Weapons.ClientWeaponManager.Init();
 
         // Sounds
         SoundManager.Announcer.Init();

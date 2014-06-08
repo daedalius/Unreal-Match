@@ -39,7 +39,7 @@ function Interval50()
     Animation.AnimationManager.DoNextStep();
 
     // Decrease shot delay
-    ShotDelay = (ShotDelay <= 50) ? 0 : ShotDelay - 50;
+    Weapons.ClientWeaponManager.DecreaseShotDelay(50);
 }
 
 function Interval100()

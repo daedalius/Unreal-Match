@@ -9,46 +9,7 @@ class Handlers
     {
         if(IsMouseInputEnable)
         {
-            MouseDelayInterval = setInterval(function()
-            {
-                var numb = event.button;
-
-                switch(numb)
-                {
-                    case 0:
-                        {
-                            // Left button - main firemode
-                            var weaponDelay = CurrentPlayer.Weapon.GetDelay(Weapons.WeaponMode.Standart) * 1000;
-                            if(ShotDelay == 0)
-                            {
-                                var shot = CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Standart);
-                                if(shot != null)
-                                {
-                                    Game.GameInfo.AddShotInSendQueue(shot);
-                                    ShotDelay = weaponDelay;
-                                }
-                            }
-                            break;
-                        }
-                    case 2:
-                        {
-                            // Right button - alt firemode
-                            var weaponDelay = CurrentPlayer.Weapon.GetDelay(Weapons.WeaponMode.Alternate) * 1000;
-                            if(ShotDelay == 0)
-                            {
-                                var shot = CurrentPlayer.Weapon.MakeShot(Weapons.WeaponMode.Alternate);
-
-                                if(shot != null)
-                                {
-                                    Game.GameInfo.AddShotInSendQueue(shot);
-                                    ShotDelay = weaponDelay;
-                                }
-                            }
-                            break;
-                        }
-                }
-
-            }, 50);
+            Weapons.ClientWeaponManager.OpenFire(event)
         }
     }
 
@@ -56,7 +17,7 @@ class Handlers
     {
         if(IsMouseInputEnable)
         {
-            clearInterval(MouseDelayInterval);
+            Weapons.ClientWeaponManager.StopFire();
         }
     }
 
@@ -64,42 +25,42 @@ class Handlers
     {
         if(IsMouseInputEnable)
         {
-            // +: up
-            // -: down
-            var delta: number = event.wheelDelta / 120;
-            if(delta > 0)
-            {
+            //// +: up
+            //// -: down
+            //var delta: number = event.wheelDelta / 120;
+            //if(delta > 0)
+            //{
 
 
-                for(var i = 0; i < delta; i++)
-                {
-                    //if(CurrentPlayer.Weapon.ToEnum() != 8)
-                    //{
-                    //    switch (CurrentPlayer.Weapon.ToEnum())
-                    //    {
-                    //        case (Weapons.WeaponType.Hammer):
-                    //            {
-                    //                CurrentPlayer.Weapon = new Weapons.Enforcer();
-                    //                break;
-                    //            }
-                    //        case (Weapons.WeaponType.Enforcer):
-                    //            {
-                    //                CurrentPlayer.Weapon = new Weapons.Bio();
-                    //                break;
-                    //            }
+            //    for(var i = 0; i < delta; i++)
+            //    {
+            //        //if(CurrentPlayer.Weapon.ToEnum() != 8)
+            //        //{
+            //        //    switch (CurrentPlayer.Weapon.ToEnum())
+            //        //    {
+            //        //        case (Weapons.WeaponType.Hammer):
+            //        //            {
+            //        //                CurrentPlayer.Weapon = new Weapons.Enforcer();
+            //        //                break;
+            //        //            }
+            //        //        case (Weapons.WeaponType.Enforcer):
+            //        //            {
+            //        //                CurrentPlayer.Weapon = new Weapons.Bio();
+            //        //                break;
+            //        //            }
 
-                    //    }
-                    //}
-                    WHUD.SelectNextWeapon();
-                }
-            }
-            else
-            {
-                for(var i = 0; i > delta; i--)
-                {
-                    WHUD.SelectPreviousWeapon();
-                }
-            }
+            //        //    }
+            //        //}
+            //        WHUD.SelectNextWeapon();
+            //    }
+            //}
+            //else
+            //{
+            //    for(var i = 0; i > delta; i--)
+            //    {
+            //        WHUD.SelectPreviousWeapon();
+            //    }
+            //}
         }
     }
 
@@ -123,24 +84,14 @@ class Handlers
             // Enforcer selected
             case 50:
                 {
-                    // [TODO] - Move logic in some weapon manager
-                    if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Enforcer])
-                    {
-                        CurrentPlayer.Weapon = new Weapons.Enforcer();
-                        WHUD.Refresh();
-                    }
+                    Weapons.ClientWeaponManager.TryChangeWeapon(Weapons.WeaponType.Enforcer);
                     break;
                 }
 
             // ASMD selected
             case 52:
                 {
-                    // [TODO] - Move logic in some weapon manager
-                    if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Shockrifle])
-                    {
-                        CurrentPlayer.Weapon = new Weapons.ShockRifle();
-                        WHUD.Refresh();
-                    }
+                    Weapons.ClientWeaponManager.TryChangeWeapon(Weapons.WeaponType.Shockrifle);
                     break;
                 }
 
