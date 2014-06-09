@@ -1,4 +1,4 @@
-﻿namespace UnrealMatch.Game
+﻿namespace UnrealMatch.Entities.Network
 {
     public class RequestPathInfo
     {

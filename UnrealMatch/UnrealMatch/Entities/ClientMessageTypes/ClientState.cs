@@ -1,6 +1,6 @@
-﻿namespace UnrealMatch.Entities.MessageTypes
+﻿namespace UnrealMatch.Entities.ClientMessageTypes
 {
-    public class PlayerState
+    public class ClientState
     {
         public double Angle { get; set; }
         public string Direction { get; set; }

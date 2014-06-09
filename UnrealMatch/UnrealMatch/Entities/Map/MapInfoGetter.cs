@@ -1,4 +1,4 @@
-﻿namespace UnrealMatch.Entities
+﻿namespace UnrealMatch.Entities.Map
 {
     using System;
     using System.Collections.Generic;
@@ -26,7 +26,7 @@
             MapInfoGetter.MapPasses = new Dictionary<string, bool[,]>();
         }
 
-        static public Map GetMap(string mapTitle)
+        static public LevelMap GetMap(string mapTitle)
         {
             var savedSize = MapInfoGetter.MapSizes[mapTitle];
             var savedQuality = MapInfoGetter.MapQualities[mapTitle];
@@ -62,7 +62,7 @@
                 MapInfoGetter.MapPasses.Add(mapTitle, cachedPass);
             }
 
-            return new Map(mapTitle, savedSize, cachedPass, savedQuality);
+            return new LevelMap(mapTitle, savedSize, cachedPass, savedQuality);
         }
     }
 }

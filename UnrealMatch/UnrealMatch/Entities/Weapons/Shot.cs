@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace UnrealMatch.Entities.Weapons
+﻿namespace UnrealMatch.Entities.Weapons
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+
     public class Shot
     {
         // Who made this shot

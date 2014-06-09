@@ -14,14 +14,14 @@
         public ActionResult Join(GamesInfo gameInfoModel)
         {
             //Instances.GameServer.JoinPlayer(gameInfoModel.Nickname, gameInfoModel.GameName);
-            var game = Instances.GameServer.GetGame(gameInfoModel.GameName ?? gameInfoModel.AvailableGames[0]);            
+            var game = Instances.GameServer.GetGame(gameInfoModel.GameName ?? gameInfoModel.AvailableGames[0]);
             game.JoinPlayer(gameInfoModel.Nickname);
 
             // Model forming
             var model = new GameStartInfo()
             {
                 GameName = game.Name,
-                PlayerName = gameInfoModel.Nickname,                
+                PlayerName = gameInfoModel.Nickname,
                 PlayerNumber = game.Players.Where(x => x.Name == gameInfoModel.Nickname).First().Number,
                 PlayersCount = game.MaxPlayers,
                 MapName = game.Map.Title,
@@ -38,7 +38,7 @@
         [HttpPost]
         public ActionResult Create(GamesInfo model)
         {
-            Instances.GameServer.AddGame(model.GameName, model.AvailableMaps[0].ToString(), model.MaxPlayers);
+            Instances.GameServer.NewGame(model.GameName, model.AvailableMaps[0].ToString(), model.MaxPlayers);
             return this.Join(model);
         }
 
@@ -46,7 +46,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var availableGames = Instances.GameServer.Games.Where(x => x.State == Entities.GameState.Waiting).Select(x => x.Name).ToArray();
+            var availableGames = Instances.GameServer.GetAwaitableGames().Select(g => g.Name).ToArray();
             var availableModes = new string[] { "Deathmatch" };
             var availableMaps = new string[] { "Rising-Sun" };
 

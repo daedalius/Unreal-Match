@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using UnrealMatch.Game;
     using Fleck;
+    using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.Network;
 
     public class Server
     {
@@ -17,7 +18,7 @@
         /// <summary>
         /// All games running on this server
         /// </summary>
-        public List<Game> Games { get; private set; }
+        private List<Game> Games { get; set; }
 
         /// <summary>
         /// All clients connected to this server
@@ -39,7 +40,7 @@
         }
 
         /// <summary>
-        /// Initializing game list, opening socket and subscrubing on sockets events
+        /// Initializes game list, opens socket and subscribes on sockets events
         /// </summary>
         private Server()
         {
@@ -72,12 +73,12 @@
         }
 
         /// <summary>
-        /// 
+        /// Creates new game
         /// </summary>
-        /// <param name="gameName"></param>
-        /// <param name="mapName"></param>
-        /// <param name="maxPlayers"></param>
-        public void AddGame(string gameName, string mapName, int maxPlayers)
+        /// <param name="gameName">Unique game name</param>
+        /// <param name="mapName">Game level</param>
+        /// <param name="maxPlayers">Max players count</param>
+        public void NewGame(string gameName, string mapName, int maxPlayers)
         {
             var game = new Game(gameName, mapName, maxPlayers);
             this.Games.Add(game);
@@ -89,6 +90,14 @@
         public Game GetGame(string gameName)
         {
             return this.Games.Where(x => x.Name == gameName).First();
+        }
+
+        /// <summary>
+        /// Return games in waiting stage
+        /// </summary>
+        public IEnumerable<Game> GetAwaitableGames()
+        {
+            return this.Games.Where(g => g.State == GamePhase.Waiting);
         }
 
         /// <summary>
@@ -114,7 +123,7 @@
         /// Handling sended client message
         /// </summary>
         /// <param name="clientContext">Client socket context</param>
-        /// <param name="message">Clients message</param>
+        /// <param name="message">Client message</param>
         private void OnServerReceiveMessageHandler(IWebSocketConnection clientContext, string message)
         {
             var requestPathInfo = new RequestPathInfo(clientContext.ConnectionInfo.Path);
