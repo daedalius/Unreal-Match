@@ -6,7 +6,7 @@
     {
         public static void StartServer()
         {
-            UnrealMatch.Instances.GameServer = new Entities.Server();
+            UnrealMatch.Instances.GameServer = Entities.Server.Get();
         }
     }
 }
