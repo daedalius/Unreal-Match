@@ -13,6 +13,7 @@
     using UnrealMatch.Entities.GameObjects;
     using UnrealMatch.Entities.ServerMessages;
     using System.Diagnostics;
+    using UnrealMatch.Entities.GameStateHandlers;
 
     public class Game
     {
@@ -21,9 +22,9 @@
         /// </summary>
         public string Name { get; private set; }
         /// <summary>
-        /// Current game phase
+        /// Current game phase logic
         /// </summary>
-        public GamePhase State { get; set; }
+        public GamePhaseManager PhaseManager { get; set; }
         /// <summary>
         /// Current game players
         /// </summary>
@@ -40,7 +41,6 @@
         /// Countdown counter
         /// </summary>
         private int countdown { get; set; }
-
         /// <summary>
         /// Instate new game and run their game cycle
         /// </summary>
@@ -50,7 +50,7 @@
         public Game(string gameName, string mapTitle, int players)
         {
             this.Name = gameName;
-            this.State = GamePhase.Waiting;
+            this.PhaseManager = new WaitingGamePhaseManager(this);
             this.Players = new List<Player>(this.MaxPlayers);
             this.MaxPlayers = players;
             this.Map = MapInfoGetter.GetMap(mapTitle);
@@ -69,38 +69,7 @@
 
         internal void HandleClientMessage(IWebSocketConnection clientContext, string message)
         {
-            dynamic data = JsonConvert.DeserializeObject(message);
-
-            int id = data.Id;
-            string state = data.State;
-
-            if (this.State == GamePhase.Waiting)
-            {
-                this.Players[id].Status = ClientStatus.Ready;
-            }
-
-
-            if (this.State == GamePhase.Countdown)
-            {
-
-            }
-
-            if (this.State == GamePhase.Play && state == "Play")
-            {
-                this.Players[id].Position.X = data.Position.X;
-                this.Players[id].Position.Y = data.Position.Y;
-                this.Players[id].AngleOfView = data.Angle;
-                this.Players[id].Direction = (data.Direction == "Right") ? PlayerViewDirection.Right : PlayerViewDirection.Left;
-
-
-                ClientPlayState receivedState = JsonConvert.DeserializeObject<ClientPlayState>(message);
-                this.Players[id].Weapon = receivedState.Weapon;
-                // Decrease ammo for each shot
-                foreach (var shot in receivedState.Shots)
-                {
-                    this.Players[id].Munitions.Decrease(shot);
-                }
-            }
+            this.PhaseManager.HandleClientMessage(message);
         }
 
         private void StartGameCycle()
@@ -113,14 +82,13 @@
         {
             while (true)
             {
-                // Stage handlers
-                this.WaitingStageHandler();
-                this.CountdownStageHandler();
-                this.PlayStageHandler();
+                this.PhaseManager.NextState();
+                this.PhaseManager.BroadcastState();
+                this.PhaseManager.MakeDelay();
             }
         }
 
-        private object CollectPlayersStats()
+        public object CollectPlayersStats()
         {
             var playersStatistic = new List<PlayerStatistic>();
 
@@ -132,78 +100,11 @@
             return playersStatistic;
         }
 
-        /// <summary>
-        /// Handler for Waiting game state
-        /// </summary>
-        private void WaitingStageHandler()
-        {
-            if (this.State == GamePhase.Waiting)
-            {
-                // Handle new countdows state 
-                if (this.Players.Count == this.MaxPlayers && this.Players.All(x => x.Status == ClientStatus.Ready))
-                {
-                    this.State = GamePhase.Countdown;
-                    return;
-                }
-                // Broadcasting for all ready players
-                else
-                {
-                    if (this.Players.Count != 0)
-                    {
-                        // One time in second send all data about connected players
-
-                        var obj = new { Stage = this.State.ToString(), PlayerStatistic = CollectPlayersStats() };
-
-                        this.SendBroadcastMessage(obj);
-                        Thread.Sleep(1000);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Handler for Countdown game state
-        /// </summary>
-        private void CountdownStageHandler()
-        {
-            if (this.State == GamePhase.Countdown)
-            {
-                if (this.countdown != 0)
-                {
-                    var obj = new { Stage = this.State.ToString(), PlayerStatistic = CollectPlayersStats(), Countdown = this.countdown };
-                    this.countdown -= 1;
-                    this.SendBroadcastMessage(obj);
-                    Thread.Sleep(1000);
-                }
-                else
-                {
-                    this.State = GamePhase.Play;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Handler for Play game state
-        /// </summary>
-        private void PlayStageHandler()
-        {
-            if (this.State == GamePhase.Play)
-            {
-                var obj = new
-                {
-                    Stage = this.State.ToString(),
-                    Players = this.Players.ToArray()
-                };
-                this.SendBroadcastMessage(obj);
-                Thread.Sleep(100);
-            }
-        }
-
-        private void SendBroadcastMessage(string jsonString)
+        public void SendBroadcastMessage(string jsonString)
         {
             foreach (var player in this.Players)
             {
-                if (this.State == GamePhase.Play)
+                if (this.PhaseManager.Phase == GamePhase.Play)
                 {
                     player.ClientContext.Send(jsonString);
                 }
@@ -217,7 +118,7 @@
             }
         }
 
-        private void SendBroadcastMessage(object toJson)
+        public void SendBroadcastMessage(object toJson)
         {
             var tempJson = JsonConvert.SerializeObject(toJson);
             SendBroadcastMessage(tempJson);

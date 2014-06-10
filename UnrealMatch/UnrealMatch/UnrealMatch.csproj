@@ -116,6 +116,11 @@
     <Compile Include="Entities\Enums\GamePhase.cs" />
     <Compile Include="Entities\Enums\PlayerViewDirection.cs" />
     <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\GameStateHandlers\GamePhaseManager.cs" />
+    <Compile Include="Entities\GameStateHandlers\CountdownGamePhaseManager.cs" />
+    <Compile Include="Entities\GameStateHandlers\PlayGamePhaseManager.cs" />
+    <Compile Include="Entities\GameStateHandlers\StopGamePhaseManager.cs" />
+    <Compile Include="Entities\GameStateHandlers\WaitingGamePhaseManager.cs" />
     <Compile Include="Entities\Map\LevelMap.cs" />
     <Compile Include="Entities\ClientMessageTypes\ClientPlayState.cs" />
     <Compile Include="Entities\ClientMessageTypes\ClientState.cs" />

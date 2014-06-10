@@ -97,7 +97,7 @@
         /// </summary>
         public IEnumerable<Game> GetAwaitableGames()
         {
-            return this.Games.Where(g => g.State == GamePhase.Waiting);
+            return this.Games.Where(g => g.PhaseManager.Phase == GamePhase.Waiting);
         }
 
         /// <summary>
