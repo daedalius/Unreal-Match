@@ -108,6 +108,7 @@ module Weapons
                         if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Enforcer])
                         {
                             CurrentPlayer.Weapon = new Weapons.Enforcer();
+                            CurrentPlayer.Sounds.WeaponBundle.EnforcerSelect.play();
                             WHUD.Refresh();
                         }
                         break;
@@ -118,6 +119,7 @@ module Weapons
                         if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Shockrifle])
                         {
                             CurrentPlayer.Weapon = new Weapons.ShockRifle();
+                            CurrentPlayer.Sounds.WeaponBundle.AsmdSelect.play();
                             WHUD.Refresh();
                         }
                         break;

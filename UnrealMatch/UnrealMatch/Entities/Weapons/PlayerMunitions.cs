@@ -9,6 +9,7 @@
         {
             this.Weapons = new bool[9];
             this.Weapons[(int)WeaponType.Enforcer] = true;
+            this.Weapons[(int)WeaponType.Shockrifle] = true;
 
             this.Ammo = new int[9];
             this[WeaponType.Enforcer] = 25;
