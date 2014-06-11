@@ -4,7 +4,7 @@
 
     public class ClientPlayState : ClientState
     {
-        public Shot[] Shots { get; set; }
+        public ClientShot[] Shots { get; set; }
         public WeaponType Weapon { get; set; }
     }
 }

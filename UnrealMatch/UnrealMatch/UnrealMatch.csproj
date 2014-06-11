@@ -132,8 +132,16 @@
     <Compile Include="Entities\Server.cs" />
     <Compile Include="Entities\Map\MapInfoGetter.cs" />
     <Compile Include="Entities\Primitives\Size.cs" />
+    <Compile Include="Entities\Weapons\Blast.cs" />
     <Compile Include="Entities\Weapons\PlayerMunitions.cs" />
-    <Compile Include="Entities\Weapons\Shot.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\ASMDShell.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\ASMDShot.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\LinearShell.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\Shell.cs" />
+    <Compile Include="Entities\ClientMessageTypes\ClientShot.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\MomentShot.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\EnforcerShot.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\Shot.cs" />
     <Compile Include="Entities\Weapons\WeaponType.cs" />
     <Compile Include="Entities\Weapons\WeaponMode.cs" />
     <Compile Include="Instances.cs" />

@@ -1,4 +1,5 @@
-﻿namespace UnrealMatch.Entities.Weapons
+﻿using UnrealMatch.Entities.Weapons.WeaponShots;
+namespace UnrealMatch.Entities.Weapons
 {
     public class PlayerMunitions
     {

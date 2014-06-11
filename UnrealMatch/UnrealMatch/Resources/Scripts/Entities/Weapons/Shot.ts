@@ -24,6 +24,8 @@ module Weapons
             this.Weapon = weapon;
             this.Mode = mode;
             this.StartPosition = position;
+            this.StartPosition.X = Math.round(this.StartPosition.X);
+            this.StartPosition.Y = Math.round(this.StartPosition.Y);
             this.Angle = angle;
             this.Direction = direction;
             this.ShotSound = sound;
