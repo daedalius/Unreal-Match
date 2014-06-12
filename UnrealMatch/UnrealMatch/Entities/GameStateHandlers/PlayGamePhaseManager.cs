@@ -35,7 +35,7 @@
             this.Game.Players[id].AngleOfView = data.Angle;
             this.Game.Players[id].Direction = (data.Direction == "Right") ? PlayerViewDirection.Right : PlayerViewDirection.Left;
 
-            Debug.WriteLine(clientMessage);
+            //Debug.WriteLine(clientMessage);
 
             ClientPlayState receivedState = JsonConvert.DeserializeObject<ClientPlayState>(clientMessage);
             this.Game.Players[id].Weapon = receivedState.Weapon;
@@ -66,6 +66,37 @@
             }
 
             // Search intersect with shells and players
+            foreach (var shot in momentShots)
+            {
+                // Search for enemies
+                foreach (var player in this.Game.Players.Where(player => player.Number != shot.PlayerId))
+                {
+                    var enemyHeadRectangle = player.HeadRectangle;
+                    var enemyBodyRectangle = player.BodyRectangle;
+
+                    var headIntersectionPoint = Calculations.ShotRectangleIntersection(shot, enemyHeadRectangle);
+                    var bodyIntersectionPoint = Calculations.ShotRectangleIntersection(shot, enemyBodyRectangle);
+
+                    if (headIntersectionPoint != null || bodyIntersectionPoint != null)
+                    {
+                        if (headIntersectionPoint != null)
+                        {
+                            Debug.WriteLine("Попал в голову!");
+                            Debug.WriteLine("x: " + headIntersectionPoint.X + "; y: " + headIntersectionPoint.Y);
+                        }
+
+                        if (bodyIntersectionPoint != null)
+                        {
+                            Debug.WriteLine("Попал в тело!");
+                            Debug.WriteLine("x: " + bodyIntersectionPoint.X + "; y: " + bodyIntersectionPoint.Y);
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Промазал!"); 
+                    }
+                }
+            }
             // If intersections more than 1 find neareset and judge him: blast the shell or do harm to player
 
             // Save this shots for delivery to other players

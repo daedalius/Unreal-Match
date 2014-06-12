@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="App_Start\GameServerStarter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entities\Calculations.cs" />
     <Compile Include="Entities\Enums\GamePhase.cs" />
     <Compile Include="Entities\Enums\PlayerViewDirection.cs" />
     <Compile Include="Entities\Game.cs" />
