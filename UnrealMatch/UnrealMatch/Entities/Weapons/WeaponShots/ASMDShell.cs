@@ -1,6 +1,7 @@
 ﻿namespace UnrealMatch.Entities.Weapons.WeaponShots
 {
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.Primitives;
 
     public class ASMDShell : LinearShell
     {

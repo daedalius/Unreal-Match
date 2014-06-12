@@ -1,4 +1,4 @@
-﻿namespace UnrealMatch.Entities
+﻿namespace UnrealMatch.Entities.Primitives
 {
     public class Point
     {

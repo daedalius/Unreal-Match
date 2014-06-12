@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Weapons;
     using UnrealMatch.Entities.Weapons.WeaponShots;
 

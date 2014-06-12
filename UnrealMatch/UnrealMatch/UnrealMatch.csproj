@@ -125,6 +125,7 @@
     <Compile Include="Entities\ClientMessageTypes\ClientPlayState.cs" />
     <Compile Include="Entities\ClientMessageTypes\ClientState.cs" />
     <Compile Include="Entities\GameObjects\Player.cs" />
+    <Compile Include="Entities\Primitives\Rectangle.cs" />
     <Compile Include="Entities\ServerMessages\PlayerStatistic.cs" />
     <Compile Include="Entities\Enums\ClientStatus.cs" />
     <Compile Include="Entities\Primitives\Point.cs" />

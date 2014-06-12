@@ -2,6 +2,7 @@
 {
     using Fleck;
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Weapons;
 
     public class Player
@@ -38,7 +39,30 @@
         /// Weapon in hands
         /// </summary>
         public WeaponType Weapon { get; set; }
-
+        /// <summary>
+        /// Get player head rectangle
+        /// </summary>
+        public Rectangle HeadRectangle
+        {
+            get
+            {
+                var start = new Point(this.Position.X - 15, this.Position.Y + 129 + 28);
+                var end = new Point(this.Position.X + 15, this.Position.Y + 129);
+                return new Rectangle(start, end);
+            }
+        }
+        /// <summary>
+        /// Get player body rectangle
+        /// </summary>
+        public Rectangle BodyRectangle
+        {
+            get
+            {
+                var start = new Point(this.Position.X - 32, this.Position.Y + 128);
+                var end = new Point(this.Position.X + 32, this.Position.Y);
+                return new Rectangle(start, end);
+            }
+        }
         /// <summary>
         /// Player connection status
         /// </summary>
