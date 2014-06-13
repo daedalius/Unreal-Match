@@ -21,6 +21,10 @@
         /// </summary>
         public int Number { get; set; }
         /// <summary>
+        /// Player health and armour
+        /// </summary>
+        public PlayerHealthStatus HealthStatus { get; set; }
+        /// <summary>
         /// Player point in total
         /// </summary>
         public int Score { get; set; }
@@ -47,6 +51,7 @@
         /// <summary>
         /// Get player head rectangle
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         public Rectangle HeadRectangle
         {
             get
@@ -59,6 +64,7 @@
         /// <summary>
         /// Get player body rectangle
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         public Rectangle BodyRectangle
         {
             get
@@ -89,6 +95,7 @@
             this.Direction = PlayerViewDirection.Right;
             this.AngleOfView = 0;
             this.Munitions = new PlayerMunitions();
+            this.HealthStatus = new PlayerHealthStatus();
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,6 +144,7 @@
 
         bool IMomentShotHitTest.HandleIntersection(MomentShotIntersectionResult intersection)
         {
+            this.HealthStatus.Decrease(intersection.Shot.Damage);
             Debug.WriteLine("-{0} HP от попадания в {1} из {2}", intersection.Shot.Damage, intersection.PlayerPart.ToString(), intersection.Shot.Weapon.ToString());
 
             return true;

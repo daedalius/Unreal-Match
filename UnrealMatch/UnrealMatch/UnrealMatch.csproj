@@ -119,6 +119,7 @@
     <Compile Include="Entities\Enums\PlayerCollisionPart.cs" />
     <Compile Include="Entities\Enums\PlayerViewDirection.cs" />
     <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\GameObjects\PlayerHealthStatus.cs" />
     <Compile Include="Entities\GameStateHandlers\GamePhaseManager.cs" />
     <Compile Include="Entities\GameStateHandlers\CountdownGamePhaseManager.cs" />
     <Compile Include="Entities\GameStateHandlers\PlayGamePhaseManager.cs" />
@@ -324,7 +325,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Entities\Other\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

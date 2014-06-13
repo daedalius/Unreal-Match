@@ -33,6 +33,9 @@ module Game
                     }
                     else
                     {
+                        SHUD.SetHP(players[i].HealthStatus.HP.toString());
+                        SHUD.SetArmour(players[i].HealthStatus.Armour.toString());
+
                         // Get info about awailable weapons
                         Weapons.ClientWeaponManager.SetWeaponAvailability(Weapons.WeaponType.Enforcer, players[i].Munitions.Weapons[Weapons.WeaponType.Enforcer]);
                         Weapons.ClientWeaponManager.SetWeaponAvailability(Weapons.WeaponType.Shockrifle, players[i].Munitions.Weapons[Weapons.WeaponType.Shockrifle]);

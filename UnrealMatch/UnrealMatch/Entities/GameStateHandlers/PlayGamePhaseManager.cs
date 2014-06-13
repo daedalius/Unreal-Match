@@ -54,6 +54,23 @@
             this.HandleReceivedMomentShots();
             this.HandleReceivedShells();
             this.HandleShells();
+            this.CheckPlayersStatus();
+        }
+
+        private void CheckPlayersStatus()
+        {
+            for (int i = 0; i < this.Game.Players.Count; i++)
+            {
+                if (this.Game.Players[i].HealthStatus.HP <= 0)
+                {
+                    // [TODO] - Respawn
+                    // New health status
+                    this.Game.Players[i].HealthStatus = new GameObjects.PlayerHealthStatus();
+
+                    // [TODO] - Data about new state for client to avoid ignoring new position
+                    // ...
+                }
+            }
         }
 
         private void HandleReceivedMomentShots()
