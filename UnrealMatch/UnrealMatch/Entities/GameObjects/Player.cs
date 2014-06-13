@@ -1,11 +1,16 @@
 ﻿namespace UnrealMatch.Entities.GameObjects
 {
     using Fleck;
+    using System;
+    using System.Diagnostics;
+    using UnrealMatch.Entities.Calculations;
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.Interfaces;
     using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Weapons;
+    using UnrealMatch.Entities.Weapons.WeaponShots;
 
-    public class Player
+    public class Player : IMomentShotHitTest
     {
         /// <summary>
         /// Player nickname
@@ -84,6 +89,72 @@
             this.Direction = PlayerViewDirection.Right;
             this.AngleOfView = 0;
             this.Munitions = new PlayerMunitions();
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // IMomentShotHitTest Implementation ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        MomentShotIntersectionResult IMomentShotHitTest.MomentShotHitTest(Shot shot)
+        {
+            var headIntersectionPoint = Get.ShotRectangleIntersection(shot, this.HeadRectangle);
+            var bodyIntersectionPoint = Get.ShotRectangleIntersection(shot, this.BodyRectangle);
+
+            // There is no intersections
+            if (headIntersectionPoint == null && bodyIntersectionPoint == null)
+            {
+                return null;
+            }
+            // At least one intersection there
+            else
+            {
+                // Headshot
+                if (headIntersectionPoint != null && bodyIntersectionPoint == null)
+                {
+                    return new MomentShotIntersectionResult() { Intersection = headIntersectionPoint, Shot = shot, Victim = this, PlayerPart = PlayerCollisionPart.Head };
+                }
+                // Bodyshot
+                if (headIntersectionPoint == null && bodyIntersectionPoint != null)
+                {
+                    return new MomentShotIntersectionResult() { Intersection = bodyIntersectionPoint, Shot = shot, Victim = this, PlayerPart = PlayerCollisionPart.Body };
+                }
+
+                // If both
+                MomentShotIntersectionResult head = new MomentShotIntersectionResult() { Intersection = headIntersectionPoint, Shot = shot, Victim = this, PlayerPart = PlayerCollisionPart.Head };
+                MomentShotIntersectionResult body = new MomentShotIntersectionResult() { Intersection = bodyIntersectionPoint, Shot = shot, Victim = this, PlayerPart = PlayerCollisionPart.Body };
+                var compareResult = head.CompareTo(body);
+
+                if (compareResult >= 0)
+                {
+                    return head;
+                }
+                else
+                {
+                    return body;
+                }
+            }
+        }
+
+        bool IMomentShotHitTest.HandleIntersection(MomentShotIntersectionResult intersection)
+        {
+            Debug.WriteLine("-{0} HP от попадания в {1} из {2}", intersection.Shot.Damage, intersection.PlayerPart.ToString(), intersection.Shot.Weapon.ToString());
+
+            return true;
+        }
+
+        public Point GetCenterPoint(PlayerCollisionPart part)
+        {
+            if (part == PlayerCollisionPart.Body)
+            {
+                return this.BodyRectangle.GetCenterPoint();
+            }
+
+            if (part == PlayerCollisionPart.Head)
+            {
+                return this.HeadRectangle.GetCenterPoint();
+            }
+
+            throw new InvalidOperationException("There is player and there is no intersections for center point computing");
         }
     }
 }

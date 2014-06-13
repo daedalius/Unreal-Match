@@ -113,8 +113,10 @@
   <ItemGroup>
     <Compile Include="App_Start\GameServerStarter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Entities\Calculations.cs" />
+    <Compile Include="Entities\Calculations\Calculations.cs" />
+    <Compile Include="Entities\Calculations\MomentShotIntersectionResult.cs" />
     <Compile Include="Entities\Enums\GamePhase.cs" />
+    <Compile Include="Entities\Enums\PlayerCollisionPart.cs" />
     <Compile Include="Entities\Enums\PlayerViewDirection.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GameStateHandlers\GamePhaseManager.cs" />
@@ -122,6 +124,8 @@
     <Compile Include="Entities\GameStateHandlers\PlayGamePhaseManager.cs" />
     <Compile Include="Entities\GameStateHandlers\StopGamePhaseManager.cs" />
     <Compile Include="Entities\GameStateHandlers\WaitingGamePhaseManager.cs" />
+    <Compile Include="Entities\Interfaces\IGetCenterPoint.cs" />
+    <Compile Include="Entities\Interfaces\IMomentShotHitTest.cs" />
     <Compile Include="Entities\Map\LevelMap.cs" />
     <Compile Include="Entities\ClientMessageTypes\ClientPlayState.cs" />
     <Compile Include="Entities\ClientMessageTypes\ClientState.cs" />
@@ -320,6 +324,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Entities\Other\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
