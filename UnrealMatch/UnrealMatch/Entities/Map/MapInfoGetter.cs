@@ -14,6 +14,17 @@
             {  "Rising-Sun" , new Size(3832, 1422) },
         };
 
+        static public Dictionary<string, Point[]> MapRespawns = new Dictionary<string, Point[]>
+        {
+            {  "Rising-Sun" , new Point[] { new Point(764, 24),
+                                            new Point(2677, 24),
+                                            new Point(3237, 911),
+                                            new Point(1963, 901),
+                                            new Point(1574, 901),
+                                            new Point(558, 661)}
+            }
+        };
+
         static public Dictionary<string, double> MapQualities = new Dictionary<string, double>
         {
             {  "Rising-Sun" , 1.5 },
@@ -45,10 +56,10 @@
 
                 cachedPass = new bool[size.Height, size.Width];
 
-                    for (int h = 0; h < size.Height; h++)
+                for (int h = 0; h < size.Height; h++)
+                {
+                    for (int w = 0; w < size.Width; w++)
                     {
-                        for (int w = 0; w < size.Width; w++)
-                        {
                         System.Drawing.Color pixel = img.GetPixel(w, h);
 
                         if (pixel.A > 0)

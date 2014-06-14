@@ -7,6 +7,8 @@
     /// </summary>
     public class PlayerHealthStatus
     {
+        public bool DeathFlag;
+
         private int hp;
         /// <summary>
         /// Players health points. Zero means death

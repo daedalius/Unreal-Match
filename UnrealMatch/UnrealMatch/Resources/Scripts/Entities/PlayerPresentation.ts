@@ -53,6 +53,13 @@ module Entities
             }
         }
 
+        public Erase()
+        {
+            this.HeadContext.clearRect(-4000, -4000, 8000, 8000);
+            this.WeaponContext.clearRect(-4000, -4000, 8000, 8000);
+            this.BodyContext.clearRect(-4000, -4000, 8000, 8000);
+        }
+
         private DrawBody()
         {
             // Get body rectangle

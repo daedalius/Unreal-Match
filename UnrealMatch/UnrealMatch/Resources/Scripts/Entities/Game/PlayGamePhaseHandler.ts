@@ -6,12 +6,21 @@ module Game
     {
         public Handle(gameStateObject: any): void
         {
+            var needToEraseAllPlayers: boolean = false;
+
             if(gameStateObject.Stage == "Play")
             {
                 var players = gameStateObject.Players;
 
                 for(var i = 0; i < players.length; i++)
                 {
+                    // Decide if it need to erase player from canvas to prevent indelible image
+                    if(players[i].HealthStatus.DeathFlag)
+                    {
+                        needToEraseAllPlayers = true;
+                    }
+
+                    // For enemies
                     if(i != CurrentPlayer.ID)
                     {
                         var isAnimationNeeded = (Players[i].Position.X !== players[i].Position.X) && (Players[i].Position.Y === players[i].Position.Y);
@@ -32,7 +41,15 @@ module Game
                         Weapons.ClientWeaponManager.ChangeEnemyWeapon(Players[i], players[i].Weapon);
                     }
                     else
+                    // For current player
                     {
+                        // Respawn after death means players teleportation
+                        if(players[i].HealthStatus.DeathFlag)
+                        {
+                            CurrentPlayer.Position.X = players[i].Position.X;
+                            CurrentPlayer.Position.Y = players[i].Position.Y;
+                        }
+
                         SHUD.SetHP(players[i].HealthStatus.HP.toString());
                         SHUD.SetArmour(players[i].HealthStatus.Armour.toString());
 
@@ -46,7 +63,18 @@ module Game
                     }
                 }
 
-                this.FormPlayerState();
+                // Erase if it need
+                if(needToEraseAllPlayers)
+                {
+                    for(var i = 0; i < Players.length; i++)
+                    {
+                        Players[i].Presentation.Erase();
+                        Players[i].Presentation.Draw();
+                    }
+                }
+
+
+                //this.FormPlayerState();
             }
             else
             {

@@ -11,6 +11,9 @@
     using System.Diagnostics;
     using UnrealMatch.Entities.Calculations;
     using UnrealMatch.Entities.Interfaces;
+    using UnrealMatch.Entities.Primitives;
+    using System;
+using UnrealMatch.Entities.GameObjects;
 
     public class PlayGamePhaseManager : GamePhaseManager
     {
@@ -49,12 +52,51 @@
             }
         }
 
+        /// <summary>
+        /// Play state pipeline
+        /// </summary>
         public override void NextState()
         {
+            this.PreparingCleanUp();
             this.HandleReceivedMomentShots();
             this.HandleReceivedShells();
             this.HandleShells();
             this.CheckPlayersStatus();
+        }
+
+        private void PreparingCleanUp()
+        {
+            // Clear death flag
+            foreach (var player in this.Game.Players)
+            {
+                player.HealthStatus.DeathFlag = false;
+            }
+        }
+
+        private Point RespawnPlayer(Player toSpawn)
+        {
+            var results = new List<Tuple<Point, double>>();
+
+            foreach (var rp in Map.MapInfoGetter.MapRespawns[this.Game.Map.Title])
+            {
+                double minimalDistance = Double.MaxValue;
+                Point minimalDistancePoint = null;
+
+                // For each enemy find minimal distance beetween current probably respawn point
+                foreach (var p in this.Game.Players.Where(x => x.Number != toSpawn.Number))
+                {
+                    var distanse = Calculations.Get.Hypotenuse(Math.Abs(rp.X - p.Position.X), Math.Abs(rp.Y - p.Position.Y));
+                    if (distanse < minimalDistance)
+                    {
+                        minimalDistancePoint = rp;
+                        minimalDistance = distanse;
+                    }
+                }
+                results.Add(new Tuple<Point, double>(minimalDistancePoint, minimalDistance));
+            }
+
+            // Just take the farther point
+            return results.OrderByDescending(x => x.Item2).First().Item1;
         }
 
         private void CheckPlayersStatus()
@@ -63,12 +105,12 @@
             {
                 if (this.Game.Players[i].HealthStatus.HP <= 0)
                 {
-                    // [TODO] - Respawn
+                    var respawnPoint = this.RespawnPlayer(this.Game.Players[i]);
+                    this.Game.Players[i].Position = respawnPoint;
+                    
                     // New health status
                     this.Game.Players[i].HealthStatus = new GameObjects.PlayerHealthStatus();
-
-                    // [TODO] - Data about new state for client to avoid ignoring new position
-                    // ...
+                    this.Game.Players[i].HealthStatus.DeathFlag = true;
                 }
             }
         }

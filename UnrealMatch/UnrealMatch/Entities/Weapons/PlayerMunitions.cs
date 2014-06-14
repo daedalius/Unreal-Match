@@ -13,7 +13,7 @@ namespace UnrealMatch.Entities.Weapons
             this.Weapons[(int)WeaponType.Shockrifle] = true;
 
             this.Ammo = new int[9];
-            this[WeaponType.Enforcer] = 25;
+            this[WeaponType.Enforcer] = 250;
             this[WeaponType.Shockrifle] = 5;
         }
 
