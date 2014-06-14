@@ -6,20 +6,12 @@ module Game
     {
         public Handle(gameStateObject: any): void
         {
-            var needToEraseAllPlayers: boolean = false;
-
             if(gameStateObject.Stage == "Play")
             {
                 var players = gameStateObject.Players;
 
                 for(var i = 0; i < players.length; i++)
                 {
-                    // Decide if it need to erase player from canvas to prevent indelible image
-                    if(players[i].HealthStatus.DeathFlag)
-                    {
-                        needToEraseAllPlayers = true;
-                    }
-
                     // For enemies
                     if(i != CurrentPlayer.ID)
                     {
@@ -63,18 +55,27 @@ module Game
                     }
                 }
 
-                // Erase if it need
-                if(needToEraseAllPlayers)
+                // Erase to prevent indelible image
+                // CurrentPlayer is dead. Need to erase all players
+                if(players[CurrentPlayer.ID].HealthStatus.DeathFlag)
                 {
-                    for(var i = 0; i < Players.length; i++)
+                    for(var pId = 0; pId < Players.length; pId++)
                     {
-                        Players[i].Presentation.Erase();
-                        Players[i].Presentation.Draw();
+                        Players[pId].Presentation.Erase();
                     }
                 }
-
-
-                //this.FormPlayerState();
+                else
+                {
+                    // Search for dead enemies
+                    for(var pId = 0; pId < Players.length; pId++)
+                    {
+                        // Erase only dead enemy
+                        if(players[pId].HealthStatus.DeathFlag)
+                        {
+                            Players[pId].Presentation.Erase();
+                        }
+                    }
+                }
             }
             else
             {

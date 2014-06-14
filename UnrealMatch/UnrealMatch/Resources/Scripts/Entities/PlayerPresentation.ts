@@ -55,9 +55,9 @@ module Entities
 
         public Erase()
         {
-            this.HeadContext.clearRect(-4000, -4000, 8000, 8000);
-            this.WeaponContext.clearRect(-4000, -4000, 8000, 8000);
-            this.BodyContext.clearRect(-4000, -4000, 8000, 8000);
+            this.HeadContext.clearRect(-1500, -1500, 3000, 3000);
+            this.WeaponContext.clearRect(-1500, -1500, 3000, 3000);
+            this.BodyContext.clearRect(-1500, -1500, 3000, 3000);
         }
 
         private DrawBody()
