@@ -1,3 +1,4 @@
+/// <reference path="../../Shells/BlastManager.ts" />
 /// <reference path="../MessageTypes/StateToSend.ts" />
 /// <reference path="../MessageTypes/PlayStateToSend.ts" />
 module Game
@@ -11,6 +12,7 @@ module Game
                 var players = gameStateObject.Players;
 
                 Shells.ShellManager.Refresh(gameStateObject.Shells);
+                Shells.BlastManager.Animate(gameStateObject.Blasts);
 
                 for(var i = 0; i < players.length; i++)
                 {

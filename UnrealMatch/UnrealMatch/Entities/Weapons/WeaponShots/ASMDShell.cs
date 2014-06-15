@@ -38,14 +38,14 @@
                 // ASMD shot handling
                 if (intersection.Shot.Mode == WeaponMode.Standart)
                 {
-                    // Handle simple ASMD blast
-                    manager.Blasts.Add(new ASMDBlast(intersection.Intersection));
-                }
-                else
-                {
                     // Need to generate ASMD big blast
-                    manager.Blasts.Add(new ASMDBlast(intersection.Intersection));
+                    manager.Blasts.Add(new ASMDBigBlast(intersection.Intersection));
                 }
+                //else
+                //{
+                //    // Handle simple ASMD blast
+                //    manager.Blasts.Add(new ASMDBlast(intersection.Intersection));
+                //}
 
                 // [TODO] - Too dangerous code
                 manager.Shells.Remove(this);

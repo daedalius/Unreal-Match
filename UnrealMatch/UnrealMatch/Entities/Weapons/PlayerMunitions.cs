@@ -1,6 +1,7 @@
-﻿using UnrealMatch.Entities.Weapons.WeaponShots;
-namespace UnrealMatch.Entities.Weapons
+﻿namespace UnrealMatch.Entities.Weapons
 {
+    using UnrealMatch.Entities.Weapons.WeaponShots;
+
     public class PlayerMunitions
     {
         public int[] Ammo;
@@ -13,8 +14,8 @@ namespace UnrealMatch.Entities.Weapons
             this.Weapons[(int)WeaponType.Shockrifle] = true;
 
             this.Ammo = new int[9];
-            this[WeaponType.Enforcer] = 250;
-            this[WeaponType.Shockrifle] = 5;
+            this[WeaponType.Enforcer] = 50;
+            this[WeaponType.Shockrifle] = 20;
         }
 
         public void Decrease(Shot shot)

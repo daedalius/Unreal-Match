@@ -30,7 +30,7 @@ module Animation
         {
             var length = AnimationManager.Animations.push(animation);
             //// Run animation instantly
-            //this.Animations[length].DoNextStep();
+            //this.Animations[length-1].DoNextStep();
         }
     }
 }

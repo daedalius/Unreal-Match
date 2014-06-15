@@ -103,3 +103,5 @@ obj/
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Weapons/PlayerMunitions.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/Entities/Weapons/ClientWeaponManager.js
 /UnrealMatch/UnrealMatch/Resources/Scripts/Shells/ShellManager.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Shells/BlastManager.js
+/UnrealMatch/UnrealMatch/Resources/Scripts/Shells/BlastType.js

@@ -319,6 +319,8 @@
     <TypeScriptCompile Include="Resources\Scripts\Menu\Menu.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\PlayerSounds.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\WeaponsSoundBundle.ts" />
+    <Content Include="Resources\Scripts\Shells\BlastManager.ts" />
+    <TypeScriptCompile Include="Resources\Scripts\Shells\BlastType.ts" />
     <Content Include="Resources\Scripts\Shells\ShellManager.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

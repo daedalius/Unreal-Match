@@ -76,8 +76,16 @@
                 player.HealthStatus.DeathFlag = false;
             }
 
-            this.BlastedShells = null;
-            this.Blasts = null;
+            this.BlastedShells = new List<Shell>();
+            this.Blasts = new List<Blast>();
+
+            for (int i = 0; i < this.Shells.Count; i++)
+            {
+                if (this.Shells[i].IsLosted(this.Game.Map.Size))
+                {
+                    this.Shells.Remove(this.Shells[i]);
+                }
+            }
         }
 
         private void HandleReceivedMomentShots()

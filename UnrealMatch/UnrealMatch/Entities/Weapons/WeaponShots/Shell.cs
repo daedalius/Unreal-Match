@@ -50,5 +50,13 @@
             this.CurrentPosition.X += (this.Direction == PlayerViewDirection.Right) ? (int)speedX : -(int)speedX;
             this.CurrentPosition.Y += (int)speedY;
         }
+
+        internal bool IsLosted(Size mapSize)
+        {
+            return this.CurrentPosition.X < -100 ||
+                   this.CurrentPosition.X > mapSize.Width + 100 ||
+                   this.CurrentPosition.Y < -100 ||
+                   this.CurrentPosition.Y > mapSize.Height + 100;
+        }
     }
 }

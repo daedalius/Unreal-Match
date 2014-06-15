@@ -7,26 +7,26 @@ module Shells
 
         public static Draw()
         {
+            // Firstable earse all shells
+            ShellManager.CanvasContext.clearRect(-2500, -2500, 5000, 5000);
+
+            // If there is some shells...
             if(ShellManager.Shells)
             {
-                ShellManager.CanvasContext.clearRect(-1500, -1500, 3000, 3000);
-
+                // ...draw them
                 for(var i = 0; i < ShellManager.Shells.length; i++)
                 {
-                    if(ShellManager.Shells[i])
-                    {
-                        var isAnimationOver = ShellManager.Shells[i].Draw();
-                    }
+                    ShellManager.Shells[i].Draw();
                 }
             }
         }
 
         public static Refresh(shellsObject: any)
         {
+            ShellManager.Shells = new Array<ShellPresentation>(0);
+
             if(shellsObject && shellsObject.length != 0)
             {
-                ShellManager.Shells = new Array<ShellPresentation>(0);
-
                 for(var i = 0; i < shellsObject.length; i++)
                 {
                     var position = new Entities.Point(shellsObject[i].CurrentPosition.X, shellsObject[i].CurrentPosition.Y);

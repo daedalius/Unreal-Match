@@ -6,7 +6,7 @@
     public class ASMDBigBlast : Blast
     {
         public ASMDBigBlast(Point position)
-            : base(BlastType.ASMDBlast, position, 20, 40, 150)
+            : base(BlastType.ASMDBigBlast, position, 20, 40, 150)
         {
         }
     }
