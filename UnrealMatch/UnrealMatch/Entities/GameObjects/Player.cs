@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using UnrealMatch.Entities.Calculations;
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.GameStateHandlers;
     using UnrealMatch.Entities.Interfaces;
     using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Weapons;
@@ -142,7 +143,7 @@
             }
         }
 
-        bool IMomentShotHitTest.HandleIntersection(MomentShotIntersectionResult intersection)
+        bool IMomentShotHitTest.HandleIntersection(MomentShotIntersectionResult intersection, PlayGamePhaseManager manager)
         {
             this.HealthStatus.Decrease(intersection.Shot.Damage);
             Debug.WriteLine("-{0} HP от попадания в {1} из {2}", intersection.Shot.Damage, intersection.PlayerPart.ToString(), intersection.Shot.Weapon.ToString());

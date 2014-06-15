@@ -1,12 +1,9 @@
 ﻿namespace UnrealMatch.Entities.Weapons
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using UnrealMatch.Entities.Primitives;
+    using UnrealMatch.Resources.Scripts.Entities.Weapons;
 
-    public class Blast
+    public abstract class Blast
     {
         /// <summary>
         /// Blast center position
@@ -24,5 +21,18 @@
         /// Blast HP damage
         /// </summary>
         public int Damage { get; set; }
+        /// <summary>
+        /// Blast type in emum presentation
+        /// </summary>
+        public BlastType Type { get; set; }
+
+        public Blast(BlastType type, Point position, int epicenterRadius, int fullRadius, int damage)
+        {
+            this.Type = type;
+            this.Position = position;
+            this.EpicenterRadius = epicenterRadius;
+            this.FullRadius = fullRadius;
+            this.Damage = damage;
+        }
     }
 }

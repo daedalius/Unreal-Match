@@ -2,6 +2,7 @@
 {
     using System;
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.GameStateHandlers;
     using UnrealMatch.Entities.Interfaces;
     using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Weapons.WeaponShots;

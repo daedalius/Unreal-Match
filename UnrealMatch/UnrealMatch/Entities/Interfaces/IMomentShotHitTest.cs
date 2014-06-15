@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web;
     using UnrealMatch.Entities.Calculations;
+    using UnrealMatch.Entities.GameStateHandlers;
     using UnrealMatch.Entities.Weapons.WeaponShots;
 
     public interface IMomentShotHitTest : IGetCenterPoint
@@ -17,6 +18,6 @@
         /// Handle intersection in game and return true if this intersection completely handled
         /// </summary>
         /// <returns></returns>
-        bool HandleIntersection(MomentShotIntersectionResult intersection);
+        bool HandleIntersection(MomentShotIntersectionResult intersection, PlayGamePhaseManager manager);
     }
 }

@@ -12,11 +12,15 @@
     using UnrealMatch.Entities.Interfaces;
     using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Weapons.WeaponShots;
+    using UnrealMatch.Entities.Weapons;
+    using System.Diagnostics;
 
     public class PlayGamePhaseManager : GamePhaseManager
     {
-        private List<Shell> Shells;
-        private List<Shot> LastReceivedShots;
+        internal List<Shell> Shells;
+        internal List<Shot> LastReceivedShots;
+        internal List<Blast> Blasts;
+        internal List<Shell> BlastedShells;
 
         public PlayGamePhaseManager(Game game)
         {
@@ -24,6 +28,8 @@
             this.Game = game;
             this.Shells = new List<Shell>();
             this.LastReceivedShots = new List<Shot>();
+            this.Blasts = new List<Blast>();
+            this.BlastedShells = new List<Shell>();
         }
 
         public override void HandleClientMessage(string clientMessage)
@@ -69,12 +75,14 @@
             {
                 player.HealthStatus.DeathFlag = false;
             }
+
+            this.BlastedShells = null;
+            this.Blasts = null;
         }
 
         private void HandleReceivedMomentShots()
         {
             var momentShots = this.LastReceivedShots.OfType<MomentShot>();
-            // Handle received moment shots
 
             // Decrease ammo
             foreach (var shot in momentShots)
@@ -97,7 +105,15 @@
                     }
                 }
 
-                // [TODO] - Search for shells
+                // Search for shells
+                foreach (var shell in this.Shells)
+                {
+                    var shotResult = ((IMomentShotHitTest)shell).MomentShotHitTest(shot);
+                    if (shotResult != null)
+                    {
+                        shotIntersections.Add(shotResult);
+                    }
+                }
 
                 // Sorting all intersection by range
                 shotIntersections.Sort();
@@ -105,7 +121,7 @@
                 // Pipeline handling
                 foreach (var intersection in shotIntersections)
                 {
-                    if (intersection.Victim.HandleIntersection(intersection))
+                    if (intersection.Victim.HandleIntersection(intersection, this))
                     {
                         // Shot completely handled
                         break;
@@ -121,15 +137,22 @@
 
         private void HandleReceivedShells()
         {
-            // Handle received moment shots
+            // Coping last shells
+            var lastShells = this.LastReceivedShots.OfType<Shell>().ToList();
 
-            // Save this shots for delivery to other players
+            // Clear list because all shots already taken
+            this.LastReceivedShots.Clear();
+
+            this.Shells.AddRange(lastShells);
         }
 
         private void HandleShells()
         {
             // Move shells further
-
+            foreach (var shell in this.Shells)
+            {
+                shell.NextPosition();
+            }
             // Search for intersection with players
 
             // Search for intersection with other shells
@@ -184,7 +207,10 @@
             var obj = new
             {
                 Stage = this.Phase.ToString(),
-                Players = this.Game.Players.ToArray()
+                Players = this.Game.Players.ToArray(),
+                Shells = this.Shells,
+                Blasts = this.Blasts,
+                RemovedShells = this.BlastedShells
             };
             this.Game.SendBroadcastMessage(obj);
         }

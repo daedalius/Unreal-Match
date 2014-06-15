@@ -143,6 +143,8 @@
     <Compile Include="Entities\Primitives\Size.cs" />
     <Compile Include="Entities\Weapons\Blast.cs" />
     <Compile Include="Entities\Weapons\PlayerMunitions.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\ASMDBigBlast.cs" />
+    <Compile Include="Entities\Weapons\WeaponShots\ASMDBlast.cs" />
     <Compile Include="Entities\Weapons\WeaponShots\ASMDShell.cs" />
     <Compile Include="Entities\Weapons\WeaponShots\ASMDShot.cs" />
     <Compile Include="Entities\Weapons\WeaponShots\LinearShell.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Models\GamesInfo.cs" />
     <Compile Include="Models\GameStartInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Scripts\Entities\Weapons\BlastType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

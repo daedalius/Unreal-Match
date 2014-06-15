@@ -5,8 +5,8 @@
 
     public abstract class LinearShell : Shell
     {
-        public LinearShell(int provider, WeaponType weapon, WeaponMode mode, Point position, double angle, int damage, PlayerViewDirection direction, int radius)
-            : base(provider, weapon, mode, position, angle, damage, direction, radius)
+        public LinearShell(int provider, WeaponType weapon, WeaponMode mode, Point position, double angle, int damage, PlayerViewDirection direction, int radius, int speed)
+            : base(provider, weapon, mode, position, angle, damage, direction, radius, speed)
         { }
     }
 }
