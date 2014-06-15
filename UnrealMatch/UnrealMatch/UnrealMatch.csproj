@@ -118,6 +118,7 @@
     <Compile Include="Entities\Enums\GamePhase.cs" />
     <Compile Include="Entities\Enums\PlayerCollisionPart.cs" />
     <Compile Include="Entities\Enums\PlayerViewDirection.cs" />
+    <Compile Include="Entities\Enums\RectangleSide.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GameObjects\PlayerHealthStatus.cs" />
     <Compile Include="Entities\GameStateHandlers\GamePhaseManager.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Entities\ClientMessageTypes\ClientPlayState.cs" />
     <Compile Include="Entities\ClientMessageTypes\ClientState.cs" />
     <Compile Include="Entities\GameObjects\Player.cs" />
+    <Compile Include="Entities\Primitives\Circle.cs" />
     <Compile Include="Entities\Primitives\Rectangle.cs" />
     <Compile Include="Entities\ServerMessages\PlayerStatistic.cs" />
     <Compile Include="Entities\Enums\ClientStatus.cs" />

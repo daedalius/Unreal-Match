@@ -1,19 +1,17 @@
 ﻿namespace UnrealMatch.Entities.GameStateHandlers
 {
-    using Newtonsoft.Json;
-    using System.Linq;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
+    using Newtonsoft.Json;
+    using UnrealMatch.Entities.Calculations;
     using UnrealMatch.Entities.ClientMessageTypes;
     using UnrealMatch.Entities.Enums;
-    using UnrealMatch.Entities.Weapons;
-    using UnrealMatch.Entities.Weapons.WeaponShots;
-    using System.Diagnostics;
-    using UnrealMatch.Entities.Calculations;
+    using UnrealMatch.Entities.GameObjects;
     using UnrealMatch.Entities.Interfaces;
     using UnrealMatch.Entities.Primitives;
-    using System;
-using UnrealMatch.Entities.GameObjects;
+    using UnrealMatch.Entities.Weapons.WeaponShots;
 
     public class PlayGamePhaseManager : GamePhaseManager
     {
@@ -70,48 +68,6 @@ using UnrealMatch.Entities.GameObjects;
             foreach (var player in this.Game.Players)
             {
                 player.HealthStatus.DeathFlag = false;
-            }
-        }
-
-        private Point RespawnPlayer(Player toSpawn)
-        {
-            var results = new List<Tuple<Point, double>>();
-
-            foreach (var rp in Map.MapInfoGetter.MapRespawns[this.Game.Map.Title])
-            {
-                double minimalDistance = Double.MaxValue;
-                Point minimalDistancePoint = null;
-
-                // For each enemy find minimal distance beetween current probably respawn point
-                foreach (var p in this.Game.Players.Where(x => x.Number != toSpawn.Number))
-                {
-                    var distanse = Calculations.Get.Hypotenuse(Math.Abs(rp.X - p.Position.X), Math.Abs(rp.Y - p.Position.Y));
-                    if (distanse < minimalDistance)
-                    {
-                        minimalDistancePoint = rp;
-                        minimalDistance = distanse;
-                    }
-                }
-                results.Add(new Tuple<Point, double>(minimalDistancePoint, minimalDistance));
-            }
-
-            // Just take the farther point
-            return results.OrderByDescending(x => x.Item2).First().Item1;
-        }
-
-        private void CheckPlayersStatus()
-        {
-            for (int i = 0; i < this.Game.Players.Count; i++)
-            {
-                if (this.Game.Players[i].HealthStatus.HP <= 0)
-                {
-                    var respawnPoint = this.RespawnPlayer(this.Game.Players[i]);
-                    this.Game.Players[i].Position = respawnPoint;
-                    
-                    // New health status
-                    this.Game.Players[i].HealthStatus = new GameObjects.PlayerHealthStatus();
-                    this.Game.Players[i].HealthStatus.DeathFlag = true;
-                }
             }
         }
 
@@ -179,6 +135,48 @@ using UnrealMatch.Entities.GameObjects;
             // Search for intersection with other shells
 
             // Save info for delivery to other players
+        }
+
+        private void CheckPlayersStatus()
+        {
+            for (int i = 0; i < this.Game.Players.Count; i++)
+            {
+                if (this.Game.Players[i].HealthStatus.HP <= 0)
+                {
+                    var respawnPoint = this.RespawnPlayer(this.Game.Players[i]);
+                    this.Game.Players[i].Position = respawnPoint;
+
+                    // New health status
+                    this.Game.Players[i].HealthStatus = new GameObjects.PlayerHealthStatus();
+                    this.Game.Players[i].HealthStatus.DeathFlag = true;
+                }
+            }
+        }
+
+        private Point RespawnPlayer(Player toSpawn)
+        {
+            var results = new List<Tuple<Point, double>>();
+
+            foreach (var rp in Map.MapInfoGetter.MapRespawns[this.Game.Map.Title])
+            {
+                double minimalDistance = Double.MaxValue;
+                Point minimalDistancePoint = null;
+
+                // For each enemy find minimal distance beetween current probably respawn point
+                foreach (var p in this.Game.Players.Where(x => x.Number != toSpawn.Number))
+                {
+                    var distanse = Calculations.Get.Hypotenuse(Math.Abs(rp.X - p.Position.X), Math.Abs(rp.Y - p.Position.Y));
+                    if (distanse < minimalDistance)
+                    {
+                        minimalDistancePoint = rp;
+                        minimalDistance = distanse;
+                    }
+                }
+                results.Add(new Tuple<Point, double>(minimalDistancePoint, minimalDistance));
+            }
+
+            // Just take the farther point
+            return results.OrderByDescending(x => x.Item2).First().Item1;
         }
 
         public override void BroadcastState()
