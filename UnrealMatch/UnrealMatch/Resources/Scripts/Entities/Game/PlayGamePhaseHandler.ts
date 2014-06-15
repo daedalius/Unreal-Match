@@ -10,6 +10,8 @@ module Game
             {
                 var players = gameStateObject.Players;
 
+                Shells.ShellManager.Refresh(gameStateObject.Shells);
+
                 for(var i = 0; i < players.length; i++)
                 {
                     // For enemies

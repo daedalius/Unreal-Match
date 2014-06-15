@@ -1,7 +1,7 @@
 ﻿namespace UnrealMatch.Entities.Weapons
 {
+    using UnrealMatch.Entities.Enums;
     using UnrealMatch.Entities.Primitives;
-    using UnrealMatch.Resources.Scripts.Entities.Weapons;
 
     public abstract class Blast
     {

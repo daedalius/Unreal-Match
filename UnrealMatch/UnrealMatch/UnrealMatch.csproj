@@ -162,7 +162,7 @@
     <Compile Include="Models\GamesInfo.cs" />
     <Compile Include="Models\GameStartInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Scripts\Entities\Weapons\BlastType.cs" />
+    <Compile Include="Entities\Enums\BlastType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -319,6 +319,7 @@
     <TypeScriptCompile Include="Resources\Scripts\Menu\Menu.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\PlayerSounds.ts" />
     <TypeScriptCompile Include="Resources\Scripts\SoundsManagers\WeaponsSoundBundle.ts" />
+    <Content Include="Resources\Scripts\Shells\ShellManager.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

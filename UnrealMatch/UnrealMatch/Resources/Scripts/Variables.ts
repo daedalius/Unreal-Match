@@ -18,6 +18,10 @@ var HeadContext: CanvasRenderingContext2D;
 var BodyContext: CanvasRenderingContext2D;
 var WeaponContext: CanvasRenderingContext2D;
 
+// Shells
+var ShellsCanvas: HTMLCanvasElement;
+var ShellsContext: CanvasRenderingContext2D;
+
 // Nova images
 var _WeaponNova: HTMLImageElement;
 var _HeadNova: HTMLImageElement;

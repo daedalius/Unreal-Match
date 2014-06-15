@@ -37,7 +37,7 @@ function Interval50()
 {
     CurrentPlayer.NextPosition();
     Animation.AnimationManager.DoNextStep();
-
+    Shells.ShellManager.Draw();
     // Decrease shot delay
     Weapons.ClientWeaponManager.DecreaseShotDelay(50);
 }

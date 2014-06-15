@@ -1,3 +1,4 @@
+/// <reference path="Shells/ShellManager.ts" />
 /// <reference path="NetworkProcesses.ts" />
 
 
@@ -31,6 +32,10 @@ class Loader
 
         LevelCanvas = <HTMLCanvasElement>document.getElementById('level');
         LevelContext = LevelCanvas.getContext('2d');
+
+        // Shells
+        ShellsCanvas = <HTMLCanvasElement>document.getElementById('shells-canvas');
+        ShellsContext = ShellsCanvas.getContext('2d');
 
         LevelPassCanvas = <HTMLCanvasElement>document.getElementById('levelPass');
         LevelPassContext = LevelCanvas.getContext('2d');
@@ -120,6 +125,9 @@ class Loader
 
         // Animations
         Animation.AnimationManager.CanvasContext = (<HTMLCanvasElement>document.getElementById('animation-canvas')).getContext('2d');
+
+        // Shells
+        Shells.ShellManager.CanvasContext = (<HTMLCanvasElement>document.getElementById('shells-canvas')).getContext('2d')
 
         Socket = new WebSocket(Game.GameInfo.Socket);
 

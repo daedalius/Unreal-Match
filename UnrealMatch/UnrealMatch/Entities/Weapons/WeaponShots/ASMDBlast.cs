@@ -1,7 +1,7 @@
 ﻿namespace UnrealMatch.Entities.Weapons.WeaponShots
 {
     using UnrealMatch.Entities.Primitives;
-    using UnrealMatch.Resources.Scripts.Entities.Weapons;
+    using UnrealMatch.Entities.Enums;
 
     public class ASMDBlast : Blast
     {
