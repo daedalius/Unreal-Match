@@ -6,12 +6,19 @@ class Loader
 {
     public static InitializeVariables()
     {
-        IsMouseInputEnable = false;
-        //IsMouseInputEnable = true;
-        IsKeyboardInputEnable = false;
-        //IsKeyboardInputEnable = true;
-        IsPlayerDrawEnable = false;
-        //IsPlayerDrawEnable = true;
+        //IsMouseInputEnable = false;
+        ////IsMouseInputEnable = true;
+        //IsKeyboardInputEnable = false;
+        ////IsKeyboardInputEnable = true;
+        //IsPlayerDrawEnable = false;
+        ////IsPlayerDrawEnable = true;
+
+        //IsMouseInputEnable = false;
+        IsMouseInputEnable = true;
+        //IsKeyboardInputEnable = false;
+        IsKeyboardInputEnable = true;
+        //IsPlayerDrawEnable = false;
+        IsPlayerDrawEnable = true;
 
         Weapons.ClientWeaponManager.Init();
 
@@ -21,29 +28,17 @@ class Loader
         // Initializing HTMLElements
         ContentElement = <HTMLElement>document.getElementById('content');
 
-        HeadCanvas = <HTMLCanvasElement>document.getElementById('head0');
-        HeadContext = HeadCanvas.getContext('2d');
-
-        BodyCanvas = <HTMLCanvasElement>document.getElementById('body0');
-        BodyContext = BodyCanvas.getContext('2d');
-
-        WeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon0');
-        WeaponContext = WeaponCanvas.getContext('2d');
-
-        LevelCanvas = <HTMLCanvasElement>document.getElementById('level');
-        LevelContext = LevelCanvas.getContext('2d');
-
         // Shells
         ShellsCanvas = <HTMLCanvasElement>document.getElementById('shells-canvas');
         ShellsContext = ShellsCanvas.getContext('2d');
 
+
+        LevelCanvas = <HTMLCanvasElement>document.getElementById('level');
+        LevelContext = LevelCanvas.getContext('2d');
+
         LevelPassCanvas = <HTMLCanvasElement>document.getElementById('levelPass');
         LevelPassContext = LevelCanvas.getContext('2d');
-        LevelPassImage = <HTMLImageElement>document.getElementById("LevelPassImage");
-
-        _HeadNova = <HTMLImageElement>document.getElementById("PlayerOneHeadSpritesheet");
-        _BodyNova = <HTMLImageElement>document.getElementById("PlayerOneBodySpritesheet");
-        _WeaponNova = <HTMLImageElement>document.getElementById("PlayerOneWeaponSpritesheet");
+        LevelPassImage = <HTMLImageElement>document.getElementById("LevelImagePass");
         LevelImage = <HTMLImageElement>document.getElementById("LevelImage");
 
         // Enabling HUD    
@@ -70,45 +65,49 @@ class Loader
         Game.GameInfo.Phase = Game.GamePhase.Waiting;
         Game.GameInfo.PhaseHandler = new Game.WaitingGamePhaseHandler();
 
+
+
+
+
+
+
+
+
+
+
+
         // Players and current player
         Players = new Array<Entities.Player>(Game.GameInfo.MaxPlayers);
 
-        // Prepare resources for current player
-        CurrentPlayer = new Entities.Player("", parseInt($('#player-number').text()), Game.TeamType.None, new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
-        Players[CurrentPlayer.ID] = CurrentPlayer;
 
-        // prepare canvaces for other players
-        // [TODO] - refact this shit
+        var currentPlayerId = parseInt($('#player-number').text());
+
+        if(currentPlayerId != 0)
+        {
+            // Move canvaces down to make sure that current player will drow in the front
+            $('#content').append($('#body' + currentPlayerId).remove());
+            $('#content').append($('#head' + currentPlayerId).remove());
+            $('#content').append($('#weapon' + currentPlayerId).remove());
+        }
+
+        // Get canvaces and add players
         for(var i = 0; i < Game.GameInfo.MaxPlayers; i++)
         {
-            if(i < CurrentPlayer.ID)
-            {
-                var tempHeadCanvas = <HTMLCanvasElement>document.getElementById('head' + (i + 1).toString());
-                var tempHeadContext = tempHeadCanvas.getContext('2d');
+            HeadCanvas = <HTMLCanvasElement>document.getElementById('head' + i);
+            HeadContext = HeadCanvas.getContext('2d');
 
-                var tempBodyCanvas = <HTMLCanvasElement>document.getElementById('body' + (i + 1).toString());
-                var tempBodyContext = tempBodyCanvas.getContext('2d');
+            BodyCanvas = <HTMLCanvasElement>document.getElementById('body' + i);
+            BodyContext = BodyCanvas.getContext('2d');
 
-                var tempWeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon' + (i + 1).toString());
-                var tempWeaponContext = tempWeaponCanvas.getContext('2d');
+            WeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon' + i);
+            WeaponContext = WeaponCanvas.getContext('2d');
 
-                Players[i] = new Entities.Player("", i, Game.TeamType.None, new Entities.Point(600, 24), tempHeadContext, tempBodyContext, tempWeaponContext);
-            }
-
-            if(i > CurrentPlayer.ID)
-            {
-                var tempHeadCanvas = <HTMLCanvasElement>document.getElementById('head' + i.toString());
-                var tempHeadContext = tempHeadCanvas.getContext('2d');
-
-                var tempBodyCanvas = <HTMLCanvasElement>document.getElementById('body' + i.toString());
-                var tempBodyContext = tempBodyCanvas.getContext('2d');
-
-                var tempWeaponCanvas = <HTMLCanvasElement>document.getElementById('weapon' + i.toString());
-                var tempWeaponContext = tempWeaponCanvas.getContext('2d');
-
-                Players[i] = new Entities.Player("", i, Game.TeamType.None, new Entities.Point(600, 24), tempHeadContext, tempBodyContext, tempWeaponContext);
-            }
+            Players[i] = new Entities.Player("", i,<Game.TeamType>(i+1), new Entities.Point(600, 24), HeadContext, BodyContext, WeaponContext);
         }
+        CurrentPlayer = Players[currentPlayerId];
+
+
+
 
 
         // RequestPath format: /{gamename}-{playerIndexNumber}

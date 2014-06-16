@@ -4,7 +4,7 @@ module Game
     {
         None,
         Red,
-        Blu,
+        Blue,
         Green,
         Yellow
     }

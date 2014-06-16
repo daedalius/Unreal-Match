@@ -23,9 +23,9 @@ var ShellsCanvas: HTMLCanvasElement;
 var ShellsContext: CanvasRenderingContext2D;
 
 // Nova images
-var _WeaponNova: HTMLImageElement;
-var _HeadNova: HTMLImageElement;
-var _BodyNova: HTMLImageElement;
+//var _WeaponNova: HTMLImageElement;
+//var _HeadNova: HTMLImageElement;
+//var _BodyNova: HTMLImageElement;
 
 // HUD
 var SHUD: Entities.StatusHUD;

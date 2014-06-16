@@ -144,7 +144,7 @@ module Entities
             this.WeaponContext.clearRect(-400, -400, 1000, 1000);
             this.WeaponContext.translate(-weaponCenter.X, -weaponCenter.Y);
             // Drawing
-            this.WeaponContext.drawImage(_WeaponNova, weaponSpriteStartPoint.X, weaponSpriteStartPoint.Y, Sizes.WeaponDefault.Width, Sizes.WeaponDefault.Height, weaponScreenRectangle.Start.X, weaponScreenRectangle.Start.Y, weaponScreenRectangle.Width, weaponScreenRectangle.Height);
+            this.WeaponContext.drawImage(this.TeamPresentation.GetTeamWeaponsPresentation(), weaponSpriteStartPoint.X, weaponSpriteStartPoint.Y, Sizes.WeaponDefault.Width, Sizes.WeaponDefault.Height, weaponScreenRectangle.Start.X, weaponScreenRectangle.Start.Y, weaponScreenRectangle.Width, weaponScreenRectangle.Height);
             // Rotating on actual angle
             this.WeaponContext.translate(weaponCenter.X, weaponCenter.Y);
             this.WeaponContext.rotate(this.presentationObject.OldAngleOfView);
