@@ -6,7 +6,7 @@
     public class ASMDBlast : Blast
     {
         public ASMDBlast(Point position)
-            : base(BlastType.ASMDBlast, position, 10, 20, 40)
+            : base(BlastType.ASMDBlast, position, 32, 48, 40)
         {
         }
     }

@@ -207,6 +207,7 @@
                 }
             }
 
+            // [TODO]
             // Search for intersection with other shells
 
             // Save info for delivery to other players
@@ -214,7 +215,20 @@
 
         private void HandleBlasts()
         {
+            foreach (var blast in this.Blasts)
+            {
+                foreach (var player in this.Game.Players)
+                {
+                    var blastExplosionCircle = new Circle(blast.Position, blast.FullRadius);
+                    var headIntersection = Calculations.Get.CircleRectangleIntersection(blastExplosionCircle, player.HeadRectangle);
+                    var bodyIntersection = Calculations.Get.CircleRectangleIntersection(blastExplosionCircle, player.BodyRectangle);
 
+                    if (headIntersection || bodyIntersection)
+                    {
+                        player.HealthStatus.Decrease(blast.Damage);
+                    }
+                }
+            }
         }
 
         private void CheckPlayersStatus()

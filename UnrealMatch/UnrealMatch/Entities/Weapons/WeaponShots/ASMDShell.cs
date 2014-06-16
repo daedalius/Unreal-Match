@@ -7,7 +7,7 @@
     public class ASMDShell : LinearShell
     {
         public ASMDShell(int provider, Point position, double angle, PlayerViewDirection direction)
-            : base(provider, WeaponType.Shockrifle, WeaponMode.Alternate, position, angle, 40, direction, 15, 50)
+            : base(provider, WeaponType.Shockrifle, WeaponMode.Alternate, position, angle, 40, direction, 32, 30)
         { }
 
         public override Calculations.MomentShotIntersectionResult MomentShotHitTest(Shot shot)

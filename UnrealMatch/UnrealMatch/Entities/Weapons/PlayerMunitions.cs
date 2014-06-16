@@ -15,7 +15,7 @@
 
             this.Ammo = new int[9];
             this[WeaponType.Enforcer] = 50;
-            this[WeaponType.Shockrifle] = 20;
+            this[WeaponType.Shockrifle] = 40;
         }
 
         public void Decrease(Shot shot)
