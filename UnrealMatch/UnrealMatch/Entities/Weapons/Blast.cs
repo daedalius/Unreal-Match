@@ -1,6 +1,7 @@
 ﻿namespace UnrealMatch.Entities.Weapons
 {
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.GameObjects;
     using UnrealMatch.Entities.Primitives;
 
     public abstract class Blast
@@ -25,9 +26,14 @@
         /// Blast type in emum presentation
         /// </summary>
         public BlastType Type { get; set; }
+        /// <summary>
+        /// Player Id
+        /// </summary>
+        public int Sender { get; set; }
 
-        public Blast(BlastType type, Point position, int epicenterRadius, int fullRadius, int damage)
+        public Blast(int senderId, BlastType type, Point position, int epicenterRadius, int fullRadius, int damage)
         {
+            this.Sender = senderId;
             this.Type = type;
             this.Position = position;
             this.EpicenterRadius = epicenterRadius;

@@ -146,6 +146,10 @@
         bool IMomentShotHitTest.HandleIntersection(MomentShotIntersectionResult intersection, PlayGamePhaseManager manager)
         {
             this.HealthStatus.Decrease(intersection.Shot.Damage);
+            if (this.HealthStatus.HP <= 0)
+            {
+                manager.Game.Players[intersection.Shot.PlayerId].Score += 1;
+            }
             Debug.WriteLine("-{0} HP от попадания в {1} из {2}", intersection.Shot.Damage, intersection.PlayerPart.ToString(), intersection.Shot.Weapon.ToString());
 
             return true;

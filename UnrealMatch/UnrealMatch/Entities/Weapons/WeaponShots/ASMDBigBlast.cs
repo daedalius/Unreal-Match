@@ -5,8 +5,8 @@
 
     public class ASMDBigBlast : Blast
     {
-        public ASMDBigBlast(Point position)
-            : base(BlastType.ASMDBigBlast, position, 20, 200, 100)
+        public ASMDBigBlast(int senderId, Point position)
+            : base(senderId, BlastType.ASMDBigBlast, position, 20, 200, 100)
         {
         }
     }

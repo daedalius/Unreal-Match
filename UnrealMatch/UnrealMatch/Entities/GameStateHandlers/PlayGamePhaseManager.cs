@@ -193,7 +193,7 @@
                                     // This is a ASMD shell
                                     if (shell.Mode == WeaponMode.Alternate)
                                     {
-                                        this.Blasts.Add(new ASMDBlast(shell.CurrentPosition));
+                                        this.Blasts.Add(new ASMDBlast(shell.PlayerId, shell.CurrentPosition));
                                     }
                                     break;
                                 }
@@ -226,6 +226,20 @@
                     if (headIntersection || bodyIntersection)
                     {
                         player.HealthStatus.Decrease(blast.Damage);
+
+                        if (player.HealthStatus.HP <= 0)
+                        {
+                            if (player.Number != blast.Sender)
+                            {
+                                // Player has killed the enemy
+                                this.Game.Players[blast.Sender].Score += 1;
+                            }
+                            else
+                            {
+                                // Player killed himself
+                                this.Game.Players[blast.Sender].Score -= 1;
+                            }
+                        }
                     }
                 }
             }
@@ -281,7 +295,7 @@
                 Players = this.Game.Players.ToArray(),
                 Shells = this.ActiveShells,
                 Blasts = this.Blasts,
-                //RemovedShells = this.BlastedShells
+                PlayerStatistic = this.Game.CollectPlayersStats()
             };
             this.Game.SendBroadcastMessage(obj);
         }

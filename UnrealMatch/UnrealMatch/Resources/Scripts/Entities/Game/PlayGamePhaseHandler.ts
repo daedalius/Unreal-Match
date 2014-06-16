@@ -9,11 +9,23 @@ module Game
         {
             if(gameStateObject.Stage == "Play")
             {
+                var playersStats = gameStateObject.PlayerStatistic;
+
+                for(var i = 0; i < playersStats.length; i++)
+                {
+                    var id = playersStats[i].Number;
+
+                    Players[id].Score = playersStats[i].Score;
+                }
+                GsHUD.Refresh();
+
                 var players = gameStateObject.Players;
 
+                // Getting info about shells and blasts
                 Shells.ShellManager.Refresh(gameStateObject.Shells);
                 Shells.BlastManager.Animate(gameStateObject.Blasts);
 
+                // Handling new game state
                 for(var i = 0; i < players.length; i++)
                 {
                     // For enemies
@@ -36,8 +48,8 @@ module Game
                         Players[i].LookDirectionIsForward = players[i].Direction;
                         Weapons.ClientWeaponManager.ChangeEnemyWeapon(Players[i], players[i].Weapon);
                     }
-                    else
                     // For current player
+                    else
                     {
                         // Respawn after death means players teleportation
                         if(players[i].HealthStatus.DeathFlag)

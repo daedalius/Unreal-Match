@@ -7,7 +7,7 @@
     public class ASMDShell : LinearShell
     {
         public ASMDShell(int provider, Point position, double angle, PlayerViewDirection direction)
-            : base(provider, WeaponType.Shockrifle, WeaponMode.Alternate, position, angle, 40, direction, 32, 30)
+            : base(provider, WeaponType.Shockrifle, WeaponMode.Alternate, position, angle, 40, direction, 32, 50)
         { }
 
         public override Calculations.MomentShotIntersectionResult MomentShotHitTest(Shot shot)
@@ -39,7 +39,7 @@
                 if (intersection.Shot.Mode == WeaponMode.Standart)
                 {
                     // Need to generate ASMD big blast
-                    manager.Blasts.Add(new ASMDBigBlast(intersection.Intersection));
+                    manager.Blasts.Add(new ASMDBigBlast(intersection.Shot.PlayerId, intersection.Intersection));
                 }
                 //else
                 //{

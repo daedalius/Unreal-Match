@@ -2,11 +2,12 @@
 {
     using UnrealMatch.Entities.Primitives;
     using UnrealMatch.Entities.Enums;
+    using UnrealMatch.Entities.GameObjects;
 
     public class ASMDBlast : Blast
     {
-        public ASMDBlast(Point position)
-            : base(BlastType.ASMDBlast, position, 32, 48, 40)
+        public ASMDBlast(int senderId, Point position)
+            : base(senderId, BlastType.ASMDBlast, position, 32, 48, 40)
         {
         }
     }
