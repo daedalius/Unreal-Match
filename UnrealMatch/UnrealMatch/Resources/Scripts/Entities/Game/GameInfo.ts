@@ -22,10 +22,14 @@ module Game
 
                 setTimeout(GameInfo.GameCycle, 100);
             }
+            if(GameInfo.Phase === Game.GamePhase.Stop)
+            {
+                Socket.close();
+            }
         }
 
         private static HandleReceivedShots()
-        {
+{
             // [TODO]
         }
 
@@ -34,8 +38,8 @@ module Game
             GameInfo.ShotsToSend.push(shot);
         }
 
-        public static CloneShots() : Array<any>
-        {
+        public static CloneShots(): Array<any>
+{
             var temp = Calculations.Get.ClonedArray(this.ShotsToSend);
 
             for(var i = 0; i < temp.length; i++)
@@ -47,7 +51,7 @@ module Game
         }
 
         public static ClearPlayerShots()
-        {
+{
             GameInfo.ShotsToSend = new Array<Weapons.Shot>(0);
         }
     }

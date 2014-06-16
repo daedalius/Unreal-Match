@@ -67,6 +67,15 @@
             this.HandleShells();
             this.HandleBlasts();
             this.CheckPlayersStatus();
+            this.CheckVictoryCondition();
+        }
+
+        private void CheckVictoryCondition()
+        {
+            if (this.Game.Players.Any(x => x.Score >= 5))
+            {
+                this.NextPhase();
+            }
         }
 
         /// <summary>
@@ -302,7 +311,7 @@
 
         public override void NextPhase()
         {
-            throw new System.NotImplementedException();
+            this.Game.PhaseManager = new StopGamePhaseManager(this.Game);
         }
 
         public override void MakeDelay()

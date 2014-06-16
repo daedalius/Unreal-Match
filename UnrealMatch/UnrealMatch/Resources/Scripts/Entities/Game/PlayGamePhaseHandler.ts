@@ -97,7 +97,39 @@ module Game
             {
                 if(gameStateObject.Stage == "Stop")
                 {
-                    console.log('Currrent game is over');
+                    var playersStats = gameStateObject.PlayerStatistic;
+                    // Write winner ID
+                    var winnerId: number = <number>gameStateObject.WinnerId;
+
+                    // Refresh table in last time
+                    for(var i = 0; i < playersStats.length; i++)
+                    {
+                        var id = playersStats[i].Number;
+
+                        Players[id].Score = playersStats[i].Score;
+                    }
+                    GsHUD.Refresh();
+
+                    // Hide unusual HUD panels
+                    WHUD.Hide();
+                    GsHUD.Show();
+                    SHUD.Hide();
+
+                    // Check last phase
+                    Game.GameInfo.Phase = Game.GamePhase.Stop;
+
+                    // Detach input handlers
+                    IsKeyboardInputEnable = false;
+                    IsMouseInputEnable = false;
+
+                    if(winnerId != CurrentPlayer.ID)
+                    {
+                        SoundManager.Announcer.Lostmatch.play();
+                    }
+                    else
+                    {
+                        SoundManager.Announcer.Winner.play();
+                    }
                 }
             }
         }

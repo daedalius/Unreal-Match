@@ -1,5 +1,7 @@
 ﻿namespace UnrealMatch.Entities.GameStateHandlers
 {
+    using System.Linq;
+    using System.Threading;
     using UnrealMatch.Entities.Enums;
 
     public class StopGamePhaseManager : GamePhaseManager
@@ -11,28 +13,29 @@
         }
 
         public override void HandleClientMessage(string clientMessage)
-        {
-            throw new System.NotImplementedException();
-        }
+        { }
 
         public override void NextState()
-        {
-            throw new System.NotImplementedException();
-        }
+        { }
 
         public override void BroadcastState()
         {
-            throw new System.NotImplementedException();
+            var obj = new
+            {
+                Stage = this.Phase.ToString(),
+                PlayerStatistic = this.Game.CollectPlayersStats(),
+                WinnerId = this.Game.Players.Where(x => x.Score >= 5).First().Number
+            };
+
+            this.Game.SendBroadcastMessage(obj);
         }
 
         public override void NextPhase()
-        {
-            throw new System.NotImplementedException();
-        }
+        { }
 
         public override void MakeDelay()
         {
-            throw new System.NotImplementedException();
+            Thread.Sleep(100);
         }
     }
 }
