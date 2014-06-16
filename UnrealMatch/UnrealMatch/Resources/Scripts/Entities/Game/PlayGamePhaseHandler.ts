@@ -23,7 +23,61 @@ module Game
 
                 // Getting info about shells and blasts
                 Shells.ShellManager.Refresh(gameStateObject.Shells);
-                Shells.BlastManager.Animate(gameStateObject.Blasts);
+                Shells.BlastManager.Handle(gameStateObject.Blasts);
+
+                // In shells
+                for(var i = 0; i < gameStateObject.Shots.length; i++)
+                {
+                    var shot = gameStateObject.Shots[i];
+
+                    // need to sound enemies shots
+                    if(shot.PlayerId != CurrentPlayer.ID)
+                    {
+                        var enemy = Players[shot.PlayerId];
+
+                        // Positioning in 2D
+                        var yDiff = enemy.Position.Y - CurrentPlayer.Position.Y;
+                        var xDiff = enemy.Position.X - CurrentPlayer.Position.X;
+
+                        // Expanding the range to cover a greater distance in the function with the limit values in 1000
+                        yDiff = yDiff / 300;
+                        xDiff = xDiff / 300;
+
+                        switch(shot.Weapon)
+                        {
+                            case Weapons.WeaponType.Enforcer:
+                                {
+                                    // Enforcer shot
+                                    enemy.Sounds.WeaponBundle.EnforcerFire.pos3d(xDiff, yDiff, 0);
+                                    enemy.Sounds.WeaponBundle.EnforcerFire.play();
+                                    break;
+                                }
+                            case Weapons.WeaponType.Shockrifle:
+                                {
+                                    switch(shot.Mode)
+                                    {
+                                        case Weapons.WeaponMode.Standart:
+                                            {
+                                                // ASMD shot
+                                                enemy.Sounds.WeaponBundle.AsmdFire.pos3d(xDiff, yDiff, 0);
+                                                enemy.Sounds.WeaponBundle.AsmdFire.play();
+                                                break;
+                                            }
+                                        case Weapons.WeaponMode.Alternate:
+                                            {
+                                                // ASMD shell
+                                                enemy.Sounds.WeaponBundle.AsmdAltFire.pos3d(xDiff, yDiff, 0);
+                                                enemy.Sounds.WeaponBundle.AsmdAltFire.play();
+                                                break;
+                                            }
+                                    }
+                                    break;
+                                }
+                        }
+
+                    }
+                }
+
 
                 // Handling new game state
                 for(var i = 0; i < players.length; i++)

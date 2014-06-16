@@ -20,7 +20,10 @@
         internal List<Shell> ActiveShells;
         internal List<Shot> LastReceivedShots;
         internal List<Blast> Blasts;
-        //internal List<Shell> BlastedShells;
+        /// <summary>
+        /// To send in state
+        /// </summary>
+        internal List<Shot> ShotsToSend;
 
         public PlayGamePhaseManager(Game game)
         {
@@ -29,7 +32,7 @@
             this.ActiveShells = new List<Shell>();
             this.LastReceivedShots = new List<Shot>();
             this.Blasts = new List<Blast>();
-            //this.BlastedShells = new List<Shell>();
+            this.ShotsToSend = new List<Shot>();
         }
 
         public override void HandleClientMessage(string clientMessage)
@@ -108,6 +111,7 @@
         /// </summary>
         private void HandleReceivedMomentShots()
         {
+            this.ShotsToSend = this.LastReceivedShots.ToList();
             var momentShots = this.LastReceivedShots.OfType<MomentShot>();
 
             // Decrease ammo
@@ -304,7 +308,8 @@
                 Players = this.Game.Players.ToArray(),
                 Shells = this.ActiveShells,
                 Blasts = this.Blasts,
-                PlayerStatistic = this.Game.CollectPlayersStats()
+                PlayerStatistic = this.Game.CollectPlayersStats(),
+                Shots = this.ShotsToSend
             };
             this.Game.SendBroadcastMessage(obj);
         }
