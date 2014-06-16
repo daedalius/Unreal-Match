@@ -17,19 +17,19 @@
 
     public class PlayGamePhaseManager : GamePhaseManager
     {
-        internal List<Shell> Shells;
+        internal List<Shell> ActiveShells;
         internal List<Shot> LastReceivedShots;
         internal List<Blast> Blasts;
-        internal List<Shell> BlastedShells;
+        //internal List<Shell> BlastedShells;
 
         public PlayGamePhaseManager(Game game)
         {
             this.Phase = GamePhase.Play;
             this.Game = game;
-            this.Shells = new List<Shell>();
+            this.ActiveShells = new List<Shell>();
             this.LastReceivedShots = new List<Shot>();
             this.Blasts = new List<Blast>();
-            this.BlastedShells = new List<Shell>();
+            //this.BlastedShells = new List<Shell>();
         }
 
         public override void HandleClientMessage(string clientMessage)
@@ -65,9 +65,13 @@
             this.HandleReceivedMomentShots();
             this.HandleReceivedShells();
             this.HandleShells();
+            this.HandleBlasts();
             this.CheckPlayersStatus();
         }
 
+        /// <summary>
+        /// Staying at the beginning of the processing cycle prepares the state for Iteration
+        /// </summary>
         private void PreparingCleanUp()
         {
             // Clear death flag
@@ -76,18 +80,23 @@
                 player.HealthStatus.DeathFlag = false;
             }
 
-            this.BlastedShells = new List<Shell>();
+            //this.BlastedShells = new List<Shell>();
             this.Blasts = new List<Blast>();
 
-            for (int i = 0; i < this.Shells.Count; i++)
+            // Searching for outrange shells
+            for (int i = 0; i < this.ActiveShells.Count; i++)
             {
-                if (this.Shells[i].IsLosted(this.Game.Map.Size))
+                if (this.ActiveShells[i].IsLosted(this.Game.Map.Size))
                 {
-                    this.Shells.Remove(this.Shells[i]);
+                    // Remove them
+                    this.ActiveShells.Remove(this.ActiveShells[i]);
                 }
             }
         }
 
+        /// <summary>
+        /// Handles shots sent players after the previous cycle
+        /// </summary>
         private void HandleReceivedMomentShots()
         {
             var momentShots = this.LastReceivedShots.OfType<MomentShot>();
@@ -114,7 +123,7 @@
                 }
 
                 // Search for shells
-                foreach (var shell in this.Shells)
+                foreach (var shell in this.ActiveShells)
                 {
                     var shotResult = ((IMomentShotHitTest)shell).MomentShotHitTest(shot);
                     if (shotResult != null)
@@ -151,21 +160,61 @@
             // Clear list because all shots already taken
             this.LastReceivedShots.Clear();
 
-            this.Shells.AddRange(lastShells);
+            this.ActiveShells.AddRange(lastShells);
         }
 
         private void HandleShells()
         {
             // Move shells further
-            foreach (var shell in this.Shells)
+            foreach (var shell in this.ActiveShells)
             {
                 shell.NextPosition();
             }
+
             // Search for intersection with players
+            for (int i = 0; i < this.ActiveShells.Count; i++)
+            {
+                var shell = this.ActiveShells[i];
+
+                // Searching for enemies to detonate shell
+                foreach (var player in this.Game.Players.Where(x => x.Number != shell.PlayerId))
+                {
+                    var shellCircle = new Circle(shell.CurrentPosition, shell.Raduis);
+                    var headIntersection = Calculations.Get.CircleRectangleIntersection(shellCircle, player.HeadRectangle);
+                    var bodyIntersection = Calculations.Get.CircleRectangleIntersection(shellCircle, player.BodyRectangle);
+
+                    if (headIntersection || bodyIntersection)
+                    {
+                        switch (shell.Weapon)
+                        {
+                            // [TODO] - Extract to other place
+                            case WeaponType.Shockrifle:
+                                {
+                                    // This is a ASMD shell
+                                    if (shell.Mode == WeaponMode.Alternate)
+                                    {
+                                        this.Blasts.Add(new ASMDBlast(shell.CurrentPosition));
+                                    }
+                                    break;
+                                }
+                        }
+
+                        // Remove this blasted shell
+                        this.ActiveShells.Remove(shell);
+                        // Take next shell
+                        break;
+                    }
+                }
+            }
 
             // Search for intersection with other shells
 
             // Save info for delivery to other players
+        }
+
+        private void HandleBlasts()
+        {
+
         }
 
         private void CheckPlayersStatus()
@@ -216,9 +265,9 @@
             {
                 Stage = this.Phase.ToString(),
                 Players = this.Game.Players.ToArray(),
-                Shells = this.Shells,
+                Shells = this.ActiveShells,
                 Blasts = this.Blasts,
-                RemovedShells = this.BlastedShells
+                //RemovedShells = this.BlastedShells
             };
             this.Game.SendBroadcastMessage(obj);
         }

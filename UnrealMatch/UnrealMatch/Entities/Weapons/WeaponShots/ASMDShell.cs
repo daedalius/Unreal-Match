@@ -48,8 +48,8 @@
                 //}
 
                 // [TODO] - Too dangerous code
-                manager.Shells.Remove(this);
-                manager.BlastedShells.Add(this);
+                manager.ActiveShells.Remove(this);
+                //manager.BlastedShells.Add(this);
 
                 return true;
             }
