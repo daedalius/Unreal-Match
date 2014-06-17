@@ -129,6 +129,7 @@ module Game
                 // CurrentPlayer is dead. Need to erase all players
                 if(players[CurrentPlayer.ID].HealthStatus.DeathFlag)
                 {
+                    CurrentPlayer.Sounds.Death.play();
                     for(var pId = 0; pId < Players.length; pId++)
                     {
                         Players[pId].Presentation.Erase();
@@ -142,6 +143,16 @@ module Game
                         // Erase only dead enemy
                         if(players[pId].HealthStatus.DeathFlag)
                         {
+                            // Positioning in 2D
+                            var yDiff = Players[pId].Position.Y - CurrentPlayer.Position.Y;
+                            var xDiff = Players[pId].Position.X - CurrentPlayer.Position.X;
+
+                            // Expanding the range to cover a greater distance in the function with the limit values in 1000
+                            yDiff = yDiff / 300;
+                            xDiff = xDiff / 300;
+
+                            Players[pId].Sounds.Death.pos3d(xDiff, yDiff, 0);
+                            Players[pId].Sounds.Death.play();
                             Players[pId].Presentation.Erase();
                         }
                     }
