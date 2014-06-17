@@ -3,10 +3,12 @@ module SoundManager
     export class PlayerAnnouncerStartState
     {
         public FragsStretch: number;
+        public Last: Date;
 
         constructor(fragStretch: number)
         {
             this.FragsStretch = fragStretch;
+            this.Last = new Date();
         }
 
         public AnnounceState()
@@ -52,13 +54,14 @@ module SoundManager
             }
         }
 
-        public React(frags, deltaFrags, lastFragTime: Date)
+        public React(frags, deltaFrags)
         {
             if(deltaFrags > 0)
             {
                 var delay: number = (deltaFrags > 1) ? 1500 : 0;
-                this.ReactOnFragStretch(deltaFrags, lastFragTime);
-                return this.TryChangeState(frags, delay);
+                this.ReactOnFragStretch(deltaFrags, this.Last);
+                this.Last = new Date();
+                CurrentPlayer.AnnouncerKillsState = this.TryChangeState(frags, delay);
             }
         }
     }

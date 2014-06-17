@@ -9,14 +9,18 @@ module Game
         {
             if(gameStateObject.Stage == "Play")
             {
+                var oldFrags = CurrentPlayer.Score;
+
                 var playersStats = gameStateObject.PlayerStatistic;
 
                 for(var i = 0; i < playersStats.length; i++)
                 {
                     var id = playersStats[i].Number;
-
                     Players[id].Score = playersStats[i].Score;
                 }
+
+                var fragsDelta = CurrentPlayer.Score - oldFrags;
+
                 GsHUD.Refresh();
 
                 var players = gameStateObject.Players;
@@ -110,6 +114,13 @@ module Game
                         {
                             CurrentPlayer.Position.X = players[i].Position.X;
                             CurrentPlayer.Position.Y = players[i].Position.Y;
+
+
+                            CurrentPlayer.AnnouncerKillsState = new SoundManager.PlayerAnnouncerStartState(0);
+                        }
+                        else
+                        {
+                            CurrentPlayer.AnnouncerKillsState.React(CurrentPlayer.Score, fragsDelta);
                         }
 
                         SHUD.SetHP(players[i].HealthStatus.HP.toString());

@@ -73,14 +73,6 @@
             this.CheckVictoryCondition();
         }
 
-        private void CheckVictoryCondition()
-        {
-            if (this.Game.Players.Any(x => x.Score >= 5))
-            {
-                this.NextPhase();
-            }
-        }
-
         /// <summary>
         /// Staying at the beginning of the processing cycle prepares the state for Iteration
         /// </summary>
@@ -271,6 +263,14 @@
                     this.Game.Players[i].HealthStatus = new GameObjects.PlayerHealthStatus();
                     this.Game.Players[i].HealthStatus.DeathFlag = true;
                 }
+            }
+        }
+
+        private void CheckVictoryCondition()
+        {
+            if (this.Game.Players.Any(x => x.Score >= 15))
+            {
+                this.NextPhase();
             }
         }
 
