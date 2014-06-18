@@ -26,7 +26,8 @@
     @*CREATE FORM*@
     @*///////////////////////////////////////////////////////////*@
     <h1 class="howl-next" id="create-header">Create a new game</h1>
-    <form class="invisible" id="create-form" action="~/Home/Create" method="post">
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { @class = "invisible", id = "create-form" }))
+    { 
         @* Player name *@
         <div class="row">
             <div class="parameter-name"><span>Nickname:</span></div><!--
@@ -54,7 +55,7 @@
          --><div class="parameter-value">@Html.TextBoxFor(x => x.MaxPlayers, new { id = "game-players", type = "range", min = 2, max = Model.MaxPlayers, step = 1 })</div>
         </div>
         <input class="howl-next" id="create" type="submit" value="Create" />
-    </form>
+    }
 </div>
 
 @*Audio*@
