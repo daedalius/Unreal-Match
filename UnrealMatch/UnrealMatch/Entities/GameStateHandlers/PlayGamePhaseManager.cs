@@ -14,12 +14,15 @@
     using UnrealMatch.Entities.Weapons.WeaponShots;
     using UnrealMatch.Entities.Weapons;
     using System.Diagnostics;
+    using System.EnterpriseServices;
 
+    [Synchronization]
     public class PlayGamePhaseManager : GamePhaseManager
     {
         internal List<Shell> ActiveShells;
         internal List<Shot> LastReceivedShots;
         internal List<Blast> Blasts;
+        public object locker = new object();
         /// <summary>
         /// To send in state
         /// </summary>
@@ -37,25 +40,29 @@
 
         public override void HandleClientMessage(string clientMessage)
         {
-            dynamic data = JsonConvert.DeserializeObject(clientMessage);
-
-            int id = data.Id;
-            string state = data.State;
-
-            this.Game.Players[id].Position.X = data.Position.X;
-            this.Game.Players[id].Position.Y = data.Position.Y;
-            this.Game.Players[id].AngleOfView = data.Angle;
-            this.Game.Players[id].Direction = (data.Direction == "Right") ? PlayerViewDirection.Right : PlayerViewDirection.Left;
-
-            //Debug.WriteLine(clientMessage);
-
-            ClientPlayState receivedState = JsonConvert.DeserializeObject<ClientPlayState>(clientMessage);
-            this.Game.Players[id].Weapon = receivedState.Weapon;
-
-            // Convert shots from player
-            for (int i = 0; i < receivedState.Shots.Length; i++)
+            lock (this.locker)
             {
-                this.LastReceivedShots.Add(receivedState.Shots[i].ConvertToShot());
+
+                dynamic data = JsonConvert.DeserializeObject(clientMessage);
+
+                int id = data.Id;
+                string state = data.State;
+
+                this.Game.Players[id].Position.X = data.Position.X;
+                this.Game.Players[id].Position.Y = data.Position.Y;
+                this.Game.Players[id].AngleOfView = data.Angle;
+                this.Game.Players[id].Direction = (data.Direction == "Right") ? PlayerViewDirection.Right : PlayerViewDirection.Left;
+
+                //Debug.WriteLine(clientMessage);
+
+                ClientPlayState receivedState = JsonConvert.DeserializeObject<ClientPlayState>(clientMessage);
+                this.Game.Players[id].Weapon = receivedState.Weapon;
+
+                // Convert shots from player
+                for (int i = 0; i < receivedState.Shots.Length; i++)
+                {
+                    this.LastReceivedShots.Add(receivedState.Shots[i].ConvertToShot());
+                }
             }
         }
 
@@ -64,13 +71,16 @@
         /// </summary>
         public override void NextState()
         {
-            this.PreparingCleanUp();
-            this.HandleReceivedMomentShots();
-            this.HandleReceivedShells();
-            this.HandleShells();
-            this.HandleBlasts();
-            this.CheckPlayersStatus();
-            this.CheckVictoryCondition();
+            lock (this.locker)
+            {
+                this.PreparingCleanUp();
+                this.HandleReceivedMomentShots();
+                this.HandleReceivedShells();
+                this.HandleShells();
+                this.HandleBlasts();
+                this.CheckPlayersStatus();
+                this.CheckVictoryCondition();
+            }
         }
 
         /// <summary>
