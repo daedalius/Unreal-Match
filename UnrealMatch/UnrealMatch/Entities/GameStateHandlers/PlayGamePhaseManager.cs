@@ -278,7 +278,7 @@
 
         private void CheckVictoryCondition()
         {
-            if (this.Game.Players.Any(x => x.Score >= 15))
+            if (this.Game.Players.Any(x => x.Score >= 5))
             {
                 this.NextPhase();
             }

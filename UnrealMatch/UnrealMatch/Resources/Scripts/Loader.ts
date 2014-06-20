@@ -6,19 +6,19 @@ class Loader
 {
     public static InitializeVariables()
     {
-        //IsMouseInputEnable = false;
-        ////IsMouseInputEnable = true;
-        //IsKeyboardInputEnable = false;
-        ////IsKeyboardInputEnable = true;
-        //IsPlayerDrawEnable = false;
-        ////IsPlayerDrawEnable = true;
+        IsMouseInputEnable = false;
+        //IsMouseInputEnable = true;
+        IsKeyboardInputEnable = false;
+        //IsKeyboardInputEnable = true;
+        IsPlayerDrawEnable = false;
+        //IsPlayerDrawEnable = true;
 
-        //IsMouseInputEnable = false;
-        IsMouseInputEnable = true;
-        //IsKeyboardInputEnable = false;
-        IsKeyboardInputEnable = true;
-        //IsPlayerDrawEnable = false;
-        IsPlayerDrawEnable = true;
+        ////IsMouseInputEnable = false;
+        //IsMouseInputEnable = true;
+        ////IsKeyboardInputEnable = false;
+        //IsKeyboardInputEnable = true;
+        ////IsPlayerDrawEnable = false;
+        //IsPlayerDrawEnable = true;
 
         Weapons.ClientWeaponManager.Init();
 

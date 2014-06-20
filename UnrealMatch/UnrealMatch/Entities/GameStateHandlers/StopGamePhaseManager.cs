@@ -24,7 +24,7 @@
             {
                 Stage = this.Phase.ToString(),
                 PlayerStatistic = this.Game.CollectPlayersStats(),
-                WinnerId = this.Game.Players.Where(x => x.Score >= 15).First().Number
+                WinnerId = this.Game.Players.Where(x => x.Score >= 5).First().Number
             };
 
             this.Game.SendBroadcastMessage(obj);
