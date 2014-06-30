@@ -216,6 +216,36 @@
             return Math.Abs(point.Y - circle.Center.Y) <= circle.Radius;
         }
 
+        private static Point MiddlePoint(Point first, Point second)
+        {
+            var xDiff = first.X - second.X;
+            var yDiff = first.Y - second.Y;
+
+            xDiff = xDiff / 2;
+            yDiff = yDiff / 2;
+
+            // Returns middle point
+            return new Point(second.X + xDiff, second.Y + yDiff);
+        }
+
+        private static Point ClosestOrMiddlePoint(Point target, Point first, Point second)
+        {
+            var firstHypoLength = Get.Hypotenuse(first.X - target.X, first.Y - target.Y);
+            var secondHypoLength = Get.Hypotenuse(second.X - target.X, second.Y - target.Y);
+
+            if (firstHypoLength == secondHypoLength)
+            {
+                // Both points are closest
+                // Need to return middle point
+                return Get.MiddlePoint(first, second);
+            }
+            else
+            {
+                // Return first or second point
+                return (firstHypoLength > secondHypoLength) ? second : first;
+            }
+        }
+
         private static bool CircleRectangleLeftRightSideInstersection(RectangleSide sideX, Circle circle, Rectangle rect)
         {
             // equation variables for (x-x0)^2 + (y-y0)^2 = R^2
