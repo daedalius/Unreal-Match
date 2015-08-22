@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-less": "~0.11.0",
-    "grunt-typescript": "~0.3.5"
+    "grunt-contrib-less": "~1.0.1",
+    "grunt-typescript": "~0.7.0"
   },
   "engines": {
     "node": "&gt;=0.10"

@@ -103,8 +103,7 @@ module Weapons
         {
             switch(type)
             {
-                case (WeaponType.Enforcer):
-                    {
+                case WeaponType.Enforcer: {
                         if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Enforcer])
                         {
                             CurrentPlayer.Weapon = new Weapons.Enforcer();
@@ -114,7 +113,7 @@ module Weapons
                         break;
                     }
 
-                case (WeaponType.Shockrifle):
+                case WeaponType.Shockrifle:
                     {
                         if(CurrentPlayer.Munitions.Weapons[Weapons.WeaponType.Shockrifle])
                         {
